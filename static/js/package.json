@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@blockly/theme-dark": "^1.0.5",
+    "blockly": "^5.20210325.1"
+  },
+  "devDependencies": {
+    "@blockly/dev-tools": "^2.2.1"
+  }
+}
