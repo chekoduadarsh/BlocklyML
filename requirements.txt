@@ -114,10 +114,6 @@ Send2Trash==1.5.0
 sip==4.19.13
 six @ file:///tmp/build/80754af9/six_1605205327372/work
 tangled-up-in-unicode==0.1.0
-tensorboard @ file:///home/builder/ktietz/aggregate/tensorflow_recipes/ci_te/tensorboard_1614593728657/work/tmp_pip_dir
-tensorboard-plugin-wit==1.6.0
-tensorflow @ file:///home/builder/ktietz/aggregate/tensorflow_recipes/ci_cpu/tensorflow-base_1614543347059/work/tensorflow_pkg/tensorflow-2.4.1-cp38-cp38-linux_x86_64.whl
-tensorflow-estimator @ file:///home/builder/ktietz/aggregate/tensorflow_recipes/ci_te/tensorflow-estimator_1614592767119/work/whl_temp/tensorflow_estimator-2.4.0-py2.py3-none-any.whl
 termcolor==1.1.0
 terminado==0.10.0
 testpath==0.5.0
