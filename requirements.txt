@@ -104,10 +104,8 @@ requests-oauthlib==1.3.0
 rsa
 scipy
 seaborn
-Send2Trash==1.5.0
 sip==4.19.13
 six
-tangled-up-in-unicode==0.1.0
 termcolor==1.1.0
 terminado==0.10.0
 testpath==0.5.0
