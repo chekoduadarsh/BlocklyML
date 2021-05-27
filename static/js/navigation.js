@@ -18,10 +18,16 @@ function CloseAllNav(){
   $('.dropdown-submenu .show').removeClass("show");
 }
 
-  function getData() {
+var onDisp = []
+var onReport = []
 
+
+  function getData() {
+    console.log(Object.keys(VarData))
+    console.log(onDisp)
+    if(JSON.stringify(onDisp)!=JSON.stringify(Object.keys(VarData))){
     console.log(VarData);
-    
+    onDisp = Object.keys(VarData)   ;
     var varDataStr = JSON.stringify(VarData);
   
     $.ajax({
@@ -29,27 +35,27 @@ function CloseAllNav(){
       data: varDataStr,
       type: 'POST',
       success: function(response){
-        
-      
-        //let doc = new DOMParser().parseFromString(response)
+
         response = response.substring(2, response.length-2);
-  
-        
+
+
         console.log(response)
+
         var responseList = response.split("', '")
         console.log(responseList);
-        
-  
+
+
         var keys = Object.keys(VarData);
-     
-  
+
+
         var result = {};
         keys.forEach((key, i) => result[key] = responseList[i]);
   
   
         document.getElementById("DataFrameViewer").innerHTML = "";
   
-        
+
+
         for (var i = 0; i < Object.keys(VarData).length; i++) {
           (function () {
             
@@ -63,22 +69,23 @@ function CloseAllNav(){
           a.title = Object.keys(VarData)[i]
           a.className = "dropdown-item"
 
-          //inputElement.type = "button"
-          //inputElement.value = Object.keys(VarData)[i] 
+
           a.addEventListener('click', function(){
             displayHTMLTable(responseList[k],Object.keys(VarData)[k],VarData);
           });
           DataViewer.appendChild(a);
           var breaker = document.createElement("br");
           DataViewer.appendChild(breaker);
-        }()); // immediate invocation
+
+
+        }());
       }
       },
       error: function(error){
         console.log(error);
       }
     });
-  
+}
   };
   
   function getReport(){
@@ -127,8 +134,6 @@ function CloseAllNav(){
           a.title = Object.keys(VarData)[i]
           a.className = "dropdown-item"
           console.log(responseList[k])
-          //inputElement.type = "button"
-          //inputElement.value = Object.keys(VarData)[i] 
           a.addEventListener('click', function(){
             displayHTMLReport(responseList[k],Object.keys(VarData)[k],VarData);
           });
@@ -188,32 +193,25 @@ function CloseAllNav(){
   }
 
   function displayHTMLTable(stringdata,id,VarData){
-    var tableHtml = window.open("/DataViewer",  "width="+screen.availWidth+", height="+screen.availHeight+"");
+    var tableHtml = window.open("/DataViewer", "_blank", "width="+screen.availWidth+", height="+screen.availHeight+"");
 
 
     tableHtml.onload = function () {
-      var div = tableHtml.document.createElement("div");
-      div.style ="overflow-x:auto;overflow-y:auto;"
+      var div = tableHtml.document.getElementsByTagName("body")[0];
 
-      div.innerHTML = "<html><head><title>"+id+"</title>"
-      +"</head><body>"
-      +id
-      +stringdata
-      +"</body></html>";
-      tableHtml.document.body.appendChild( div );
+      div.innerHTML =stringdata;
+
     }
   };
 
   function displayHTMLReport(stringdata,id,VarData){
 
-    var tableHtml = window.open("/ReportViewer",  "width="+screen.availWidth+", height="+screen.availHeight+"");
+    var tableHtml = window.open("/ReportViewer", "_blank", "width="+screen.availWidth+", height="+screen.availHeight+"");
 
     tableHtml.onload = function () {
-      var div = tableHtml.document.createElement("div");
-      div.style ="overflow-x:auto;overflow-y:auto;"
+      var div = tableHtml.document.getElementsByTagName("body")[0];
 
-      div.innerHTML = stringdata;
-      tableHtml.document.body.appendChild( div );
+      div.innerHTML =stringdata;
     }
 
     //tableHtml.document.write(stringdata);  
