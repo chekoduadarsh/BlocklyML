@@ -463,24 +463,39 @@ var VarData = {};
      */
     Blockly.Python.pandas = {};
     Blockly.Python['pandas_read_csv'] = function(a){
-        Blockly.Python.definitions_.import_math = "import pandas as pd";
+        Blockly.Python.definitions_.pandas = "import pandas as pd";
         return ['pd.read_csv('+String(a).split(" ")[2]+')' ,Blockly.Python.ORDER_FUNCTION_CALL]
     }
     Blockly.Python['seaborn_dataset'] = function(a){
-        Blockly.Python.definitions_.import_math = "import seaborn as sns";
+        Blockly.Python.definitions_.seaborn = "import seaborn as sns";
         console.log("this :"+Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE) || "0")
-
         VarData[a.inputList[0].fieldRow[1].value_] = 'sns.load_dataset("'+a.inputList[0].fieldRow[1].value_+'")' ,Blockly.Python.ORDER_FUNCTION_CALL;
-
         return ['sns.load_dataset("'+a.inputList[0].fieldRow[1].value_+'")' ,Blockly.Python.ORDER_FUNCTION_CALL]
-
-            
-        
-        i
     }
     Blockly.Python['skl_train_test_split'] = function(a){
-        Blockly.Python.definitions_.import_math = "from sklearn.model_selection import train_test_split";
-        return['train_test_split',Blockly.Python.ORDER_FUNCTION_CALL]
+        Blockly.Python.definitions_.sklearn_test_train_split = "from sklearn.model_selection import train_test_split";
+        var dataframex = Blockly.Python.valueToCode(a, "DATAFRAMEX", Blockly.Python.ORDER_NONE)
+        var dataframey = Blockly.Python.valueToCode(a, "DATAFRAMEY", Blockly.Python.ORDER_NONE)
+        var TrainRatio = parseFloat(Blockly.Python.valueToCode(a, "TRAINRATIO", Blockly.Python.ORDER_NONE))
+        var TestRatio = parseFloat(Blockly.Python.valueToCode(a, "TESTRATIO", Blockly.Python.ORDER_NONE))
+        return['train_test_split('+dataframex+','+dataframey+', test_size='+TestRatio/(TrainRatio+TestRatio)+', random_state=42)',Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+
+    Blockly.Python['Skl_X_Train'] = function(a){
+        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
+        return [ a+"[0]",Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['Skl_y_Train'] = function(a){
+        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
+        return [ a+"[2]",Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['Skl_X_Test'] = function(a){
+        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
+        return [ a+"[1]",Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['Skl_y_Test'] = function(a){
+        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
+        return [ a+"[3]",Blockly.Python.ORDER_FUNCTION_CALL]
     }
     Blockly.Python['pandas_select_columns'] = function(a){
         //console.log(Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN))
@@ -495,7 +510,7 @@ var VarData = {};
     }
 
     Blockly.Python['CLR_XGBoost'] = function(a){
-        Blockly.Python.definitions_.import_math = "from xgboost import XGBClassifier";
+        Blockly.Python.definitions_.XGBClassifier = "from xgboost import XGBClassifier";
 
         console.log(a)
         console.log("TMODEL "+Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE))

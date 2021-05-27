@@ -990,19 +990,104 @@
         }
     };
 
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "skl_train_test_split",
+            message0: "Input DataFrame X %1 ",
+            args0: [
+              {
+                type: "input_value",
+                name: "DATAFRAMEX",
+                check:"DataFrame",
+                value: 0
+            }],
+            message1: "Input DataFrame y %1 ",
+            args1: [
+              {
+                type: "input_value",
+                name: "DATAFRAMEY",
+                check:"DataFrame",
+                value: 0
+            }],
 
-      
-    Blockly.Blocks['skl_train_test_split'] = {
-        init: function() {
-        this.appendValueInput('VALUE')
-            .setCheck(['DataFrame'])
-            .appendField('skl.train_test_split')
+              message2: " Train Ratio %1  ",
+              args2: [
+              {
+                type: "input_value",
+                name: "TRAINRATIO",
+                check:"Number",
+                value: 0
+             }],
+             message3: " Test Ratio %1",
+           args3: [
+           {
+                type: "input_value",
+                name: "TESTRATIO",
+                check:"Number",
+                value: 0
+             }],
+             inputsInline: !0,
+            output: "DataFrameArray"
+          }
+        ]);
 
-        this.setOutput(true, 'Array');
-        this.setColour(160);
-        }
-    };
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "Skl_X_Train",
+             message0: "Get X Train %1 ",
+            args0: [
+              {
+                type: "input_value",
+                name: "VAR",
+                check:"DataFrameArray",
+                value: 0
+            }],
+            output: "DataFrame"
+            }
+        ]);
 
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "Skl_y_Train",
+             message0: "Get y Train %1 ",
+            args0: [
+              {
+                type: "input_value",
+                name: "VAR",
+                check:"DataFrameArray",
+                value: 0
+            }],
+            output: "DataFrame"
+            }
+        ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "Skl_X_Test",
+             message0: "Get X Test %1 ",
+            args0: [
+              {
+                type: "input_value",
+                name: "VAR",
+                check:"DataFrameArray",
+                value: 0
+            }],
+            output: "DataFrame"
+            }
+        ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "Skl_y_Test",
+             message0: "Get y Test %1 ",
+            args0: [
+              {
+                type: "input_value",
+                name: "VAR",
+                check:"DataFrameArray",
+                value: 0
+            }],
+            output: "DataFrame"
+            }
+        ]);
     Blockly.defineBlocksWithJsonArray([ 
         {
             type: "pandas_select_columns",
@@ -1030,13 +1115,8 @@
             {
             type: "CLR_XGBoost",
             message0: "XGBoost",
-            /*message0: "X - Training %1",
-            args0: [{ type: "input_value", name: "XTrain"}],
-            message1: "y - Training  %1",
-            args1: [{ type: "input_value", name: "YTrain" }],*/
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            //extensions: ["controls_if_tooltip"],
             output: "DataFrame"
             }
         ]);

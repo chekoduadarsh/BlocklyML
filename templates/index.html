@@ -54,6 +54,7 @@
               <ul class="dropdown-menu DataFrameViewer" >
                 <div class="DataFrameViewer" id="DataFrameViewer">
                   <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a></li>
+                  <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a></li>
                 </div>
               </ul>
             </li>
@@ -447,9 +448,21 @@
   <category name=SKL colour="%{BKY_COLOUR_HUE}">
 
     <block type = "skl_train_test_split">
-        <field type= "skl.train_test_split">skl.train_test_split</field>
+        <field type= "skl.train_test_split">Input DataFrame X </field>
     </block>
-  
+      <block type = "Skl_X_Train">
+        <field type= "skl.Skl_X_Train">Get X Test </field>
+    </block>
+         <block type = "Skl_y_Train">
+        <field type= "skl.Skl_y_Train">Get y Train </field>
+    </block>
+         <block type = "Skl_X_Test">
+        <field type= "skl.Skl_X_Test">Get X Test </field>
+    </block>
+         <block type = "Skl_y_Test">
+        <field type= "skl.Skl_y_Test">Get y Test </field>
+    </block>
+
     </category>
     <category name=ML-Classifiers colour="%{BKY_COLOUR_HUE}">
 
