@@ -44,12 +44,10 @@
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         
      <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="anyML.runJS();CloseAllNav();getData()">
+          <a class="nav-link dropdown-toggle" h id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="anyML.runJS();CloseAllNav();getData()">
             View
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
             <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">View DataFrames</a>
               <ul class="dropdown-menu DataFrameViewer" >
                 <div class="DataFrameViewer" id="DataFrameViewer">
@@ -68,12 +66,20 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
             Download
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" onclick="downloadPy()">Download .py</a></li>
             <li><a class="dropdown-item" onclick="downloadIpynb()">Download .ipynb</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
+            About
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank" rel="noopener noreferrer">About me</a></li>
           </ul>
         </li>
       </ul>

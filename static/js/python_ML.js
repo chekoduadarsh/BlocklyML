@@ -1057,6 +1057,12 @@ var VarData = {};
         console.log(b);
         console.log(a.getInputTargetBlock("VALUE").outputConnection.getCheck())
         console.log("DONE");
+
+
+        if(a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame"){
+            VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
+        }
+
         return Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME) + " = " + b + "\n";
     };
     Blockly.Python.variablesDynamic = {};
