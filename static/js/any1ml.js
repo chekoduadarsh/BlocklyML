@@ -443,7 +443,7 @@ anyML.init = function() {
 
   anyML.bindClick('trashButton',
       function() {anyML.discard(); anyML.renderContent();});
-  anyML.bindClick('runButton', anyML.runJS);
+  anyML.bindClick('runButton', anyML.LaunchCode);
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
   if ('BlocklyStorage' in window) {
@@ -553,6 +553,10 @@ anyML.runJS = function() {
   }
 };
 
+
+anyML.LaunchCode = function() {
+    window.open("https://colab.research.google.com/");
+};
 /**
  * Discard all blocks from the workspace.
  */
