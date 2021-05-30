@@ -511,18 +511,6 @@ var VarData = {};
 
     Blockly.Python['CLR_XGBoost'] = function(a){
         Blockly.Python.definitions_.XGBClassifier = "from xgboost import XGBClassifier";
-
-        console.log(a)
-        console.log("TMODEL "+Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE))
-        console.log("XTEST "+Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE))
-        console.log("PARAMS "+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE))
-        console.log("XTRAIN "+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE))
-        console.log("YTRAIN "+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE))
-        console.log("XVALID "+Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE))
-        console.log("YVALID "+Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE))
-
-
-        
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" && 
@@ -586,6 +574,384 @@ var VarData = {};
 
     }
 
+
+
+    Blockly.Python['CLR_LogisticRegression'] = function(a){
+        Blockly.Python.definitions_.LogisticRegression = "from sklearn.linear_model import LogisticRegression";
+        var codeString = ""
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            //Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += "LogisticRegression()"
+        }
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
+            +".predict("
+            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        return[codeString, Blockly.Python.ORDER_NONE]
+
+    }
+
+
+    Blockly.Python['CLR_NaiveBayes'] = function(a){
+        Blockly.Python.definitions_.GaussianNB   = "from sklearn.naive_bayes import GaussianNB";
+        var codeString = ""
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            //Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += "GaussianNB()"
+        }
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
+            +".predict("
+            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        return[codeString, Blockly.Python.ORDER_NONE]
+
+    }
+    Blockly.Python['CLR_KNN'] = function(a){
+        Blockly.Python.definitions_.KNeighborsClassifier   = "from sklearn.neighbors import KNeighborsClassifier";
+        var codeString = ""
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            //Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += "KNeighborsClassifier()"
+        }
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
+            +".predict("
+            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        return[codeString, Blockly.Python.ORDER_NONE]
+
+    }
+    Blockly.Python['CLR_DecisionTree'] = function(a){
+        Blockly.Python.definitions_.tree   = "from sklearn import tree";
+        var codeString = ""
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            //Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += "tree.DecisionTreeClassifier()"
+        }
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
+            +".predict("
+            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        return[codeString, Blockly.Python.ORDER_NONE]
+
+    }
+    Blockly.Python['CLR_SVM'] = function(a){
+        Blockly.Python.definitions_.SVC   = "from sklearn.svm import SVC";
+        Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
+        var codeString = ""
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            //Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += "make_pipeline(StandardScaler(), SVC(gamma='auto'))"
+        }
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
+            +".predict("
+            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        return[codeString, Blockly.Python.ORDER_NONE]
+
+    }
+
+    Blockly.Python['CLR_RandomForest'] = function(a){
+        Blockly.Python.definitions_.RandomForestClassifier   = "from sklearn.ensemble import RandomForestClassifier";
+        var codeString = ""
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            //Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += "RandomForestClassifier()"
+        }
+
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+        //parameter to be configed
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
+            +".predict("
+            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        return[codeString, Blockly.Python.ORDER_NONE]
+
+    }
 
     Blockly.Python.math = {};
     Blockly.Python.addReservedWords("math,random,Number");

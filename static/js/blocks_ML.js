@@ -1121,7 +1121,60 @@
             }
         ]);
 
-
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "CLR_LogisticRegression",
+            message0: "Logistic Regression",
+            style: "logic_blocks",
+            mutator: "CLR_mutator",
+            output: "DataFrame"
+            }
+        ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "CLR_NaiveBayes",
+            message0: "Naive Bayes",
+            style: "logic_blocks",
+            mutator: "CLR_mutator",
+            output: "DataFrame"
+            }
+        ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "CLR_KNN",
+            message0: "K-Nearest Neighbours",
+            style: "logic_blocks",
+            mutator: "CLR_mutator",
+            output: "DataFrame"
+            }
+        ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "CLR_DecisionTree",
+            message0: "Decision Tree",
+            style: "logic_blocks",
+            mutator: "CLR_mutator",
+            output: "DataFrame"
+            }
+        ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "CLR_RandomForest",
+            message0: "Random Forest",
+            style: "logic_blocks",
+            mutator: "CLR_mutator",
+            output: "DataFrame"
+            }
+        ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "CLR_SVM",
+            message0: "Support Vector Machine",
+            style: "logic_blocks",
+            mutator: "CLR_mutator",
+            output: "DataFrame"
+            }
+        ]);
         Blockly.Constants.Logic.CLR_Logic = {
             //elseifCount_ -> validCount_
             // elseCount_ -> parmCount_
