@@ -23,10 +23,9 @@ var onReport = []
 
 
   function getData() {
-    console.log(Object.keys(VarData))
-    console.log(onDisp)
-    if(JSON.stringify(onDisp)!=JSON.stringify(Object.keys(VarData))){
-    console.log(VarData);
+
+    if(JSON.stringify(onDisp)!=JSON.stringify(Object.keys(VarData)) || Object.keys(VarData) == ""){
+
     onDisp = Object.keys(VarData)   ;
     var varDataStr = JSON.stringify(VarData);
   
@@ -101,9 +100,7 @@ var onReport = []
       data: varDataStr,
       type: 'POST',
       success: function(response){
-        
-      
-        //let doc = new DOMParser().parseFromString(response)
+
         response = response.substring(2, response.length-2);
   
 
