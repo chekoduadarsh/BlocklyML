@@ -1474,8 +1474,17 @@
             type: "field_dropdown",
             name: "VAR",
             options: [
-                ["load_mpg", "mpg"],
-                ["load_iris", "iris"]
+                ["Auto-Mpg Data", "mpg"],
+                ["Iris Data", "iris"],
+                ["Car-Crash Data", "car_crashes"],
+                ["Anagrams", "anagrams"],
+                ["Exercise", "exercise"],
+                ["Diamonds", "diamonds"],
+                ["Brain Networks","brain_networks"],
+                ["Flights","flights"],
+                ["Penguins","penguins"],
+                ["Planets","planets"],
+                ["Titanic","titanic"]
             ]  
           }
         ],
