@@ -1,14 +1,10 @@
-from sys import stdout
-from flask import Flask, render_template, Response
-from flask import Flask, render_template, session, request, \
-    copy_current_request_context
+
 from flask import Flask, render_template, request, redirect, url_for, abort
 from libs.DataFrameGenerator import DataFrameGenerator
 from libs.DataFrameGenerator import DataFrameReportGenerator
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 app.config['DEBUG'] = True
@@ -20,7 +16,6 @@ app.config['DEBUG'] = True
 @app.route('/DataViewer', methods=['POST','GET'])
 def DFreturn():
     listDF = DataFrameGenerator(request.form)
-    #return render_template('tableviewer.html', table=listDF)
     return str(listDF)
 
 
@@ -30,7 +25,6 @@ def DFreturn():
 def DFRreturn():
     print("IDK")
     listDF = DataFrameReportGenerator(request.form)
-    #return render_template('tableviewer.html', table=listDF)
     return str(listDF)
 
 

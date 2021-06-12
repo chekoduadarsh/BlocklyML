@@ -36,5 +36,4 @@ def DataFrameReportGenerator(codeImdict):
             command = "var = ProfileReport("+codeDict[x].replace('"',"'")+", explorative=True).to_html()"+replaceStr
             exec(command, globals(), loc)
             listDF.append(loc['var'])
-            #print(loc['var'])
     return listDF
