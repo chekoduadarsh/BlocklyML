@@ -498,9 +498,6 @@ var VarData = {};
         return [ a+"[3]",Blockly.Python.ORDER_FUNCTION_CALL]
     }
     Blockly.Python['pandas_select_columns'] = function(a){
-        //console.log(Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN))
-        //console.log(Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN))
-
         var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
         if (columns == ""){
             columns="[]"
@@ -508,6 +505,29 @@ var VarData = {};
         var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
         return [DataFrame+"["+columns+"]",  Blockly.Python.ORDER_ATOMIC];
     }
+
+    Blockly.Python['pandas_set_columns'] = function(a){
+        var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
+        if (columns == ""){
+            columns="[]"
+        }
+        var DATAFRAME_IN = Blockly.Python.valueToCode(a, "DATAFRAME_IN", Blockly.Python.ORDER_UNARY_SIGN)
+        var DATAFRAME_OUT = Blockly.Python.valueToCode(a, "DATAFRAME_OUT", Blockly.Python.ORDER_UNARY_SIGN)
+        return DATAFRAME_OUT+"["+columns+"]="+DATAFRAME_IN;
+    }
+
+    Blockly.Python['dataframe_Filter'] = function (a) {
+        var b = { EQ: "==", NEQ: "!=", LT: "<", LTE: "<=", GT: ">", GTE: ">=" }[a.getFieldValue("OP")];
+        var c = Blockly.Python.ORDER_RELATIONAL;
+        var d = Blockly.Python.valueToCode(a, "A", c) || "";
+        var e = Blockly.Python.valueToCode(a, "C", c) || "";
+        a = Blockly.Python.valueToCode(a, "B", c) || "";
+        if (d =="" || e=="" || a==""){
+            return ["None", Blockly.Python.ORDER_NONE]
+        }
+
+        return [e+"["+d + " " + b + " " + a+"]",  Blockly.Python.ORDER_NONE];
+    };
 
     Blockly.Python['CLR_XGBoost'] = function(a){
         Blockly.Python.definitions_.XGBClassifier = "from xgboost import XGBClassifier";
@@ -1415,7 +1435,7 @@ var VarData = {};
 
     Blockly.Python.variables_set = function (a) {
         console.log("SET");
-        
+
 
         console.log("WTF!! ");
         var b = Blockly.Python.valueToCode(a, "VALUE", Blockly.Python.ORDER_NONE) || "0";

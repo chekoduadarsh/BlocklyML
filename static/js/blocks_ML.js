@@ -975,14 +975,70 @@
     * Custom
     */
    
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "pandas_set_columns",
+            message0: "Columns to Set %1 ",
+            previousStatement: null,
+            nextStatement: null,
+            tooltip: "Select columns mentioned in the list form pandas data frame",
+            setHelpUrl:"https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
 
-  
-    Blockly.Blocks['pandas_read_csv'] = {
+            args0: [
+              {
+                type: "input_value",
+                name: "COLUMN",
+                check:"Array"
+            }],
+              message1: "Input Dataframe %1",
+              args1: [
+              {
+                type: "input_value",
+                name: "DATAFRAME_IN",
+                check:"DataFrame"
+             }],
+              message2: "Output Dataframe %1",
+              args2: [
+              {
+                type: "input_value",
+                name: "DATAFRAME_OUT",
+                check:"DataFrame"
+             }]
+          }
+        ]);
+
+          Blockly.defineBlocksWithJsonArray([
+            {
+             type: "dataframe_Filter",
+            message0: "DataFrame Filter \n %1 %2 %3 Apply to %4",
+            args0: [
+                { type: "input_value", name: "A" },
+                {
+                    type: "field_dropdown",
+                    name: "OP",
+                    options: [
+                        ["=", "EQ"],
+                        ["\u2260", "NEQ"],
+                        ["\u200f<", "LT"],
+                        ["\u200f\u2264", "LTE"],
+                        ["\u200f>", "GT"],
+                        ["\u200f\u2265", "GTE"],
+                    ],
+                },
+                { type: "input_value", name: "B" },
+                { type: "input_value", name: "C" },
+            ],
+            inputsInline: !0,
+            output: "DataFrame",
+              }
+        ]);
+
+      Blockly.Blocks['pandas_read_csv'] = {
         init: function() {
         this.appendValueInput('VALUE')
             .setCheck(['String'])
 
-            .appendField('pandas.read_csv');
+            .appendField('Read DataFrame');
         this.setOutput(true, 'DataFrame');
         this.setColour(160);
         this.setTooltip('Read CSV from Url or path');
@@ -1109,7 +1165,7 @@
               {
                 type: "input_value",
                 name: "COLUMN", 
-                check:"Array",
+                check: ["String", "Array"],
                 value: 0 
             }],
               message1: "Pandas Dataframe %1",
