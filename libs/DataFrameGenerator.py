@@ -17,7 +17,10 @@ def DataFrameGenerator(codeImdict):
             #df = pd.DataFrame()
             loc = {}
             exec("var = "+codeDict[x].replace('"',"'")+"", globals(), loc)
-            listDF.append(loc['var'].to_html().replace("\n",""))
+            if(type(loc['var']) == pd.Series):
+                listDF.append(loc['var'].to_frame().to_html().replace("\n",""))
+            if(type(loc['var']) == pd.DataFrame):
+                listDF.append(loc['var'].to_html().replace("\n",""))
     return listDF 
 
 def DataFrameReportGenerator(codeImdict):
@@ -36,5 +39,4 @@ def DataFrameReportGenerator(codeImdict):
             command = "var = ProfileReport("+codeDict[x].replace('"',"'")+", explorative=True).to_html()"+replaceStr
             exec(command, globals(), loc)
             listDF.append(loc['var'])
-            #print(loc['var'])
     return listDF

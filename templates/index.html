@@ -51,11 +51,12 @@
             <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">View DataFrames</a>
               <ul class="dropdown-menu DataFrameViewer" >
                 <div class="DataFrameViewer" id="DataFrameViewer">
-                  <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a></li>
+                  <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
+                  </li>
                 </div>
               </ul>
             </li>
-            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">DataFrame Report</a>
+            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">View DataFrame Report</a>
               <ul class="dropdown-menu DataFrameReportViewer" >
                 <div class="DataFrameReportViewer" id="DataFrameReportViewer">
                   <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
@@ -65,12 +66,27 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="anyML.runJS();CloseAllNav();getDataDownload()">
             Download
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" onclick="downloadPy()">Download .py</a></li>
             <li><a class="dropdown-item" onclick="downloadIpynb()">Download .ipynb</a></li>
+            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Download DataFrames</a>
+              <ul class="dropdown-menu DataFrameViewer" >
+                <div class="DataFrameDownload" id="DataFrameDownload">
+                  <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
+                  </li>
+                </div>
+              </ul>
+            </li>
+            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReportDownload()">Download DataFrame Report</a>
+              <ul class="dropdown-menu DataFrameReportViewer" >
+                <div class="DataFrameReportDownload" id="DataFrameReportDownload">
+                  <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
+                </div>
+              </ul>
+            </li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -443,13 +459,19 @@
   <category name=DataFrame colour="%{BKY_COLOUR_HUE}">
 
   <block type = "pandas_read_csv">
-      <field type= "pandas.read_csv">pandas.read_csv</field>
-     
+      <field type= "pandas.read_csv">Read DataFrame</field>
   </block>
   <block type = "pandas_select_columns">
-    <field type= "pandas_select_columns">pandas.getcolumns</field>
+    <field type= "pandas_select_columns">DataFrame getColumns</field>
   </block>
-
+      </block>
+         <block type = "pandas_set_columns">
+        <field type= "pandas.setcolumns">DataFrame setCoulmns</field>
+    </block>
+      </block>
+         <block type = "dataframe_Filter">
+        <field type= "pandas.filter">DataFrame Filter</field>
+    </block>
 
     <block type = "skl_train_test_split">
         <field type= "skl.train_test_split">Input DataFrame X </field>

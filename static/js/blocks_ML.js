@@ -975,24 +975,82 @@
     * Custom
     */
    
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "pandas_set_columns",
+            message0: "Columns to Set %1 ",
+            previousStatement: null,
+            nextStatement: null,
+            tooltip: "Select columns mentioned in the list form pandas data frame",
+            setHelpUrl:"https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
 
-  
-    Blockly.Blocks['pandas_read_csv'] = {
+            args0: [
+              {
+                type: "input_value",
+                name: "COLUMN",
+                check:"Array"
+            }],
+              message1: "Input Dataframe %1",
+              args1: [
+              {
+                type: "input_value",
+                name: "DATAFRAME_IN",
+                check:"DataFrame"
+             }],
+              message2: "Output Dataframe %1",
+              args2: [
+              {
+                type: "input_value",
+                name: "DATAFRAME_OUT",
+                check:"DataFrame"
+             }]
+          }
+        ]);
+
+          Blockly.defineBlocksWithJsonArray([
+            {
+             type: "dataframe_Filter",
+            message0: "DataFrame Filter \n %1 %2 %3 Apply to %4",
+            args0: [
+                { type: "input_value", name: "A" },
+                {
+                    type: "field_dropdown",
+                    name: "OP",
+                    options: [
+                        ["=", "EQ"],
+                        ["\u2260", "NEQ"],
+                        ["\u200f<", "LT"],
+                        ["\u200f\u2264", "LTE"],
+                        ["\u200f>", "GT"],
+                        ["\u200f\u2265", "GTE"],
+                    ],
+                },
+                { type: "input_value", name: "B" },
+                { type: "input_value", name: "C" },
+            ],
+            inputsInline: !0,
+            output: "DataFrame",
+              }
+        ]);
+
+      Blockly.Blocks['pandas_read_csv'] = {
         init: function() {
         this.appendValueInput('VALUE')
             .setCheck(['String'])
 
-            .appendField('pandas.read_csv');
+            .appendField('Read DataFrame');
         this.setOutput(true, 'DataFrame');
         this.setColour(160);
-        this.setTooltip('Returns number of letters in the provided text.');
-        this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
+        this.setTooltip('Read CSV from Url or path');
+        this.setHelpUrl('https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html');
         }
     };
 
     Blockly.defineBlocksWithJsonArray([
         {
             type: "skl_train_test_split",
+            tooltip:"Scikit learn test train split, X will be input and Y will be the target to Train ML model",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
             message0: "Input DataFrame X %1 ",
             args0: [
               {
@@ -1035,6 +1093,8 @@
             {
             type: "Skl_X_Train",
              message0: "Get X Train %1 ",
+            tooltip:"Get training X part from test train split",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
             args0: [
               {
                 type: "input_value",
@@ -1049,7 +1109,9 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "Skl_y_Train",
-             message0: "Get y Train %1 ",
+            message0: "Get y Train %1 ",
+            tooltip:"Get training y part from test train split",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
             args0: [
               {
                 type: "input_value",
@@ -1064,6 +1126,8 @@
             {
             type: "Skl_X_Test",
              message0: "Get X Test %1 ",
+            tooltip:"Get Test X part from test train split",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
             args0: [
               {
                 type: "input_value",
@@ -1077,7 +1141,9 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "Skl_y_Test",
-             message0: "Get y Test %1 ",
+            message0: "Get y Test %1 ",
+            tooltip:"Get Test y part from test train split",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
             args0: [
               {
                 type: "input_value",
@@ -1088,15 +1154,18 @@
             output: "DataFrame"
             }
         ]);
-    Blockly.defineBlocksWithJsonArray([ 
-        {
+         Blockly.defineBlocksWithJsonArray([
+         {
             type: "pandas_select_columns",
             message0: "Columns to Select %1 ",
+            tooltip: "Select columns mentioned in the list form pandas data frame",
+            setHelpUrl:"https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
+
             args0: [
               {
                 type: "input_value",
                 name: "COLUMN", 
-                check:"Array",
+                check: ["String", "Array"],
                 value: 0 
             }],
               message1: "Pandas Dataframe %1",
@@ -1114,6 +1183,8 @@
         Blockly.defineBlocksWithJsonArray([ 
             {
             type: "CLR_XGBoost",
+            tooltip: "XGBoost Classification Algorithm",
+            setHelpUrl:"https://xgboost.readthedocs.io/en/latest/",
             message0: "XGBoost",
             style: "logic_blocks",
             mutator: "CLR_mutator",
@@ -1124,6 +1195,8 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "CLR_LogisticRegression",
+            tooltip: "LogisticRegression Classification Algorithm",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
             message0: "Logistic Regression",
             style: "logic_blocks",
             mutator: "CLR_mutator",
@@ -1133,6 +1206,8 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "CLR_NaiveBayes",
+            tooltip: "NaiveBayes Classification Algorithm",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/naive_bayes.html",
             message0: "Naive Bayes",
             style: "logic_blocks",
             mutator: "CLR_mutator",
@@ -1142,6 +1217,8 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "CLR_KNN",
+            tooltip: "K nearest Neighbor Classification Algorithm",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/neighbors.html",
             message0: "K-Nearest Neighbours",
             style: "logic_blocks",
             mutator: "CLR_mutator",
@@ -1151,6 +1228,8 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "CLR_DecisionTree",
+            tooltip: "Decision Tree Classification Algorithm",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/tree.html",
             message0: "Decision Tree",
             style: "logic_blocks",
             mutator: "CLR_mutator",
@@ -1160,6 +1239,8 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "CLR_RandomForest",
+            tooltip: "RandomForestClassifier Classification Algorithm",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
             message0: "Random Forest",
             style: "logic_blocks",
             mutator: "CLR_mutator",
@@ -1169,6 +1250,8 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "CLR_SVM",
+            tooltip: "Support Vector Machine Classification Algorithm",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/svm.html",
             message0: "Support Vector Machine",
             style: "logic_blocks",
             mutator: "CLR_mutator",
