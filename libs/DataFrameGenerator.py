@@ -12,15 +12,15 @@ def DataFrameGenerator(codeImdict):
     
     for code in codedict.keys():
         codeDict = json.loads(code)
-
+        loc = {}
         for x in codeDict:
             #df = pd.DataFrame()
-            loc = {}
-            exec("var = "+codeDict[x].replace('"',"'")+"", globals(), loc)
-            if(type(loc['var']) == pd.Series):
-                listDF.append(loc['var'].to_frame().to_html().replace("\n",""))
-            if(type(loc['var']) == pd.DataFrame):
-                listDF.append(loc['var'].to_html().replace("\n",""))
+
+            exec(x+" = "+codeDict[x].replace('"',"'")+"", globals(), loc)
+            if(type(loc[x]) == pd.Series):
+                listDF.append(loc[x].to_frame().to_html().replace("\n",""))
+            if(type(loc[x]) == pd.DataFrame):
+                listDF.append(loc[x].to_html().replace("\n",""))
     return listDF 
 
 def DataFrameReportGenerator(codeImdict):
@@ -33,9 +33,7 @@ def DataFrameReportGenerator(codeImdict):
         for x in codeDict:
             #df = pd.DataFrame()
             loc = {}
-            
             replaceStr = ""
-            print("var = ProfileReport("+codeDict[x].replace('"',"'")+", explorative=True).to_html().replace('\\'',''').replace('\\n','')")
             command = "var = ProfileReport("+codeDict[x].replace('"',"'")+", explorative=True).to_html()"+replaceStr
             exec(command, globals(), loc)
             listDF.append(loc['var'])

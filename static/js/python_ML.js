@@ -1434,16 +1434,8 @@ var VarData = {};
     };
 
     Blockly.Python.variables_set = function (a) {
-        console.log("SET");
 
-
-        console.log("WTF!! ");
         var b = Blockly.Python.valueToCode(a, "VALUE", Blockly.Python.ORDER_NONE) || "0";
-        console.log("WTF2!! ");
-        console.log(b);
-        console.log(a.getInputTargetBlock("VALUE").outputConnection.getCheck())
-        console.log("DONE");
-
 
         if(a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame"){
             VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
