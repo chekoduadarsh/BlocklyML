@@ -11,7 +11,6 @@ def DataFrameGenerator(codeImdict):
     listDF = []
     print(codedict)
     for code in codedict.keys():
-        print(code)
         codeDict = json.loads(code)
         loc = {}
         for x in codeDict:
