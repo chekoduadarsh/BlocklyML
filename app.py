@@ -23,7 +23,6 @@ def DFreturn():
 
 @app.route('/DataReport', methods=['POST','GET'])
 def DFRreturn():
-    print("IDK")
     listDF = DataFrameReportGenerator(request.form)
     return str(listDF)
 
@@ -36,12 +35,6 @@ def root():
 
 @app.route('/', methods=['POST','GET'])
 def my_form_post():
-    if request.method == 'POST':
-        print(request.form)
-        print("WTH")
-    else:
-        print("WYH")
-    #processed_text = text.upper()
     return render_template('index.html')
 
 
