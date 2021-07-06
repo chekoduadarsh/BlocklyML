@@ -26,7 +26,7 @@ var onReport = []
     if(JSON.stringify(onDisp)!=JSON.stringify(Object.keys(VarData)) || Object.keys(VarData) == ""){
     onDisp = Object.keys(VarData)   ;
     var varDataStr = JSON.stringify(VarData);
-  
+    console.log(VarData)
     $.ajax({
       url: '/DataViewer',
       data: varDataStr,

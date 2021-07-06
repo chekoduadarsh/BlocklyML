@@ -9,13 +9,12 @@ pd.set_option('display.max_colwidth', -1)
 def DataFrameGenerator(codeImdict):
     codedict = dict(codeImdict)
     listDF = []
-    
+    print(codedict)
     for code in codedict.keys():
+        print(code)
         codeDict = json.loads(code)
         loc = {}
         for x in codeDict:
-            #df = pd.DataFrame()
-
             exec(x+" = "+codeDict[x].replace('"',"'")+"", globals(), loc)
             if(type(loc[x]) == pd.Series):
                 listDF.append(loc[x].to_frame().to_html().replace("\n",""))
