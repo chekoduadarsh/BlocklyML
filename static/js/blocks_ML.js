@@ -1051,42 +1051,37 @@
             type: "skl_train_test_split",
             tooltip:"Scikit learn test train split, X will be input and Y will be the target to Train ML model",
             setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
-            message0: "Input DataFrame X %1 ",
-            args0: [
-              {
-                type: "input_value",
-                name: "DATAFRAMEX",
-                check:"DataFrame",
-                value: 0
-            }],
-            message1: "Input DataFrame y %1 ",
-            args1: [
-              {
-                type: "input_value",
-                name: "DATAFRAMEY",
-                check:"DataFrame",
-                value: 0
-            }],
 
-              message2: " Train Ratio %1  ",
+            previousStatement: null,
+            nextStatement: null,
+            message0: "Train Test Split",
+
+            message1: "%1 %2 %3 %4 = %5",
+            args1: [
+              { type: "field_variable", name: "VAR", variable: "train_X"},
+              { type: "field_variable", name: "VAR1", variable: "test_X" },
+              { type: "field_variable", name: "VAR2", variable: "train_Y" },
+              { type: "field_variable", name: "VAR3", variable: "test_Y" },
+              { type: "input_value", name: "DATAFRAME", variable: "%{BKY_VARIABLES_DEFAULT_NAME}" , check:"DataFrame"},
+              ],
+              extensions: ["contextMenu_variableSetterGetter"],
+              message2: "Test Size %1  ",
               args2: [
               {
                 type: "input_value",
-                name: "TRAINRATIO",
-                check:"Number",
-                value: 0
+                name: "TESTSIZE",
+                check:"Number"
              }],
-             message3: " Test Ratio %1",
+             message3: " Target Variable %1",
            args3: [
            {
                 type: "input_value",
-                name: "TESTRATIO",
-                check:"Number",
-                value: 0
-             }],
-             inputsInline: !0,
-            output: "DataFrameArray"
+                name: "TARGETVAR",
+                check: ["String", "Array"]
+             }]
+
           }
+
         ]);
 
         Blockly.defineBlocksWithJsonArray([
@@ -1453,100 +1448,6 @@
         ]);
 
         Blockly.Extensions.registerMutator("CLR_mutator", Blockly.Constants.Logic.CLR_Logic, null, ["CLR_Valid", "CLR_Train", "CLR_Params", "CLR_Test"]);
-  
-
-
-    /*Blockly.Blocks.CLR_XGBoost = {
-        init: function () {
-            this.itemCount_ = 2;
-            this.updateShape_();
-            this.setOutput(!0, "Array");
-            this.setMutator(new Blockly.Mutator(["CLR_add_blocks_item"]));
-            this.setMutator(new Blockly.Mutator(["CLR_add_blocks_item2"]));
-            //this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
-        },
-        mutationToDom: function () {
-            var a = Blockly.utils.xml.createElement("mutation");
-            a.setAttribute("items", this.itemCount_);
-            return a;
-        },
-        domToMutation: function (a) {
-            this.itemCount_ = parseInt(a.getAttribute("items"), 10);
-            this.updateShape_();
-        },
-        decompose: function (a) {
-            var b = a.newBlock("CLR_add_blocks_container");
-            b.initSvg();
-            var c = b.getInput("STACK").connection
-            //for (var c = b.getInput("STACK").connection, d = 0; d < this.itemCount_; d++) {
-            var e = a.newBlock("CLR_add_blocks_container");
-            e.initSvg();
-            c.connect(e.previousConnection);
-            c = e.nextConnection;
-            //}
-            return b;
-        },
-        compose: function (a) {
-            var b = a.getInputTargetBlock("STACK");
-            for (a = []; b && !b.isInsertionMarker(); ) a.push(b.valueConnection_), (b = b.nextConnection && b.nextConnection.targetBlock());
-            for (b = 0; b < this.itemCount_ - 1 ; b++) {
-                var c = this.getInput("ADD" + b).connection.targetConnection;
-                c && -1 == a.indexOf(c) && c.disconnect();
-            }
-            this.itemCount_ = 2*a.length;
-            this.updateShape_();
-            for (b = 0; b < this.itemCount_; b++) Blockly.Mutator.reconnect(a[b], this, "ADD" + b);
-        },
-        saveConnections: function (a) {
-            a = a.getInputTargetBlock("STACK");
-            for (var b = 0; a; ) {
-                var c = this.getInput("ADD" + b);
-                a.valueConnection_ = c && c.connection.targetConnection;
-                b++;
-                a = a.nextConnection && a.nextConnection.targetBlock();
-            }
-        },
-        updateShape_: function () {
-            this.itemCount_ && this.getInput("EMPTY") ? this.removeInput("EMPTY") : this.itemCount_ || this.getInput("EMPTY") || this.appendDummyInput("EMPTY").appendField(Blockly.Msg.LISTS_CREATE_EMPTY_TITLE);
-            for (var a = 0; a < this.itemCount_; a++)
-                if (!this.getInput("ADD" + a)) {
-                    var b = this.appendValueInput("ADD" + a).setAlign(Blockly.ALIGN_RIGHT);
-                    0 == a && b.appendField(Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH);
-                }
-            for (; this.getInput("ADD" + a); ) this.removeInput("ADD" + a), a++;
-        },
-    };
-
-
-    Blockly.Blocks.CLR_add_blocks_container = {
-        init: function () {
-            this.setStyle("procedure_blocks");
-            this.appendDummyInput().appendField(Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TITLE_ADD);
-            this.appendStatementInput("STACK");
-            this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP);
-            this.contextMenu = !1;
-        },
-    };
-    Blockly.Blocks.CLR_add_blocks_item = {
-        init: function () {
-            this.setStyle("procedure_blocks");
-            this.appendDummyInput().appendField("Validation Data");
-            this.setPreviousStatement(!0);
-            this.setNextStatement(!0);
-            this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP);
-            this.contextMenu = !1;
-        },
-    };
-    Blockly.Blocks.CLR_add_blocks_item2 = {
-        init: function () {
-            this.setStyle("procedure_blocks");
-            this.appendDummyInput().appendField("Config Params");
-            this.setPreviousStatement(!0);
-            this.setNextStatement(!0);
-            this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP);
-            this.contextMenu = !1;
-        },
-    };*/
 
     Blockly.defineBlocksWithJsonArray([ 
     {

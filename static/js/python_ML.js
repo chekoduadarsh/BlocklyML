@@ -474,11 +474,14 @@ var VarData = {};
     }
     Blockly.Python['skl_train_test_split'] = function(a){
         Blockly.Python.definitions_.sklearn_test_train_split = "from sklearn.model_selection import train_test_split";
-        var dataframex = Blockly.Python.valueToCode(a, "DATAFRAMEX", Blockly.Python.ORDER_NONE)
-        var dataframey = Blockly.Python.valueToCode(a, "DATAFRAMEY", Blockly.Python.ORDER_NONE)
-        var TrainRatio = parseFloat(Blockly.Python.valueToCode(a, "TRAINRATIO", Blockly.Python.ORDER_NONE))
-        var TestRatio = parseFloat(Blockly.Python.valueToCode(a, "TESTRATIO", Blockly.Python.ORDER_NONE))
-        return['train_test_split('+dataframex+','+dataframey+', test_size='+TestRatio/(TrainRatio+TestRatio)+', random_state=42)',Blockly.Python.ORDER_FUNCTION_CALL]
+        var dataframe = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_NONE)
+        var train_X = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)
+        var train_Y = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR2"), Blockly.VARIABLE_CATEGORY_NAME)
+        var test_X = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR1"), Blockly.VARIABLE_CATEGORY_NAME)
+        var test_Y = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR3"), Blockly.VARIABLE_CATEGORY_NAME)
+        var target = Blockly.Python.valueToCode(a, "TARGETVAR", Blockly.Python.ORDER_NONE)
+        var TestSize = Blockly.Python.valueToCode(a, "TESTSIZE", Blockly.Python.ORDER_NONE)
+        return train_X+', '+test_X+', '+train_Y+', '+test_X+'=train_test_split('+dataframe+','+dataframe+'['+target+']'+', test_size='+TestSize+', random_state=42)'
     }
 
     Blockly.Python['Skl_X_Train'] = function(a){
@@ -503,7 +506,8 @@ var VarData = {};
             columns="[]"
         }
         var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
-        return [DataFrame+"["+columns+"]",  Blockly.Python.ORDER_ATOMIC];
+        console.log(JSON.stringify(columns))
+        return [DataFrame+"["+columns.replace("\'","\"")+"]",  Blockly.Python.ORDER_ATOMIC];
     }
 
     Blockly.Python['pandas_set_columns'] = function(a){
