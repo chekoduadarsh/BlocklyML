@@ -474,20 +474,9 @@
     </block>
 
     <block type = "skl_train_test_split">
-        <field type= "skl.train_test_split">Input DataFrame X </field>
+        <field type= "skl.train_test_split">Add Values to Dictionary</field>
     </block>
-      <block type = "Skl_X_Train">
-        <field type= "skl.Skl_X_Train">Get X Test </field>
-    </block>
-         <block type = "Skl_y_Train">
-        <field type= "skl.Skl_y_Train">Get y Train </field>
-    </block>
-         <block type = "Skl_X_Test">
-        <field type= "skl.Skl_X_Test">Get X Test </field>
-    </block>
-         <block type = "Skl_y_Test">
-        <field type= "skl.Skl_y_Test">Get y Test </field>
-    </block>
+
 
     </category>
     <category name=ML-Classifiers colour="%{BKY_COLOUR_HUE}">
@@ -523,6 +512,17 @@
     </block>
   
   </category>
+  <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
+
+    <block type = "create_dict">
+      <field name="create_dict">create_dict</field>
+    </block>
+
+     <block type = "dict_append">
+      <field name="dict_append">create_dict</field>
+    </block>
+
+     </category>
     <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
     <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
   </xml>

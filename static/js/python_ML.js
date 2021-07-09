@@ -466,6 +466,33 @@ var VarData = {};
         Blockly.Python.definitions_.pandas = "import pandas as pd";
         return ['pd.read_csv('+String(a).split(" ")[2]+')' ,Blockly.Python.ORDER_FUNCTION_CALL]
     }
+
+    Blockly.Python["create_dict"] = function(a){
+
+     var b = 1,
+        c = "{";
+        do {
+            var d = Blockly.Python.valueToCode(a, "KEY" + b, Blockly.Python.ORDER_NONE);
+            var e = Blockly.Python.valueToCode(a, "VAL" + b,  Blockly.Python.ORDER_NONE);
+            Blockly.Python.STATEMENT_SUFFIX && (e = Blockly.Python.prefixLines(Blockly.Python.injectId(Blockly.Python.STATEMENT_SUFFIX, a), Blockly.Python.INDENT) + e);
+            c += d+":"+e;
+            ++b;
+        } while (a.getInput("Key" + b));
+        c += "}";
+        return [c, Blockly.Python.ORDER_FUNCTION_CALL];
+
+    }
+  Blockly.Python["dict_append"] = function(a){
+  var e = ""
+  var b = Blockly.Python.valueToCode(a, "DICTIONARY" , Blockly.Python.ORDER_NONE) || "";
+  var c = Blockly.Python.valueToCode(a, "KEY" , Blockly.Python.ORDER_NONE) || "";
+  var d = Blockly.Python.valueToCode(a, "VALUE" , Blockly.Python.ORDER_NONE) || "";
+  if ((b != "") && (c != "") &&(d != "")){
+    e = b+"["+c+"] = "+d;
+   }
+    return e;
+  }
+
     Blockly.Python['seaborn_dataset'] = function(a){
         Blockly.Python.definitions_.seaborn = "import seaborn as sns";
         console.log("this :"+Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE) || "0")
@@ -484,22 +511,7 @@ var VarData = {};
         return train_X+', '+test_X+', '+train_Y+', '+test_X+'=train_test_split('+dataframe+','+dataframe+'['+target+']'+', test_size='+TestSize+', random_state=42)'
     }
 
-    Blockly.Python['Skl_X_Train'] = function(a){
-        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
-        return [ a+"[0]",Blockly.Python.ORDER_FUNCTION_CALL]
-    }
-    Blockly.Python['Skl_y_Train'] = function(a){
-        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
-        return [ a+"[2]",Blockly.Python.ORDER_FUNCTION_CALL]
-    }
-    Blockly.Python['Skl_X_Test'] = function(a){
-        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
-        return [ a+"[1]",Blockly.Python.ORDER_FUNCTION_CALL]
-    }
-    Blockly.Python['Skl_y_Test'] = function(a){
-        var a = Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE)
-        return [ a+"[3]",Blockly.Python.ORDER_FUNCTION_CALL]
-    }
+
     Blockly.Python['pandas_select_columns'] = function(a){
         var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
         if (columns == ""){
