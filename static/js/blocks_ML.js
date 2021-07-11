@@ -1063,6 +1063,7 @@
               { type: "field_variable", name: "VAR2", variable: "train_Y" },
               { type: "field_variable", name: "VAR3", variable: "test_Y" },
               { type: "input_value", name: "DATAFRAME", variable: "%{BKY_VARIABLES_DEFAULT_NAME}" , check:"DataFrame"},
+
               ],
               extensions: ["contextMenu_variableSetterGetter"],
               message2: "Test Size %1  ",
@@ -1078,8 +1079,14 @@
                 type: "input_value",
                 name: "TARGETVAR",
                 check: ["String", "Array"]
-             }]
-
+             }],
+            message4: " Handle Missing Values %1",
+            args4: [
+             { type: "field_dropdown",
+             name: "SPLIT",
+             options: [["Delete", "dropNa"]]
+             }],
+              inputsInline: 0
           }
 
         ]);
@@ -1219,7 +1226,7 @@
         Blockly.Extensions.registerMutator("DICT_mutator", Blockly.Constants.Logic.DICT_Logic, null, ["DICT_Element"]);
 
 
- Blockly.defineBlocksWithJsonArray([
+        Blockly.defineBlocksWithJsonArray([
             {
             type: "dict_append",
 
