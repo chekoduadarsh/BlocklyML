@@ -1063,6 +1063,7 @@
               { type: "field_variable", name: "VAR2", variable: "train_Y" },
               { type: "field_variable", name: "VAR3", variable: "test_Y" },
               { type: "input_value", name: "DATAFRAME", variable: "%{BKY_VARIABLES_DEFAULT_NAME}" , check:"DataFrame"},
+
               ],
               extensions: ["contextMenu_variableSetterGetter"],
               message2: "Test Size %1  ",
@@ -1078,77 +1079,19 @@
                 type: "input_value",
                 name: "TARGETVAR",
                 check: ["String", "Array"]
-             }]
-
+             }],
+            message4: " Handle Missing Values %1",
+            args4: [
+             { type: "field_dropdown",
+             name: "SPLIT",
+             options: [["Delete", "dropNa"]]
+             }],
+              inputsInline: 0
           }
 
         ]);
 
-        Blockly.defineBlocksWithJsonArray([
-            {
-            type: "Skl_X_Train",
-             message0: "Get X Train %1 ",
-            tooltip:"Get training X part from test train split",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
-            args0: [
-              {
-                type: "input_value",
-                name: "VAR",
-                check:"DataFrameArray",
-                value: 0
-            }],
-            output: "DataFrame"
-            }
-        ]);
 
-        Blockly.defineBlocksWithJsonArray([
-            {
-            type: "Skl_y_Train",
-            message0: "Get y Train %1 ",
-            tooltip:"Get training y part from test train split",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
-            args0: [
-              {
-                type: "input_value",
-                name: "VAR",
-                check:"DataFrameArray",
-                value: 0
-            }],
-            output: "DataFrame"
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
-            type: "Skl_X_Test",
-             message0: "Get X Test %1 ",
-            tooltip:"Get Test X part from test train split",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
-            args0: [
-              {
-                type: "input_value",
-                name: "VAR",
-                check:"DataFrameArray",
-                value: 0
-            }],
-            output: "DataFrame"
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
-            type: "Skl_y_Test",
-            message0: "Get y Test %1 ",
-            tooltip:"Get Test y part from test train split",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
-            args0: [
-              {
-                type: "input_value",
-                name: "VAR",
-                check:"DataFrameArray",
-                value: 0
-            }],
-            output: "DataFrame"
-            }
-        ]);
          Blockly.defineBlocksWithJsonArray([
          {
             type: "pandas_select_columns",
@@ -1175,6 +1118,145 @@
           }
         ]);
 
+
+        Blockly.defineBlocksWithJsonArray([
+         {
+            type: "create_dict",
+
+            tooltip: "Create Dictionary",
+            setHelpUrl:"https://docs.python.org/3/tutorial/datastructures.html",
+            message0:"Create Dictionary",
+             mutator:"DICT_mutator",
+            output: "DICT"
+          }
+        ]);
+
+    Blockly.Constants.Logic.DICT_Logic = {
+            elementcount_: 0,
+            suppressPrefixSuffix: !0,
+            mutationToDom: function () {
+                if (!this.elementcount_ ) return null;
+                var a = Blockly.utils.xml.createElement("mutation");
+                this.elementcount_ && a.setAttribute("Element", this.elementcount_);
+                return a;
+            },
+            domToMutation: function (a) {
+                this.elementcount_ = parseInt(a.getAttribute("Element"), 10) || 0;
+                this.rebuildShape_();
+            },
+            decompose: function (a) {
+                var b = a.newBlock("Control_DICT");
+                b.initSvg();
+                for (var c = b.nextConnection, d = 1; d <= this.elementcount_; d++) {
+                    var e = a.newBlock("DICT_Element");
+                    e.initSvg();
+                    c.connect(e.previousConnection);
+                    c = e.nextConnection;
+                }
+                return b;
+            },
+            compose: function (a) {
+                a = a.nextConnection.targetBlock();
+                this.elementcount_ = 0;
+                for (var b = [null], c = [null]; a && !a.isInsertionMarker(); ) {
+                    switch (a.type) {
+                        case "DICT_Element":
+                            this.elementcount_++;
+                            b.push(a.valueConnection_);
+                            c.push(a.statementConnection_);
+                            break;
+                        default:
+                            throw TypeError("Unknown block type: " + a.type);
+                    }
+                    a = a.nextConnection && a.nextConnection.targetBlock();
+                }
+                this.updateShape_();
+                this.reconnectChildBlocks_(b, c);
+            },
+            saveConnections: function (a) {
+                a = a.nextConnection.targetBlock();
+                for (var b = 1; a; ) {
+                    switch (a.type) {
+                        case "DICT_Element":
+                            var c = this.getInput("Key"+b),
+                                d = this.getInput("Value"+b);
+                            a.valueConnection_ = c && c.connection.targetConnection;
+                            a.statementConnection_ = d && d.connection.targetConnection;
+                            b++;
+                            break;
+                        default:
+                            throw TypeError("Unknown block type: " + a.type);
+                    }
+                    a = a.nextConnection && a.nextConnection.targetBlock();
+                }
+            },
+            rebuildShape_: function () {
+                var e = [null],
+                    f = [null];
+                for (var d = 1; this.getInput("KEY"+d); ) {
+                    var h = this.getInput("KEY"+d),
+                        i = this.getInput("VAL"+d);
+
+                    e.push(h.connection.targetConnection);
+                    f.push(i.connection.targetConnection);
+                    d++;
+                }
+                this.updateShape_();
+                this.reconnectChildBlocks_(e, f);
+            },
+            updateShape_: function () {
+                for (var a = 1; this.getInput("KEY" + a); ) this.removeInput("KEY" + a), this.removeInput("VAL" + a), a++;
+                for (a = 1; a <= this.elementcount_; a++)
+                    this.appendValueInput("KEY"+a).appendField("Key"),
+                                    this.appendValueInput("VAL"+a).appendField("Value");
+            },
+            reconnectChildBlocks_: function (b, c) {
+                for (var d = 1; d <= this.elementcount_; d++){
+                Blockly.Mutator.reconnect(b[d], this, "KEY"+d);
+                Blockly.Mutator.reconnect(c[d], this, "VAL"+d);
+                }
+            },
+        };
+
+        Blockly.defineBlocksWithJsonArray([
+            { type: "Control_DICT", message0: "Control_DICT", nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
+            { type: "DICT_Element", message0: "Key : Value",previousStatement: null,  nextStatement: null, enableContextMenu: !1, style: "logic_blocks"}
+             ]);
+
+        Blockly.Extensions.registerMutator("DICT_mutator", Blockly.Constants.Logic.DICT_Logic, null, ["DICT_Element"]);
+
+
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "dict_append",
+
+            previousStatement: null,
+            nextStatement: null,
+            tooltip: "Add Key and Value Dictionary",
+            setHelpUrl:"https://docs.python.org/3/tutorial/datastructures.html",
+            message0: "Add Values to Dictionary",
+            message1: "Input Dictionary %1",
+              args1: [
+              {
+                type: "input_value",
+                name: "DICTIONARY",
+                check:"DICT"
+             }],
+
+            message2: "Key %1",
+              args2: [
+              {
+                type: "input_value",
+                name: "KEY"
+             }],
+            message3: "Value %1",
+              args3: [
+              {
+                type: "input_value",
+                name: "VALUE",
+             }]
+            }
+            ]);
         Blockly.defineBlocksWithJsonArray([ 
             {
             type: "CLR_XGBoost",
@@ -1385,7 +1467,7 @@
                     b.push(i.connection.targetConnection);
                     d++;
                 }
-                
+
 
                 this.updateShape_();
                 this.reconnectChildBlocks_(a, b, c, e, f, g);
