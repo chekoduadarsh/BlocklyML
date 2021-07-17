@@ -304,7 +304,6 @@ anyML.renderContent = function() {
   var content = document.getElementById('content_' + anyML.selected);
   // Initialize the pane.
   if (content.id == 'content_xml') {
-    console.log("generating xml")
     var xmlTextarea = document.getElementById('content_xml');
     var xmlDom = Blockly.Xml.workspaceToDom(anyML.workspace);
     var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
