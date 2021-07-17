@@ -444,6 +444,10 @@ anyML.init = function() {
   anyML.bindClick('trashButton',
       function() {anyML.discard(); anyML.renderContent();});
   anyML.bindClick('runButton', anyML.LaunchCode);
+  anyML.bindClick('colabButton', anyML.OpenColab);
+  anyML.bindClick('downlaodButton', anyML.DownloadCode);
+  anyML.bindClick('uplaodButton', anyML.uploadCode);
+
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
   if ('BlocklyStorage' in window) {
@@ -535,8 +539,6 @@ anyML.initLanguage = function() {
  * Just a quick and dirty eval.  Catch infinite loops.
  */
 anyML.runJS = function() {
-  console.log("RunCLicked");
-  console.log(Blockly.Python.workspaceToCode(anyML.workspace));
   Blockly.JavaScript.INFINITE_LOOP_TRAP = 'checkTimeout();\n';
   var timeouts = 0;
   var checkTimeout = function() {
@@ -555,6 +557,45 @@ anyML.runJS = function() {
 
 
 anyML.LaunchCode = function() {
+    alert("Run is not yet supported!! Please download .ipynb and use in Google Colab");
+};
+
+anyML.DownloadCode = function() {
+    var xml = Blockly.Xml.workspaceToDom(anyML.workspace);
+    var xml_text = Blockly.Xml.domToText(xml);
+
+    var fileType = "xml"
+    var fileName = "blocklyML.xml"
+    var blob = new Blob([xml_text], { type: fileType });
+
+    var a = document.createElement('a');
+    a.download = fileName;
+    a.href = URL.createObjectURL(blob);
+    a.dataset.downloadurl = [fileType, a.download, a.href].join(':');
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
+};
+anyML.UploadCode = function() {
+    const fileSelector = document.getElementById('file-selector');
+        var fr=new FileReader();
+        fileSelector.addEventListener('change', (event) => {
+        const input = event.target
+        var file = input.files[0]
+        fr.onload=function(){
+            console.log(fr.result);
+            var xml = Blockly.Xml.textToDom(fr.result);
+            Blockly.Xml.domToWorkspace(xml, anyML.workspace);
+        }
+        fr.readAsText(file)
+    });
+
+};
+
+
+anyML.OpenColab = function() {
     window.open("https://colab.research.google.com/");
 };
 /**

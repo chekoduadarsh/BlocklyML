@@ -232,7 +232,6 @@ var onReport = []
           var link = document.createTextNode(Object.keys(VarData)[i])
 
           a.appendChild(link);
-            console.log("ABC")
           a.title = Object.keys(VarData)[i]
           a.className = "dropdown-item";
           a.addEventListener('click', function(){
