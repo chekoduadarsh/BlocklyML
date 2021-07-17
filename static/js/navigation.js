@@ -26,7 +26,6 @@ var onReport = []
     if(JSON.stringify(onDisp)!=JSON.stringify(Object.keys(VarData)) || Object.keys(VarData) == ""){
     onDisp = Object.keys(VarData)   ;
     var varDataStr = JSON.stringify(VarData);
-    console.log(VarData)
     $.ajax({
       url: '/DataViewer',
       data: varDataStr,
@@ -232,7 +231,6 @@ var onReport = []
           var link = document.createTextNode(Object.keys(VarData)[i])
 
           a.appendChild(link);
-            console.log("ABC")
           a.title = Object.keys(VarData)[i]
           a.className = "dropdown-item";
           a.addEventListener('click', function(){
@@ -255,7 +253,6 @@ var onReport = []
     var div = document.createElement("body");
     div.innerHTML =stringdata;
     var text = div.outerHTML;
-    console.log(text)
     var fileType = "html"
     var fileName = id+".html"
     var blob = new Blob([text], { type: fileType });

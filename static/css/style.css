@@ -158,6 +158,23 @@ html, body {
     width: 21px;
     background-image: url(icons.png);
   }
+  .icon {
+    height: 21px;
+    width: 21px;
+  }
+  .upload-btn-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.upload-btn-wrapper input[type=file] {
+  border: none;
+    height: 100%;
+    width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
   .trash {
     background-position: 0px 0px;
   }

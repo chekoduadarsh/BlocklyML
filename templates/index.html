@@ -21,6 +21,7 @@
   <script src="http://pypyjs.org/pypyjs-release/lib/FunctionPromise.js"></script>
   <script src="http://pypyjs.org/pypyjs-release/lib/pypyjs.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
   <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
   
   <script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
@@ -72,6 +73,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" onclick="downloadPy()">Download .py</a></li>
             <li><a class="dropdown-item" onclick="downloadIpynb()">Download .ipynb</a></li>
+            <li><a class="dropdown-item" onclick="anyML.DownloadCode()">Download .xml</a></li>
             <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Download DataFrames</a>
               <ul class="dropdown-menu DataFrameViewer" >
                 <div class="DataFrameDownload" id="DataFrameDownload">
@@ -128,9 +130,22 @@
               <select id="code_menu"></select>
             </td>
             <td class="tabmax">
+              <button id="downlaodButton" class="notext" title="...">
+                <img src='/static/media/download.png' class="icon">
+              </button>
+              <div class="upload-btn-wrapper">
+              <button id="uplaodButton" class="notext" title="...">
+                <img src='/static/media/upload.png' class="icon">
+              </button>
+              <input type="file" id="file-selector" oninput="anyML.UploadCode()">
+              </div>
+              <button id="colabButton" class="notext" title="...">
+                <img src='/static/media/colab_favicon.ico' class="icon">
+              </button>
               <button id="trashButton" class="notext" title="...">
                 <img src='/static/media/1x1.gif' class="trash icon21">
               </button>
+
               <button id="linkButton" class="notext" title="...">
                 <img src='/static/media/1x1.gif' class="link icon21">
               </button>
