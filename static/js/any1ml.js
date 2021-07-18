@@ -329,7 +329,6 @@ anyML.attemptCodeGeneration = function(generator) {
   if (anyML.checkAllGeneratorFunctionsDefined(generator)) {
     var code = generator.workspaceToCode(anyML.workspace);
     content.textContent = code;
-    console.log(code)
     // Remove the 'prettyprinted' class, so that Prettify will recalculate.
     content.className = content.className.replace('prettyprinted', '');
   }
@@ -444,6 +443,7 @@ anyML.init = function() {
       function() {anyML.discard(); anyML.renderContent();});
   anyML.bindClick('runButton', anyML.LaunchCode);
   anyML.bindClick('colabButton', anyML.OpenColab);
+  anyML.bindClick('copyButton', anyML.copyCode);
   anyML.bindClick('downlaodButton', anyML.DownloadCode);
   anyML.bindClick('uplaodButton', anyML.uploadCode);
 
@@ -584,7 +584,6 @@ anyML.UploadCode = function() {
         const input = event.target
         var file = input.files[0]
         fr.onload=function(){
-            console.log(fr.result);
             var xml = Blockly.Xml.textToDom(fr.result);
             Blockly.Xml.domToWorkspace(xml, anyML.workspace);
         }
@@ -596,6 +595,18 @@ anyML.UploadCode = function() {
 
 anyML.OpenColab = function() {
     window.open("https://colab.research.google.com/");
+};
+
+anyML.copyCode = function() {
+    var code = Blockly.Python.workspaceToCode(anyML.workspace);
+    var  copyText = document.createElement('textarea');
+    copyText.value = code;
+    copyText.setAttribute('readonly', '');
+    copyText.style = {position: 'absolute', left: '-9999px'};
+    document.body.appendChild(copyText);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand('copy');
 };
 /**
  * Discard all blocks from the workspace.
