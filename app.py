@@ -11,7 +11,7 @@ app.config['DEBUG'] = True
 
 
 
-    
+
 
 @app.route('/DataViewer', methods=['POST','GET'])
 def DFreturn():
@@ -19,7 +19,7 @@ def DFreturn():
     return str(listDF)
 
 
-    
+
 
 @app.route('/DataReport', methods=['POST','GET'])
 def DFRreturn():
@@ -51,4 +51,5 @@ def ReportViewer():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
+

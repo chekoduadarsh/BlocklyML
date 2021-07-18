@@ -563,10 +563,14 @@ var VarData = {};
             columns="[]"
         }
         var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
-        console.log(JSON.stringify(columns))
         return [DataFrame+"["+columns.replace("\'","\"")+"]",  Blockly.Python.ORDER_ATOMIC];
     }
-
+     Blockly.Python['Classification_Report'] = function(a){
+        Blockly.Python.definitions_.classification_report = "from sklearn.metrics import classification_report";
+        var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN)
+        var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN)
+        return "print(classification_report("+True+", "+Pred+"))";
+    }
     Blockly.Python['pandas_set_columns'] = function(a){
         var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
         if (columns == ""){
@@ -675,7 +679,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("LR",LogisticRegression(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+'))])'
-
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
           if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -686,7 +691,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("LR", LogisticRegression())])'
-
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
@@ -746,6 +752,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("GNB",GaussianNB())])'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -756,6 +764,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("GNB",GaussianNB(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+"))])"
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -813,6 +823,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("KNN",KNeighborsClassifier())])'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -824,6 +836,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("KNN",KNeighborsClassifier(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) +"))])"
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -881,6 +895,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("Dtree",tree.DecisionTreeClassifier(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+"))])"
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
          if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -891,6 +907,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("Dtree",tree.DecisionTreeClassifier())])'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
@@ -938,7 +956,6 @@ var VarData = {};
     }
     Blockly.Python['CLR_SVM'] = function(a){
         Blockly.Python.definitions_.SVC   = "from sklearn.svm import SVC";
-        Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -950,6 +967,9 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("SVC", SVC(gamma="auto"))])'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
+
         }
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -960,6 +980,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("SVC", SVC(gamma="auto"))])'
+           Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+           Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
         }
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -1018,6 +1040,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("RFC", RandomForestClassifier())])'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
         }
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -1028,6 +1052,8 @@ var VarData = {};
             Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
         {
              codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("RFC", RandomForestClassifier(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+')'
+             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
         }
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&

@@ -1229,7 +1229,6 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "dict_append",
-
             previousStatement: null,
             nextStatement: null,
             tooltip: "Add Key and Value Dictionary",
@@ -1257,6 +1256,44 @@
              }]
             }
             ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "Classification_Report",
+            previousStatement: null,
+            nextStatement: null,
+            message0: "Generate Classification Report",
+            message1: "Prediction %1",
+              args1: [
+              {
+                type: "input_value",
+                name: "Pred",
+                check: "DataFrame"
+             }],
+
+            message2: "Ground Truth %1",
+              args2: [
+              {
+                type: "input_value",
+                name: "True",
+                check: "DataFrame"
+             }]
+            }
+        ]);
+
+        Blockly.defineBlocksWithJsonArray([
+        {
+            type: "Print",
+            previousStatement: null,
+            nextStatement: null,
+            message0: "Print",
+            args0: [
+              { type: "field_variable", name: "VAR", variable: "train_X"}
+
+              ],
+              inputsInline: 0
+          }
+        ]);
+
         Blockly.defineBlocksWithJsonArray([ 
             {
             type: "CLR_XGBoost",
