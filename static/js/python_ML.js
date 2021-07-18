@@ -510,7 +510,6 @@ var VarData = {};
         var TestSize = Blockly.Python.valueToCode(a, "TESTSIZE", Blockly.Python.ORDER_NONE)
 
         var codeString =  train_X+', '+test_X+', '+train_Y+', '+test_Y+'=train_test_split('+dataframe+'.drop(columns = ['+target+']),'+dataframe+'['+target+']'+', test_size='+TestSize+', random_state=42)\n'
-        console.log(a.getFieldValue("SPLIT"))
         var codeString2 = ""
         if (a.getFieldValue("SPLIT") == "dropNa"){
             codeString2 = 'def dropNa('+train_X+', '+test_X+', '+train_Y+', '+test_Y+'):\n'+
@@ -569,8 +568,31 @@ var VarData = {};
         Blockly.Python.definitions_.classification_report = "from sklearn.metrics import classification_report";
         var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN)
         var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN)
-        return "print(classification_report("+True+", "+Pred+"))";
+        return "classification_report("+True+", "+Pred+"))";
     }
+
+    Blockly.Python['Print'] = function(a){
+        var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_NONE) || "''";
+        var End = a.getFieldValue("END")
+
+        if (End == "newLine"){
+        return "print("+INPUT+")";
+        }
+        if(End == "tab"){
+        return "print("+INPUT+",end='\\t')";
+        }
+        if(End == "space"){
+        return "print("+INPUT+",end=' ')";
+        }
+        if(End == "comma"){
+        return "print("+INPUT+",end=',')";
+        }
+    }
+
+ Blockly.Python['Input'] = function(a){
+        var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_NONE) || "''";
+        return  ["input("+INPUT+")",Blockly.Python.ORDER_FUNCTION_CALL]
+        }
     Blockly.Python['pandas_set_columns'] = function(a){
         var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
         if (columns == ""){

@@ -473,7 +473,22 @@
         </value>
       </block>
     </category>
+
+
+
+     <category name="Input/Output" colour="%{BKY_COLOUR_HUE}">
+
+    <block type = "Print">
+      <field name="Print">Print</field>
+    </block>
+    <block type = "Input">
+      <field name="Input">Input</field>
+    </block>
+
+    </category>
     <sep></sep>
+
+
   <category name=DataFrame colour="%{BKY_COLOUR_HUE}">
 
   <block type = "pandas_read_csv">
@@ -500,7 +515,8 @@
     </block>
 
     </category>
-    <category name=ML-Classifiers colour="%{BKY_COLOUR_HUE}">
+
+    <category name="ML Algorithms" colour="%{BKY_COLOUR_HUE}">
 
       <block type = "CLR_LogisticRegression">
           <field type= "CLR_LogisticRegression">LogisticRegression</field>
@@ -545,7 +561,7 @@
 
      </category>
     <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
-    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"> </category>
   </xml>
 
 </body>

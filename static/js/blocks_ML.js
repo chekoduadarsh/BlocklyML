@@ -1285,15 +1285,32 @@
             type: "Print",
             previousStatement: null,
             nextStatement: null,
-            message0: "Print",
+            message0: "Print %1",
             args0: [
-              { type: "field_variable", name: "VAR", variable: "train_X"}
-
+              { type: "input_value", name: "INPUT"}
               ],
+            message1: " End: %1",
+            args1: [
+             { type: "field_dropdown",
+             name: "END",
+             options: [["New Line", "newLine"],
+                        ["Tab", "tab"],
+                        ["Space", "space"],
+                        ["Comma", "comma"]]
+             }],
               inputsInline: 0
           }
         ]);
-
+        Blockly.defineBlocksWithJsonArray([
+        {
+            type: "Input",
+            message0: "Input %1",
+            args0: [
+              { type: "input_value", name: "INPUT", check: "String"}
+              ],
+              output: "String"
+              }
+        ]);
         Blockly.defineBlocksWithJsonArray([ 
             {
             type: "CLR_XGBoost",
