@@ -572,7 +572,7 @@ var VarData = {};
     }
 
     Blockly.Python['Print'] = function(a){
-        var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_NONE) || "''";
+        var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_FUNCTION_CALL) || "''";
         var End = a.getFieldValue("END")
 
         if (End == "newLine"){
