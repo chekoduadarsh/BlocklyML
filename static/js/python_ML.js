@@ -472,15 +472,18 @@ var VarData = {};
      var b = 1,
         c = "{";
         do {
-            var d = Blockly.Python.valueToCode(a, "KEY" + b, Blockly.Python.ORDER_NONE);
-            var e = Blockly.Python.valueToCode(a, "VAL" + b,  Blockly.Python.ORDER_NONE);
+            var d = Blockly.Python.valueToCode(a, "KEY" + b, Blockly.Python.ORDER_NONE)|| "";
+            var e = Blockly.Python.valueToCode(a, "VAL" + b,  Blockly.Python.ORDER_NONE)|| "";
             Blockly.Python.STATEMENT_SUFFIX && (e = Blockly.Python.prefixLines(Blockly.Python.injectId(Blockly.Python.STATEMENT_SUFFIX, a), Blockly.Python.INDENT) + e);
             c += d+":"+e;
             ++b;
         } while (a.getInput("Key" + b));
         c += "}";
-        return [c, Blockly.Python.ORDER_FUNCTION_CALL];
-
+        if ((e != "") && (d != "")){
+            return [c, Blockly.Python.ORDER_FUNCTION_CALL];
+        }else{
+            return ["None", Blockly.Python.ORDER_FUNCTION_CALL];
+        }
     }
   Blockly.Python["dict_append"] = function(a){
   var e = ""
