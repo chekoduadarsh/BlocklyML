@@ -13,7 +13,7 @@
   <script src="{{ url_for('static', filename='js/python_ML.js') }}"></script>
   <script src="{{ url_for('static', filename='js/dist/msg/en.js') }}"></script>
   <script src="{{ url_for('static', filename='js/screenshot.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/any1ml.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/blockly.js') }}"></script>
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"/>
   <script src="{{ url_for('static', filename='/js/msg/js/en.js')}}"></script>
 
@@ -45,7 +45,7 @@
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
      <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" h id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="anyML.runJS();CloseAllNav();getData()">
+          <a class="nav-link dropdown-toggle" h id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
             View
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -67,13 +67,13 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="anyML.runJS();CloseAllNav();getDataDownload()">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getDataDownload()">
             Download
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" onclick="downloadPy()">Download .py</a></li>
             <li><a class="dropdown-item" onclick="downloadIpynb()">Download .ipynb</a></li>
-            <li><a class="dropdown-item" onclick="anyML.DownloadCode()">Download .xml</a></li>
+            <li><a class="dropdown-item" onclick="blockly.DownloadCode()">Download .xml</a></li>
             <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Download DataFrames</a>
               <ul class="dropdown-menu DataFrameViewer" >
                 <div class="DataFrameDownload" id="DataFrameDownload">
@@ -137,7 +137,7 @@
               <button id="uplaodButton" class="notext" title="upload saved layout">
                 <img src='/static/media/upload.png' class="icon">
               </button>
-              <input type="file" id="file-selector" oninput="anyML.UploadCode()" title="upload saved layout">
+              <input type="file" id="file-selector" oninput="blockly.UploadCode()" title="upload saved layout">
               </div>
               <button id="copyButton" class="notext" title="copy python code">
                 <img src='/static/media/copy.png' class="icon">
