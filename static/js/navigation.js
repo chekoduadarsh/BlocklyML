@@ -271,7 +271,7 @@ var onReport = []
   };
   function downloadPy(){
 
-    var text = Blockly.Python.workspaceToCode(anyML.workspace);
+    var text = Blockly.Python.workspaceToCode(blockly.workspace);
     var fileType = "text"
     var fileName = "any1ml.py"
     var blob = new Blob([text], { type: fileType });
@@ -290,7 +290,7 @@ var onReport = []
 
   function downloadIpynb(){
 
-    var Codetext = Blockly.Python.workspaceToCode(anyML.workspace);
+    var Codetext = Blockly.Python.workspaceToCode(blockly.workspace);
     var text = ("{ \"cells\": [ \n { \n \"cell_type\": \"code\", \n\"execution_count\": 1,\n\"metadata\": {}, \n\"outputs\": [],\n \"source\": [\n"+JSON.stringify(Codetext)+"\n]\n}\n],\n \"metadata\": {\n \"kernelspec\": {\n\"display_name\": \"Python 3\",\n\"language\": \"python\",\n\"name\": \"python3\"\n},\n\"language_info\": {\"codemirror_mode\": { \"name\": \"ipython\",\n \"version\": 3 \n},\n \"file_extension\": \".py\",\n\"mimetype\": \"text/x-python\", \n\"name\": \"python\", \n\"nbconvert_exporter\": \"python\",\n\"pygments_lexer\": \"ipython3\",\n\"version\": \"3.8.5\"\n} \n}, \n\"nbformat\": 4, \n\"nbformat_minor\": 2 \n}");
     var fileType = "text"
     var fileName = "any1ml.ipynb"

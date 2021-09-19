@@ -569,11 +569,25 @@ var VarData = {};
     }
      Blockly.Python['Classification_Report'] = function(a){
         Blockly.Python.definitions_.classification_report = "from sklearn.metrics import classification_report";
+        var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN) || "";
+        var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN) || "";
+        if ((Pred!="")&&(True!="")){
+            return "classification_report("+True+", "+Pred+")";
+        }else{
+             return ""
+        }
+
+    }
+     Blockly.Python['R2_Report'] = function(a){
+        Blockly.Python.definitions_.r2_score = "from sklearn.metrics import r2_score";
         var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN)
         var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN)
-        return "classification_report("+True+", "+Pred+"))";
+        if ((Pred!="")&&(True!="")){
+             return "r2_score("+Pred+", "+True+")";
+        }else{
+             return ""
+        }
     }
-
     Blockly.Python['Print'] = function(a){
         var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_FUNCTION_CALL) || "''";
         var End = a.getFieldValue("END")
@@ -689,8 +703,77 @@ var VarData = {};
 
     }
 
+     Blockly.Python['REG_LinearRegression'] = function(a){
+        Blockly.Python.definitions_.LinearRegression = "from sklearn.linear_model import LinearRegression";
+        var codeString = ""
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            codeString += "LinearRegression(**"+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+")"
+        }
+                if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("LR", LinearRegression())])'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
 
 
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
+        {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                        +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)
+                        +", eval_set = [("+Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE)
+                        +","+Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
+        {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
+            +".predict("
+            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+
+
+        }
+        return([codeString, Blockly.Python.ORDER_FUNCTION_CALL])
+
+    }
         Blockly.Python['CLR_LogisticRegression'] = function(a){
         Blockly.Python.definitions_.LogisticRegression = "from sklearn.linear_model import LogisticRegression";
         var codeString = ""
