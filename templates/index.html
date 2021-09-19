@@ -513,10 +513,13 @@
     <block type = "Classification_Report">
         <field type= "Classification_Report">Generate Classification Report</field>
     </block>
+    <block type = "R2_Report">
+        <field type= "R2_Report">Generate Regression Report</field>
+    </block>
 
     </category>
 
-    <category name="ML Algorithms" colour="%{BKY_COLOUR_HUE}">
+    <category name="ML Classification Algorithms" colour="%{BKY_COLOUR_HUE}">
 
       <block type = "CLR_LogisticRegression">
           <field type= "CLR_LogisticRegression">LogisticRegression</field>
@@ -541,7 +544,11 @@
       </block>
 
       </category>
+    <category name="ML Regression Algorithms" colour="%{BKY_COLOUR_HUE}">
 
+      <block type = "REG_LinearRegression">
+          <field type= "REG_LinearRegression">LogisticRegression</field>
+    </category>
   <category name=Datasets colour="%{BKY_COLOUR_HUE}">
 
     <block type = "seaborn_dataset">

@@ -1279,7 +1279,29 @@
              }]
             }
         ]);
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "R2_Report",
+            previousStatement: null,
+            nextStatement: null,
+            message0: "Generate Regression R2 score",
+            message1: "Prediction %1",
+              args1: [
+              {
+                type: "input_value",
+                name: "Pred",
+                check: "DataFrame"
+             }],
 
+            message2: "Ground Truth %1",
+              args2: [
+              {
+                type: "input_value",
+                name: "True",
+                check: "DataFrame"
+             }]
+            }
+        ]);
         Blockly.defineBlocksWithJsonArray([
         {
             type: "Print",
@@ -1323,6 +1345,17 @@
             }
         ]);
 
+        Blockly.defineBlocksWithJsonArray([
+            {
+            type: "REG_LinearRegression",
+            tooltip: "Linear Regression Algorithm",
+            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html",
+            message0: "REG_LinearRegression",
+            style: "logic_blocks",
+            mutator: "CLR_mutator",
+            output: "DataFrame"
+            }
+        ]);
         Blockly.defineBlocksWithJsonArray([
             {
             type: "CLR_LogisticRegression",
@@ -1604,7 +1637,8 @@
                 ["Flights","flights"],
                 ["Penguins","penguins"],
                 ["Planets","planets"],
-                ["Titanic","titanic"]
+                ["Titanic","titanic"],
+                ["Tips","tips"]
             ]  
           }
         ],
