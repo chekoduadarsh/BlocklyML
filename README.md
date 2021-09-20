@@ -25,7 +25,7 @@ Blockly support both .py and .ipynb formats. You can download the code from the 
 
  - [x] Classification Algorithms
  - [x] Regression Algorithms
- - [ ] Appropriate Color Coding
+ - [x] Appropriate Color Coding
  - [ ] Support for Deep Learning (ANN)
  - [ ] Support for Image Dataset
  - [ ] Support for CNN
