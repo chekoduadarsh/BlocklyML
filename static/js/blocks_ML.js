@@ -1037,7 +1037,6 @@
         init: function() {
         this.appendValueInput('VALUE')
             .setCheck(['String'])
-
             .appendField('Read DataFrame');
         this.setOutput(true, 'DataFrame');
         this.setTooltip('Read CSV from Url or path');
