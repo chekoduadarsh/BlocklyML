@@ -39,7 +39,7 @@ You can find these buttons in the top right corner of the application. Their fun
 5. Delete
 6. Run (Not Supported Yet!!)
 
-<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/buttons.png" alt="drawing" width="500"/>
+<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/butttons.png" alt="drawing" width="500"/>
 
 ## Dataframe Viewer
 Blockly support complete html view of the DataFrame. This can be accessed by view option in the navigation bar
