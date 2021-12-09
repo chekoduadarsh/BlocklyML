@@ -504,7 +504,7 @@ var VarData = {};
     }
     Blockly.Python['skl_train_test_split'] = function(a){
         Blockly.Python.definitions_.sklearn_test_train_split = "from sklearn.model_selection import train_test_split";
-        var dataframe = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_NONE)
+        var dataframe = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_NONE) || ""
         var train_X = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)
         var train_Y = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR2"), Blockly.VARIABLE_CATEGORY_NAME)
         var test_X = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR1"), Blockly.VARIABLE_CATEGORY_NAME)
@@ -555,7 +555,13 @@ var VarData = {};
         Blockly.Python.definitions_.pandas = "import pandas as pd";
         Blockly.Python.definitions_.encoder = "from sklearn.preprocessing import LabelEncoder, OneHotEncoder";
         Blockly.Python.definitions_.numpy = "import numpy as np"
+
+        if(dataframe == ""){
+        return ""
+        }
+        }else{
         return codeString+codeString2+LabelEncodeClass
+        }
     }
 
 
