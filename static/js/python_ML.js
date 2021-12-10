@@ -559,7 +559,7 @@ var VarData = {};
         if(dataframe == ""){
         return ""
         }
-        }else{
+        else{
         return codeString+codeString2+LabelEncodeClass
         }
     }
