@@ -32,7 +32,7 @@ Simple as that :man_shrugging:
 ## Shortcuts
 You can find these buttons in the top right corner of the application. Their functionality as follows
 
-1. Download xml Layout
+1. Download XML Layout
 2. Upload XML layout
 3. Copy Code
 4. Launch Google Colab
