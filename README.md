@@ -27,12 +27,22 @@ In the Example given below we will train a random forest for Iris Dataset
 * ![Contribute](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#contribute)
 * ![License](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#license)
 # Installing as BlocklyML App
+First clone this repo
+
+```
+git clone https://github.com/chekoduadarsh/BlocklyML
+```
+After cloning the repo you can either follow the Docker Method or Flask Method
+
+### Docker Method
 BlocklyML can run on Docker with the following command :cd:
 
 ```
 docker run blocklyml-docker
 ```
-Or you can download the complete repo and install the requirements from requirements.txt with the following command
+### Flask Method
+
+Install the requirements from requirements.txt with the following command
 
 ```
 pip install -r requirements.txt 
