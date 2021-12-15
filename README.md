@@ -1,4 +1,10 @@
+![](https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_Banner.png)
 # BlocklyML
+![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
+![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
+![](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fchekoduadarsh%2FBlocklyML)
+![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
+
 
 https://blocklyml.herokuapp.com/
 
@@ -10,7 +16,17 @@ In the Example given below we will train a random forest for Iris Dataset
 
 <img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/IrisRandomForest.png" alt="drawing" width="500"/>
 
-## Installing as BlocklyML App
+# Table of contents
+
+* ![Project Title](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#blocklyml)
+* ![Installlation](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#installing-as-blocklyml-app)
+* ![UI Features](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#ui-features)
+   * ![Shortcuts](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#shortcuts)
+   * ![Dataframe Viewer](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#dataframe-viewer)
+   * ![Download Code](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#download-code)
+* ![Contribute](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#contribute)
+* ![License](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#license)
+# Installing as BlocklyML App
 BlocklyML can run on Docker with the following command :cd:
 
 ```
@@ -29,10 +45,12 @@ python app.py
 
 Simple as that :man_shrugging:
 
+# UI Features
+
 ## Shortcuts
 You can find these buttons in the top right corner of the application. Their functionality as follows
 
-1. Download xml Layout
+1. Download XML Layout
 2. Upload XML layout
 3. Copy Code
 4. Launch Google Colab
@@ -52,16 +70,23 @@ Blockly support both .py and .ipynb formats. You can download the code from the 
 
 <img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/DownloadView.png" alt="drawing" width="200"/>
 
+# Contribute
 
-### This repo welcomes any kind of contributions :pray:
+If you find any error or need support please raise a issue. If you think you can add a feature, or help solve a bug please raise a PR
+
+### This repo welcomes any kind of contributions :pray: 
+
+Feel free to adapt it criticize it and support it the way you like!!
 
 ## TBD
 
  - [x] Classification Algorithms
- - [ ] Regression Algorithms
- - [ ] Appropriate Color Coding
+ - [x] Regression Algorithms
+ - [x] Appropriate Color Coding
  - [ ] Support for Deep Learning (ANN)
  - [ ] Support for Image Dataset
  - [ ] Support for CNN
  - [ ] Support for Running Code in Heroku
  
+# License
+![Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
