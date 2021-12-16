@@ -475,9 +475,12 @@ var VarData = {};
             var d = Blockly.Python.valueToCode(a, "KEY" + b, Blockly.Python.ORDER_NONE)|| "";
             var e = Blockly.Python.valueToCode(a, "VAL" + b,  Blockly.Python.ORDER_NONE)|| "";
             Blockly.Python.STATEMENT_SUFFIX && (e = Blockly.Python.prefixLines(Blockly.Python.injectId(Blockly.Python.STATEMENT_SUFFIX, a), Blockly.Python.INDENT) + e);
+            if(b>1){
+            c += ",";
+            }
             c += d+":"+e;
             ++b;
-        } while (a.getInput("Key" + b));
+        } while (a.getInput("KEY" + b));
         c += "}";
         if ((e != "") && (d != "")){
             return [c, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -512,7 +515,7 @@ var VarData = {};
         var target = Blockly.Python.valueToCode(a, "TARGETVAR", Blockly.Python.ORDER_NONE)
         var TestSize = Blockly.Python.valueToCode(a, "TESTSIZE", Blockly.Python.ORDER_NONE)
 
-        var codeString =  train_X+', '+test_X+', '+train_Y+', '+test_Y+'=train_test_split('+dataframe+'.drop(columns = ['+target+']),'+dataframe+'['+target+']'+', test_size='+TestSize+', random_state=42)\n'
+        var codeString =  '\n'+train_X+', '+test_X+', '+train_Y+', '+test_Y+'=train_test_split('+dataframe+'.drop(columns = ['+target+']),'+dataframe+'['+target+']'+', test_size='+TestSize+', random_state=42)\n'
         var codeString2 = ""
         if (a.getFieldValue("SPLIT") == "dropNa"){
             codeString2 = 'def dropNa('+train_X+', '+test_X+', '+train_Y+', '+test_Y+'):\n'+
@@ -571,16 +574,16 @@ var VarData = {};
             columns="[]"
         }
         var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
-        return [DataFrame+"["+columns.replace("\'","\"")+"]",  Blockly.Python.ORDER_ATOMIC];
+        return [DataFrame+"["+columns+"]",  Blockly.Python.ORDER_ATOMIC];
     }
      Blockly.Python['Classification_Report'] = function(a){
         Blockly.Python.definitions_.classification_report = "from sklearn.metrics import classification_report";
         var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN) || "";
         var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN) || "";
         if ((Pred!="")&&(True!="")){
-            return "classification_report("+True+", "+Pred+")";
+            return ["classification_report("+True+", "+Pred+")",Blockly.Python.ORDER_FUNCTION_CALL];
         }else{
-             return ""
+             return ["",Blockly.Python.ORDER_FUNCTION_CALL];
         }
 
     }
@@ -589,9 +592,9 @@ var VarData = {};
         var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN)
         var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN)
         if ((Pred!="")&&(True!="")){
-             return "r2_score("+True+", "+Pred+")";
+             return ["r2_score("+True+", "+Pred+")",Blockly.Python.ORDER_FUNCTION_CALL];
         }else{
-             return ""
+             return ["",Blockly.Python.ORDER_FUNCTION_CALL];
         }
     }
     Blockly.Python['Print'] = function(a){
@@ -633,11 +636,24 @@ var VarData = {};
         var e = Blockly.Python.valueToCode(a, "C", c) || "";
         a = Blockly.Python.valueToCode(a, "B", c) || "";
         if (d =="" || e=="" || a==""){
-            return ["None", Blockly.Python.ORDER_NONE]
+            return ["", Blockly.Python.ORDER_NONE]
         }
 
         return [e+"["+d + " " + b + " " + a+"]",  Blockly.Python.ORDER_FUNCTION_CALL];
     };
+
+
+    Blockly.Python['dataframe_Map'] = function (a) {
+        var c = Blockly.Python.ORDER_NONE;
+        var b = Blockly.Python.valueToCode(a, "Map", c) || "";
+        var d = Blockly.Python.valueToCode(a, "Series", c) || "";
+        if (b =="" || d==""){
+            return ["", Blockly.Python.ORDER_NONE]
+        }
+
+        return [d+".map("+b+")",  Blockly.Python.ORDER_ATOMIC];
+    };
+
 
     Blockly.Python['CLR_XGBoost'] = function(a){
         Blockly.Python.definitions_.XGBClassifier = "from xgboost import XGBClassifier";

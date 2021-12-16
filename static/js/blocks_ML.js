@@ -988,7 +988,7 @@
               {
                 type: "input_value",
                 name: "COLUMN",
-                check:"Array"
+                check: ["String", "Array"]
             }],
               message1: "Input Dataframe %1",
               args1: [
@@ -1002,7 +1002,7 @@
               {
                 type: "input_value",
                 name: "DATAFRAME_OUT",
-                check:"DataFrame"
+                check: "DataFrame"
              }]
           }
         ]);
@@ -1032,6 +1032,21 @@
             output: "DataFrame",
               }
         ]);
+
+
+          Blockly.defineBlocksWithJsonArray([
+            {
+             type: "dataframe_Map",
+            message0: "DataFrame Map \n %1 Apply to %2",
+            args0: [
+                { type: "input_value", name: "Map" , check:"DICT"},
+                { type: "input_value", name: "Series" , check:"DataFrameSeries"},
+            ],
+            inputsInline: !0,
+            output: ["DataFrame", "DataFrameSeries"],
+              }
+        ]);
+
 
       Blockly.Blocks['pandas_read_csv'] = {
         init: function() {
@@ -1112,7 +1127,7 @@
                 check:"DataFrame",
                 value: 0
              }],
-            output: "DataFrame"
+            output: ["DataFrame", "DataFrameSeries"]
           }
         ]);
 
@@ -1204,7 +1219,7 @@
             },
             updateShape_: function () {
                 for (var a = 1; this.getInput("KEY" + a); ) this.removeInput("KEY" + a), this.removeInput("VAL" + a), a++;
-                for (a = 1; a <= this.elementcount_; a++)
+                for (var a = 1; a <= this.elementcount_; a++)
                     this.appendValueInput("KEY"+a).appendField("Key"),
                                     this.appendValueInput("VAL"+a).appendField("Value");
             },
@@ -1257,8 +1272,7 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "Classification_Report",
-            previousStatement: null,
-            nextStatement: null,
+            output: "String",
             message0: "Generate Classification Report",
             message1: "Prediction %1",
               args1: [
@@ -1280,8 +1294,7 @@
         Blockly.defineBlocksWithJsonArray([
             {
             type: "R2_Report",
-            previousStatement: null,
-            nextStatement: null,
+            output: "String",
             message0: "Generate Regression R2 score",
             message1: "Prediction %1",
               args1: [
