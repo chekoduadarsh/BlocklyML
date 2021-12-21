@@ -580,18 +580,17 @@ blockly.DownloadCode = function() {
 blockly.UploadCode = function() {
     const fileSelector = document.getElementById('file-selector');
     var fr= new FileReader();
+        fr.onload=function(){
+            var xml = Blockly.Xml.textToDom(fr.result);
+            Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+            fr = new FileReader();
+        }
+
     fileSelector.addEventListener('change', (event) => {
         const input = event.target
         var file = input.files[0]
-        console.log("DEF")
-        fr.onload=function(){
-            var xml = Blockly.Xml.textToDom(fr.result);
-            console.log("ABC")
-            console.log(xml)
-            Blockly.Xml.domToWorkspace(xml, blockly.workspace);
-            fr = new FileReader(); // reset fr
-        }
         fr.readAsText(file)
+
     });
 
 };
