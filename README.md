@@ -2,7 +2,6 @@
 # BlocklyML
 ![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
-![](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fchekoduadarsh%2FBlocklyML)
 ![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
 
 
