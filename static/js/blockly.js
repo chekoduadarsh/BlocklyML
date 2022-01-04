@@ -579,15 +579,18 @@ blockly.DownloadCode = function() {
 };
 blockly.UploadCode = function() {
     const fileSelector = document.getElementById('file-selector');
-        var fr=new FileReader();
-        fileSelector.addEventListener('change', (event) => {
-        const input = event.target
-        var file = input.files[0]
+    var fr= new FileReader();
         fr.onload=function(){
             var xml = Blockly.Xml.textToDom(fr.result);
             Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+            fr = new FileReader();
         }
+
+    fileSelector.addEventListener('change', (event) => {
+        const input = event.target
+        var file = input.files[0]
         fr.readAsText(file)
+
     });
 
 };

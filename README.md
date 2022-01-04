@@ -2,7 +2,6 @@
 # BlocklyML
 ![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
-![](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fchekoduadarsh%2FBlocklyML)
 ![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
 
 
@@ -100,3 +99,5 @@ Feel free to adapt it criticize it and support it the way you like!!
  
 # License
 ![Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/chekoduadarsh)
