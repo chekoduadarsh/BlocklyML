@@ -1,5 +1,4 @@
 import json
-import seaborn as sns
 import pandas as pd
 from pandas_profiling import ProfileReport
 pd.set_option('display.max_rows', None)
