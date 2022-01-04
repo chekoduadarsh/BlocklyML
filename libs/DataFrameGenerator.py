@@ -1,7 +1,5 @@
 import json
-import seaborn as sns
 import pandas as pd
-from pandas_profiling import ProfileReport
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
