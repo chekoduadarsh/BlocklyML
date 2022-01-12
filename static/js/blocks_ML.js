@@ -974,7 +974,141 @@
     /*
     * Custom
     */
-   
+
+   /*
+   * pycaret
+   */
+
+    Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_setup",
+        message0 : "Setup()",
+        message1: "Input Dataset %1",
+        args1: [
+          {
+            type: "input_value",
+            name: "input_data",
+            check:"DataFrame"
+          }],
+        message2: "Target Column %1",
+        args2: [
+          {
+            type: "input_value",
+            name: "input_column",
+            check: "String"
+          }],
+      message3: "Algorithm Type Column %1",
+        args3: [
+          {
+             type: "field_dropdown",
+             name: "Algorithm",
+             options: [
+                ["Classification", "Classification"],
+                ["Regression", "Regression"]
+             ],
+          }],
+     message4: "Optimizer %1",
+        args4: [
+          {
+             type: "field_dropdown",
+             name: "Optimizer",
+             options: [
+                ["Accuracy", "Accuracy"],
+                ["AUC", "AUC"],
+                ["Recall", "Recall"],
+                ["Precision", "Precision"],
+                ["F1", "F1"],
+                ["Kappa", "Kappa"],
+                ["MCC", "MCC"],
+                ["MAE", "MAE"],
+                ["MSE", "MSE"],
+                ["RMSE", "RMSE"],
+                ["R2", "R2"],
+                ["RMSLE", "RMSLE"],
+                ["MAPE", "MAPE"],
+             ],
+          }],
+        inputsInline: 0,
+        output: "DataFrame"
+      }
+    ])
+
+        Blockly.defineBlocksWithJsonArray([
+        {
+        type: "pycaret_classifier",
+        message0 : "Classifier()",
+        message1: "Algorithm %1",
+        args1: [
+          {
+             type: "field_dropdown",
+             name: "Optimizer",
+             options: [
+                ["Logistic Regression","lr"],
+                ["K Nearest Neighbour","knn"],
+                ["Naives Bayes","nb"],
+                ["Decision Tree Classifier","dt"],
+                ["SVM – Linear Kernel","svm"],
+                ["SVM – Radial Kernel","rbfsvm"],
+                ["Gaussian Process Classifier","gpc"],
+                ["Multi Level Perceptron","mlp"],
+                [ "Ridge Classifier","ridge"],
+                ["Random Forest Classifier","rf"],
+                ["Quadratic Discriminant Analysis","qda"],
+                ["Ada Boost Classifier","ada"],
+                ["Gradient Boosting Classifier","gbc"],
+                ["Linear Discriminant Analysis","lda"],
+                ["Extra Trees Classifier","et"],
+                ["Extreme Gradient Boosting","xgboost"],
+                ["Light Gradient Boosting","lightgbm"],
+                ["CatBoost Classifier","catboost"],
+             ],
+         }
+        ]
+    }])
+
+    Blockly.defineBlocksWithJsonArray([
+        {
+        type: "pycaret_regressor",
+        message0 : "Regression()",
+        message1: "Algorithm %1",
+        args1: [
+          {
+             type: "field_dropdown",
+             name: "Optimizer",
+             options: [
+                ["Linear Regression","lr"],
+                ["Lasso Regression","lasso"],
+                ["Ridge Regression","ridge"],
+                ["Elastic Net","en"],
+                ["Least Angle Regression","lar"],
+                ["Lasso Least Angle Regression","llar"],
+                ["Orthogonal Matching Pursuit","omp"],
+                ["Bayesian Ridge","br"],
+                ["Automatic Relevance Determination","ard"],
+                ["Passive Aggressive Regressor","par"],
+                ["Random Sample Consensus","ransac"],
+                ["TheilSen Regressor","tr"],
+                ["Huber Regressor","huber"],
+                ["Kernel Ridge","kr"],
+                ["Support Vector Machine","svm"],
+                ["K Neighbors Regressor","knn"],
+                ["Decision Tree","dt"],
+                ["Random Forest","rf"],
+                ["Extra Trees Regressor","et"],
+                ["AdaBoost Regressor","gbr"],
+                ["Gradient Boosting Regressor","gbr"],
+                ["Multi Level Perceptron","mlp"],
+                ["Extreme Gradient Boosting","xgboost"],
+                ["Light Gradient Boosting","lightgbm"],
+                ["CatBoost Regressor","catboost"],
+             ],
+         }
+        ]
+    }])
+
+   /*
+   * pycaret end
+   */
         Blockly.defineBlocksWithJsonArray([
             {
             type: "pandas_set_columns",

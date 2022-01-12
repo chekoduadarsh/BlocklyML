@@ -314,7 +314,7 @@
       <block type="text_length">
         <value name="VALUE">
           <shadow type="text">
-            <field name="TEXT">abxc</field>
+            <field name="TEXT">abc</field>
           </shadow>
         </value>
       </block>
@@ -553,6 +553,20 @@
           <field type= "REG_XGBRegressor">XGBRegressor</field>
         </block>
     </category>
+
+    <category name=AutoML colour="%{BKY_COLOUR_HUE}">
+
+
+
+      <block type="pycaret_setup">
+        <value name="input_column">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="pycaret_classifier">
+      </block>
+
+  </category>
   <category name=Datasets colour="%{BKY_LOGIC_HUE}">
 
     <block type = "seaborn_dataset">
@@ -560,6 +574,7 @@
     </block>
 
   </category>
+
   <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
 
     <block type = "create_dict">
