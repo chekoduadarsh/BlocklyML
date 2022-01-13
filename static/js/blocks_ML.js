@@ -982,6 +982,8 @@
     Blockly.defineBlocksWithJsonArray([
     {
         type: "pycaret_setup",
+        previousStatement: null,
+        nextStatement: null,
         message0 : "Setup()",
         message1: "Input Dataset %1",
         args1: [
@@ -1007,8 +1009,20 @@
                 ["Regression", "Regression"]
              ],
           }],
-     message4: "Optimizer %1",
-        args4: [
+        inputsInline: 0
+      }
+    ])
+
+
+
+      Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_automl",
+        previousStatement: null,
+        nextStatement: null,
+        message0: "AutoML()",
+        message1: "Optimizer %1",
+        args1: [
           {
              type: "field_dropdown",
              name: "Optimizer",
@@ -1028,14 +1042,15 @@
                 ["MAPE", "MAPE"],
              ],
           }],
-        inputsInline: 0,
-        output: "DataFrame"
-      }
+        inputsInline: 0
+        }
     ])
 
         Blockly.defineBlocksWithJsonArray([
         {
         type: "pycaret_classifier",
+        previousStatement: null,
+        nextStatement: null,
         message0 : "Classifier()",
         message1: "Algorithm %1",
         args1: [
@@ -1069,6 +1084,8 @@
     Blockly.defineBlocksWithJsonArray([
         {
         type: "pycaret_regressor",
+        previousStatement: null,
+        nextStatement: null,
         message0 : "Regression()",
         message1: "Algorithm %1",
         args1: [
