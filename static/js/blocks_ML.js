@@ -1013,13 +1013,35 @@
       }
     ])
 
+      Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_predict",
+        output: "DataFrame",
+        message0: "Predict()",
+        message1: "Model %1",
+        args1: [
+          {
+             type: "input_value",
+            check:"Pycaret_Model",
+             name: "Model",
 
+          }],
+        message2: "Data %1",
+        args2: [
+          {
+             type: "input_value",
+             check: "DataFrame",
+             name: "Data",
+
+          }],
+        inputsInline: 0
+        }
+    ])
 
       Blockly.defineBlocksWithJsonArray([
     {
         type: "pycaret_automl",
-        previousStatement: null,
-        nextStatement: null,
+        output: "Pycaret_Model",
         message0: "AutoML()",
         message1: "Optimizer %1",
         args1: [
@@ -1049,8 +1071,7 @@
         Blockly.defineBlocksWithJsonArray([
         {
         type: "pycaret_classifier",
-        previousStatement: null,
-        nextStatement: null,
+        output: "Pycaret_Model",
         message0 : "Classifier()",
         message1: "Algorithm %1",
         args1: [
@@ -1078,14 +1099,13 @@
                 ["CatBoost Classifier","catboost"],
              ],
          }
-        ]
+        ],
     }])
 
     Blockly.defineBlocksWithJsonArray([
         {
         type: "pycaret_regressor",
-        previousStatement: null,
-        nextStatement: null,
+        output: "Pycaret_Model",
         message0 : "Regression()",
         message1: "Algorithm %1",
         args1: [
@@ -1503,7 +1523,7 @@
             message0: "XGBoost",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
 
@@ -1515,7 +1535,7 @@
             message0: "REG_LinearRegression",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
 
@@ -1527,7 +1547,7 @@
             message0: "REG_XGBRegressor",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
 
@@ -1539,7 +1559,7 @@
             message0: "Logistic Regression",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1550,7 +1570,7 @@
             message0: "Naive Bayes",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1561,7 +1581,7 @@
             message0: "K-Nearest Neighbours",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1572,7 +1592,7 @@
             message0: "Decision Tree",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1583,7 +1603,7 @@
             message0: "Random Forest",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1594,7 +1614,7 @@
             message0: "Support Vector Machine",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.Constants.Logic.CLR_Logic = {
@@ -1748,19 +1768,19 @@
                 var model = false
                 for (var a = 1; this.getInput("XTRAIN"); ) this.removeInput("XTRAIN"), this.removeInput("YTRAIN"),a++;
                 for (a = 1; a <= this.trainCount_; a++)
-                    this.appendValueInput("XTRAIN").appendField("X - Train"),
-                                    this.appendValueInput("YTRAIN").appendField("y - Train"),model = true;
+                    this.appendValueInput("XTRAIN").appendField("X - Train").setCheck("Array"),
+                                    this.appendValueInput("YTRAIN").appendField("y - Train").setCheck("Array"),model = true;
                 for (var a = 1; this.getInput("XVALID"); ) this.removeInput("XVALID"), this.removeInput("YVALID"),a++;
                 for (a = 1; a <= this.validCount_; a++)
-                    this.appendValueInput("XVALID").appendField("X - Valid"),
-                                    this.appendValueInput("YVALID").appendField("y - Valid"),model = true;
+                    this.appendValueInput("XVALID").appendField("X - Valid").setCheck("Array"),
+                                    this.appendValueInput("YVALID").appendField("y - Valid").setCheck("Array"),model = true;
 
                 //this.removeInput("TModel");
 
 
                 this.parmCount_ && this.appendValueInput("PARAMS").appendField("Control Parameters");
                 if(this.testCount_ > 0){
-                    this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test");
+                    this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test").setCheck("Array");
                     model = true;
                 }
 
