@@ -602,19 +602,63 @@ var VarData = {};
         var End = a.getFieldValue("END")
 
         if (End == "newLine"){
-        return "print("+INPUT+")";
+        return "print("+INPUT+")"+ "\n";
         }
         if(End == "tab"){
-        return "print("+INPUT+",end='\\t')";
+        return "print("+INPUT+",end='\\t')"+ "\n";
         }
         if(End == "space"){
-        return "print("+INPUT+",end=' ')";
+        return "print("+INPUT+",end=' ')"+ "\n";
         }
         if(End == "comma"){
-        return "print("+INPUT+",end=',')";
+        return "print("+INPUT+",end=',')"+ "\n";
         }
     }
 
+    Blockly.Python['pycaret_setup'] = function(a){
+        var input_data = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        var input_column = Blockly.Python.valueToCode(a, "input_column", Blockly.Python.ORDER_NONE) || "";
+        var algorithm = a.getFieldValue("algorithm");
+
+        if(input_data == ""){
+          return ""
+        }
+          if(algorithm == "Classification" ){
+            Blockly.Python.definitions_.pycaret_classification = "from pycaret.classification import *";
+          }
+          if(algorithm == "Regression" ){
+            Blockly.Python.definitions_.pycaret_regression = "from pycaret.regression import *";
+          }
+          return "setup("+input_data+", target = "+input_column+")"+ "\n";
+
+
+    }
+    Blockly.Python['pycaret_predict'] = function(a){
+        var input_model = Blockly.Python.valueToCode(a, "input_model", Blockly.Python.ORDER_NONE) || "";
+        var input_data = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        console.log(input_model)
+        if(input_model == ""){
+            return  ["",Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if(input_model != "" && input_data == ""){
+            return  ["predict_model("+input_model+")",Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if(input_model != "" && input_data != ""){
+            return  ["predict_model("+input_model+", data="+input_data+")",Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+    }
+    Blockly.Python['pycaret_automl'] = function(a){
+        var optimizer = a.getFieldValue("optimizer");
+        return  ["automl(optimize = '"+optimizer+"')",Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['pycaret_classifier'] = function(a){
+        var model = a.getFieldValue("model");
+        return  ["create_model('"+model+"')",Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['pycaret_regressor'] = function(a){
+        var model = a.getFieldValue("model");
+        return  ["create_model('"+model+"')",Blockly.Python.ORDER_FUNCTION_CALL]
+    }
  Blockly.Python['Input'] = function(a){
         var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_NONE) || "''";
         return  ["input("+INPUT+")",Blockly.Python.ORDER_FUNCTION_CALL]

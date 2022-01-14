@@ -1003,7 +1003,7 @@
         args3: [
           {
              type: "field_dropdown",
-             name: "Algorithm",
+             name: "algorithm",
              options: [
                 ["Classification", "Classification"],
                 ["Regression", "Regression"]
@@ -1022,8 +1022,8 @@
         args1: [
           {
              type: "input_value",
-            check:"Pycaret_Model",
-             name: "Model",
+             check:"pycaret_model",
+             name: "input_model",
 
           }],
         message2: "Data %1",
@@ -1031,7 +1031,7 @@
           {
              type: "input_value",
              check: "DataFrame",
-             name: "Data",
+             name: "input_data",
 
           }],
         inputsInline: 0
@@ -1047,7 +1047,7 @@
         args1: [
           {
              type: "field_dropdown",
-             name: "Optimizer",
+             name: "optimizer",
              options: [
                 ["Accuracy", "Accuracy"],
                 ["AUC", "AUC"],
@@ -1077,7 +1077,7 @@
         args1: [
           {
              type: "field_dropdown",
-             name: "Optimizer",
+             name: "model",
              options: [
                 ["Logistic Regression","lr"],
                 ["K Nearest Neighbour","knn"],
@@ -1111,7 +1111,7 @@
         args1: [
           {
              type: "field_dropdown",
-             name: "Optimizer",
+             name: "model",
              options: [
                 ["Linear Regression","lr"],
                 ["Lasso Regression","lasso"],
