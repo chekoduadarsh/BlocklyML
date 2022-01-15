@@ -1768,24 +1768,24 @@
                 var model = false
                 for (var a = 1; this.getInput("XTRAIN"); ) this.removeInput("XTRAIN"), this.removeInput("YTRAIN"),a++;
                 for (a = 1; a <= this.trainCount_; a++)
-                    this.appendValueInput("XTRAIN").appendField("X - Train").setCheck("Array"),
-                                    this.appendValueInput("YTRAIN").appendField("y - Train").setCheck("Array"),model = true;
+                    this.appendValueInput("XTRAIN").appendField("X - Train").setCheck("DataFrame"),
+                                    this.appendValueInput("YTRAIN").appendField("y - Train").setCheck("DataFrame"),model = true;
                 for (var a = 1; this.getInput("XVALID"); ) this.removeInput("XVALID"), this.removeInput("YVALID"),a++;
                 for (a = 1; a <= this.validCount_; a++)
-                    this.appendValueInput("XVALID").appendField("X - Valid").setCheck("Array"),
-                                    this.appendValueInput("YVALID").appendField("y - Valid").setCheck("Array"),model = true;
+                    this.appendValueInput("XVALID").appendField("X - Valid").setCheck("DataFrame"),
+                                    this.appendValueInput("YVALID").appendField("y - Valid").setCheck("DataFrame"),model = true;
 
                 //this.removeInput("TModel");
 
 
                 this.parmCount_ && this.appendValueInput("PARAMS").appendField("Control Parameters");
                 if(this.testCount_ > 0){
-                    this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test").setCheck("Array");
+                    this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test").setCheck("DataFrame");
                     model = true;
                 }
 
                 if(model){
-                    this.appendValueInput("TMODEL").appendField("Model")
+                    this.appendValueInput("TMODEL").appendField("Model").setCheck("Sklearn_Model")
                 }
 
             },
