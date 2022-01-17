@@ -524,7 +524,47 @@
 
     </category>
 
-    <category name="ML Classification Algorithms" colour="%{BKY_LOGIC_HUE}">
+    <category name=Datasets colour="%{BKY_LOGIC_HUE}">
+
+      <block type = "seaborn_dataset">
+        <field name="Dataset">iris</field>
+      </block>
+  
+    </category>
+  
+    <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
+  
+      <block type = "create_dict">
+        <field name="create_dict">create_dict</field>
+      </block>
+  
+       <block type = "dict_append">
+        <field name="dict_append">create_dict</field>
+      </block>
+  
+       </category>
+    <sep></sep>
+    
+    <category name="Machine Learning (Pycaret)" colour="%{BKY_COLOUR_HUE}">
+      <block type="pycaret_setup">
+        <value name="input_column">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="pycaret_classifier">
+      </block>
+
+      </block>
+      <block type="pycaret_regressor">
+      </block>
+      </block>
+      <block type="pycaret_automl">
+      </block>
+      <block type="pycaret_predict">
+      </block>
+  </category>
+  <sep></sep>
+    <category name="Classification Models" colour="%{BKY_LOGIC_HUE}">
 
       <block type = "CLR_LogisticRegression">
           <field type= "CLR_LogisticRegression">LogisticRegression</field>
@@ -549,7 +589,7 @@
       </block>
 
       </category>
-    <category name="ML Regression Algorithms" colour="%{BKY_LOGIC_HUE}">
+    <category name="Regression Models" colour="%{BKY_LOGIC_HUE}">
 
       <block type = "REG_LinearRegression">
           <field type= "REG_LinearRegression">Linear Regression</field>
@@ -558,47 +598,8 @@
           <field type= "REG_XGBRegressor">XGBRegressor</field>
         </block>
     </category>
-
-    <category name=AutoML colour="%{BKY_COLOUR_HUE}">
-
-
-
-      <block type="pycaret_setup">
-        <value name="input_column">
-          <shadow type="text"></shadow>
-        </value>
-      </block>
-      <block type="pycaret_classifier">
-      </block>
-
-      </block>
-      <block type="pycaret_regressor">
-      </block>
-      </block>
-      <block type="pycaret_automl">
-      </block>
-      <block type="pycaret_predict">
-      </block>
-  </category>
-  <category name=Datasets colour="%{BKY_LOGIC_HUE}">
-
-    <block type = "seaborn_dataset">
-      <field name="Dataset">iris</field>
-    </block>
-
-  </category>
-
-  <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
-
-    <block type = "create_dict">
-      <field name="create_dict">create_dict</field>
-    </block>
-
-     <block type = "dict_append">
-      <field name="dict_append">create_dict</field>
-    </block>
-
-     </category>
+    <sep></sep>
+  
     <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
     <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"> </category>
   </xml>
