@@ -310,7 +310,7 @@ blockly.renderContent = function() {
     xmlTextarea.value = xmlText;
     xmlTextarea.focus();
   } else if (content.id == 'content_python') {
-    console.log("generating python")
+    console.log("generating python code")
     VarData = {};
     blockly.attemptCodeGeneration(Blockly.Python);
   } 
@@ -329,8 +329,8 @@ blockly.attemptCodeGeneration = function(generator) {
   if (blockly.checkAllGeneratorFunctionsDefined(generator)) {
     var code = generator.workspaceToCode(blockly.workspace);
     content.textContent = code;
+
     // Remove the 'prettyprinted' class, so that Prettify will recalculate.
-    content.className = content.className.replace('prettyprinted', '');
   }
 };
 

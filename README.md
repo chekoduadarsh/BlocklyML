@@ -7,7 +7,7 @@
 
 https://blocklyml.herokuapp.com/
 
-Blockly is a simple visual programming language for python and ML. This tool is designed to simplify standard machine learning implementation. This tool can assist anyone who wants to start with ML or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
+Blockly is a **No Code** training ground for python and ML. This tool is designed to simplify standard machine learning implementation. This tool can assist anyone who wants to start with ML or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
 
 For a sample run go to sampleLayouts folder upload and try it out :smiley:
 
