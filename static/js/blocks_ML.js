@@ -974,7 +974,178 @@
     /*
     * Custom
     */
-   
+
+   /*
+   * pycaret
+   */
+
+    Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_setup",
+        previousStatement: null,
+        nextStatement: null,
+        message0 : "Setup()",
+        message1: "Input Dataset %1",
+        args1: [
+          {
+            type: "input_value",
+            name: "input_data",
+            check:"DataFrame"
+          }],
+        message2: "Target Column %1",
+        args2: [
+          {
+            type: "input_value",
+            name: "input_column",
+            check: "String"
+          }],
+      message3: "Algorithm Type Column %1",
+        args3: [
+          {
+             type: "field_dropdown",
+             name: "algorithm",
+             options: [
+                ["Classification", "Classification"],
+                ["Regression", "Regression"]
+             ],
+          }],
+        inputsInline: 0
+      }
+    ])
+
+      Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_predict",
+        output: "DataFrame",
+        message0: "Predict()",
+        message1: "Model %1",
+        args1: [
+          {
+             type: "input_value",
+             check:"pycaret_model",
+             name: "input_model",
+
+          }],
+        message2: "Data %1",
+        args2: [
+          {
+             type: "input_value",
+             check: "DataFrame",
+             name: "input_data",
+
+          }],
+        inputsInline: 0
+        }
+    ])
+
+      Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_automl",
+        output: "Pycaret_Model",
+        message0: "AutoML()",
+        message1: "Optimizer %1",
+        args1: [
+          {
+             type: "field_dropdown",
+             name: "optimizer",
+             options: [
+                ["Accuracy", "Accuracy"],
+                ["AUC", "AUC"],
+                ["Recall", "Recall"],
+                ["Precision", "Precision"],
+                ["F1", "F1"],
+                ["Kappa", "Kappa"],
+                ["MCC", "MCC"],
+                ["MAE", "MAE"],
+                ["MSE", "MSE"],
+                ["RMSE", "RMSE"],
+                ["R2", "R2"],
+                ["RMSLE", "RMSLE"],
+                ["MAPE", "MAPE"],
+             ],
+          }],
+        inputsInline: 0
+        }
+    ])
+
+        Blockly.defineBlocksWithJsonArray([
+        {
+        type: "pycaret_classifier",
+        output: "Pycaret_Model",
+        message0 : "Classifier()",
+        message1: "Algorithm %1",
+        args1: [
+          {
+             type: "field_dropdown",
+             name: "model",
+             options: [
+                ["Logistic Regression","lr"],
+                ["K Nearest Neighbour","knn"],
+                ["Naives Bayes","nb"],
+                ["Decision Tree Classifier","dt"],
+                ["SVM – Linear Kernel","svm"],
+                ["SVM – Radial Kernel","rbfsvm"],
+                ["Gaussian Process Classifier","gpc"],
+                ["Multi Level Perceptron","mlp"],
+                [ "Ridge Classifier","ridge"],
+                ["Random Forest Classifier","rf"],
+                ["Quadratic Discriminant Analysis","qda"],
+                ["Ada Boost Classifier","ada"],
+                ["Gradient Boosting Classifier","gbc"],
+                ["Linear Discriminant Analysis","lda"],
+                ["Extra Trees Classifier","et"],
+                ["Extreme Gradient Boosting","xgboost"],
+                ["Light Gradient Boosting","lightgbm"],
+                ["CatBoost Classifier","catboost"],
+             ],
+         }
+        ],
+    }])
+
+    Blockly.defineBlocksWithJsonArray([
+        {
+        type: "pycaret_regressor",
+        output: "Pycaret_Model",
+        message0 : "Regression()",
+        message1: "Algorithm %1",
+        args1: [
+          {
+             type: "field_dropdown",
+             name: "model",
+             options: [
+                ["Linear Regression","lr"],
+                ["Lasso Regression","lasso"],
+                ["Ridge Regression","ridge"],
+                ["Elastic Net","en"],
+                ["Least Angle Regression","lar"],
+                ["Lasso Least Angle Regression","llar"],
+                ["Orthogonal Matching Pursuit","omp"],
+                ["Bayesian Ridge","br"],
+                ["Automatic Relevance Determination","ard"],
+                ["Passive Aggressive Regressor","par"],
+                ["Random Sample Consensus","ransac"],
+                ["TheilSen Regressor","tr"],
+                ["Huber Regressor","huber"],
+                ["Kernel Ridge","kr"],
+                ["Support Vector Machine","svm"],
+                ["K Neighbors Regressor","knn"],
+                ["Decision Tree","dt"],
+                ["Random Forest","rf"],
+                ["Extra Trees Regressor","et"],
+                ["AdaBoost Regressor","gbr"],
+                ["Gradient Boosting Regressor","gbr"],
+                ["Multi Level Perceptron","mlp"],
+                ["Extreme Gradient Boosting","xgboost"],
+                ["Light Gradient Boosting","lightgbm"],
+                ["CatBoost Regressor","catboost"],
+             ],
+         }
+        ]
+    }])
+
+   /*
+   * pycaret end
+   */
         Blockly.defineBlocksWithJsonArray([
             {
             type: "pandas_set_columns",
@@ -1352,7 +1523,7 @@
             message0: "XGBoost",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
 
@@ -1364,7 +1535,7 @@
             message0: "REG_LinearRegression",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
 
@@ -1376,7 +1547,7 @@
             message0: "REG_XGBRegressor",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
 
@@ -1388,7 +1559,7 @@
             message0: "Logistic Regression",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1399,7 +1570,7 @@
             message0: "Naive Bayes",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1410,7 +1581,7 @@
             message0: "K-Nearest Neighbours",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1421,7 +1592,7 @@
             message0: "Decision Tree",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1432,7 +1603,7 @@
             message0: "Random Forest",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.defineBlocksWithJsonArray([
@@ -1443,7 +1614,7 @@
             message0: "Support Vector Machine",
             style: "logic_blocks",
             mutator: "CLR_mutator",
-            output: "DataFrame"
+            output: "Sklearn_Model"
             }
         ]);
         Blockly.Constants.Logic.CLR_Logic = {
@@ -1597,24 +1768,24 @@
                 var model = false
                 for (var a = 1; this.getInput("XTRAIN"); ) this.removeInput("XTRAIN"), this.removeInput("YTRAIN"),a++;
                 for (a = 1; a <= this.trainCount_; a++)
-                    this.appendValueInput("XTRAIN").appendField("X - Train"),
-                                    this.appendValueInput("YTRAIN").appendField("y - Train"),model = true;
+                    this.appendValueInput("XTRAIN").appendField("X - Train").setCheck("DataFrame"),
+                                    this.appendValueInput("YTRAIN").appendField("y - Train").setCheck("DataFrame"),model = true;
                 for (var a = 1; this.getInput("XVALID"); ) this.removeInput("XVALID"), this.removeInput("YVALID"),a++;
                 for (a = 1; a <= this.validCount_; a++)
-                    this.appendValueInput("XVALID").appendField("X - Valid"),
-                                    this.appendValueInput("YVALID").appendField("y - Valid"),model = true;
+                    this.appendValueInput("XVALID").appendField("X - Valid").setCheck("DataFrame"),
+                                    this.appendValueInput("YVALID").appendField("y - Valid").setCheck("DataFrame"),model = true;
 
                 //this.removeInput("TModel");
 
 
                 this.parmCount_ && this.appendValueInput("PARAMS").appendField("Control Parameters");
                 if(this.testCount_ > 0){
-                    this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test");
+                    this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test").setCheck("DataFrame");
                     model = true;
                 }
 
                 if(model){
-                    this.appendValueInput("TMODEL").appendField("Model")
+                    this.appendValueInput("TMODEL").appendField("Model").setCheck("Sklearn_Model")
                 }
 
             },
