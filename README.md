@@ -93,6 +93,7 @@ Feel free to adapt it criticize it and support it the way you like!!
  - [x] Classification Algorithms
  - [x] Regression Algorithms
  - [x] Appropriate Color Coding
+ - [x] Support for Pycaret
  - [ ] Support for Deep Learning (ANN)
  - [ ] Support for Image Dataset
  - [ ] Support for CNN
