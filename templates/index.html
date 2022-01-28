@@ -39,13 +39,13 @@
 </head>
 
 
-<body onclick="CloseAllNav()">
+<body onclick="CloseAllNav()" id = "body">
+
   <nav class="navbar navbar-expand-lg  navbar-expand-sm  navbar-expand-md  navbar-expand-xl navbar-light bg-light">
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <img src="{{ url_for('static', filename='images/blocklyML_logo.png') }}" height=40 width="130">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
      <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" h  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
             View
@@ -105,7 +105,6 @@
       <select id="languageMenu"></select>
     </div>
   </nav>
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
 
@@ -118,7 +117,6 @@
             <td class="tabmin tab_collapse">&nbsp;</td>
 
             <td class="tabmin tab_collapse">&nbsp;</td>
-
             <td id="tab_python" class="taboff tab_collapse">Python</td>
 
             <td id="tab_code" class="taboff">
@@ -165,8 +163,6 @@
   <div id="content_blocks" class="content"></div>
 
   <pre><code id="content_python" class="language-python content prettyprint lang-py" ></code></pre>
-
-
 
   <xml  id="toolbox" >
     <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
@@ -531,7 +527,10 @@
       </block>
   
     </category>
-  
+
+      <category name=RegEx colour="%{BKY_LOGIC_HUE}">
+    </category>
+
     <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
   
       <block type = "create_dict">

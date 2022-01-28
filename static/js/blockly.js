@@ -597,7 +597,7 @@ blockly.UploadCode = function() {
 
 
 blockly.OpenColab = function() {
-    window.open("https://colab.research.google.com/");
+    window.open("https://colab.research.google.com/#create=true");
 };
 
 blockly.copyCode = function() {
