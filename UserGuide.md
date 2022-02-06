@@ -38,25 +38,25 @@ After cloning the repo you can either follow the Docker Method or Flask Method
 
     1. **Docker Method**
 
-BlocklyML can run on Docker with the following command :cd:
+    BlocklyML can run on Docker with the following command :cd:
 
-```bash
-docker run blocklyml-docker
-```
+    ```bash
+    docker run blocklyml-docker
+    ```
 
     2. **Flask Method**
 
-Install the requirements from requirements.txt with the following command
+    Install the requirements from requirements.txt with the following command
 
-```bash
-pip install -r requirements.txt 
-```
+    ```bash
+    pip install -r requirements.txt 
+    ```
 
-then you can run the application by
+    then you can run the application by
 
-```bash
-python app.py
-```
+    ```bash
+    python app.py
+    ```
 
 Simple as that :man_shrugging:
 
