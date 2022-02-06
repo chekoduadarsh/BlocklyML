@@ -45,8 +45,10 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <img src="{{ url_for('static', filename='images/blocklyML_logo.png') }}" height=40 width="130">
+      &nbsp;
+      &nbsp;
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-     <li class="nav-item dropdown">
+     <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" h  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
             View
           </a>
@@ -68,7 +70,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getDataDownload()">
             Download
           </a>
@@ -93,15 +95,18 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
             About
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md" target="_blank" rel="noopener noreferrer">About BlocklyML</a></li>
             <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank" rel="noopener noreferrer">About me</a></li>
           </ul>
         </li>
       </ul>
+      <a href="https://github.com/chekoduadarsh/BlocklyML" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="48px" height="48px"></a>
+
       <select id="languageMenu"></select>
     </div>
   </nav>
@@ -145,7 +150,7 @@
               <button id="linkButton" class="notext" title="...">
                 <img src='/static/media/1x1.gif' class="link icon21">
               </button>
-              <button id="runButton" class="notext primary" title="...">
+              <button id="runButton" class="notext primary" title="..." disabled>
                 <img src='/static/media/1x1.gif' class="run icon21">
               </button>
             </td>
