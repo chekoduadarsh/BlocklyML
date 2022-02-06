@@ -39,14 +39,16 @@
 </head>
 
 
-<body onclick="CloseAllNav()">
+<body onclick="CloseAllNav()" id = "body">
+
   <nav class="navbar navbar-expand-lg  navbar-expand-sm  navbar-expand-md  navbar-expand-xl navbar-light bg-light">
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <img src="{{ url_for('static', filename='images/blocklyML_logo.png') }}" height=40 width="130">
+      &nbsp;
+      &nbsp;
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-     <li class="nav-item dropdown">
+     <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" h  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
             View
           </a>
@@ -68,7 +70,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getDataDownload()">
             Download
           </a>
@@ -93,19 +95,21 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
             About
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md" target="_blank" rel="noopener noreferrer">About BlocklyML</a></li>
             <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank" rel="noopener noreferrer">About me</a></li>
           </ul>
         </li>
       </ul>
+      <a href="https://github.com/chekoduadarsh/BlocklyML" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="48px" height="48px"></a>
+
       <select id="languageMenu"></select>
     </div>
   </nav>
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
 
@@ -118,7 +122,6 @@
             <td class="tabmin tab_collapse">&nbsp;</td>
 
             <td class="tabmin tab_collapse">&nbsp;</td>
-
             <td id="tab_python" class="taboff tab_collapse">Python</td>
 
             <td id="tab_code" class="taboff">
@@ -147,7 +150,7 @@
               <button id="linkButton" class="notext" title="...">
                 <img src='/static/media/1x1.gif' class="link icon21">
               </button>
-              <button id="runButton" class="notext primary" title="...">
+              <button id="runButton" class="notext primary" title="..." disabled>
                 <img src='/static/media/1x1.gif' class="run icon21">
               </button>
             </td>
@@ -165,8 +168,6 @@
   <div id="content_blocks" class="content"></div>
 
   <pre><code id="content_python" class="language-python content prettyprint lang-py" ></code></pre>
-
-
 
   <xml  id="toolbox" >
     <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
@@ -492,27 +493,37 @@
 
   <category name=DataFrame colour="%{BKY_TEXTS_HUE}">
 
-  <block type = "pandas_read_csv">
+   <block type = "pandas_read_csv">
       <field type= "pandas.read_csv">Read DataFrame</field>
-  </block>
-  <block type = "pandas_select_columns">
-    <field type= "pandas_select_columns">DataFrame getColumns</field>
-  </block>
-      </block>
-         <block type = "pandas_set_columns">
-        <field type= "pandas.setcolumns">DataFrame setCoulmns</field>
     </block>
-      </block>
-         <block type = "dataframe_Filter">
-        <field type= "pandas.filter">DataFrame Filter</field>
-    </block>
+    <block type = "pandas_select_columns">
+       <field type= "pandas_select_columns">Select DataFrame Column</field>
+     </block>
 
-      </block>
-         <block type = "dataframe_Map">
+     <block type = "pandas_set_columns">
+        <field type= "pandas_set_columns">Add Column to DataFrame</field>
+     </block>
+
+     <block type = "pandas_drop_columns">
+        <field type= "pandas_drop_columns">Dataframe Drop Columns  </field>
+     </block>
+     <block type = "pandas_sample">
+        <field type= "pandas_sample">Dataframe Sampling</field>
+     </block>
+     <block type = "dataframe_Filter">
+        <field type= "pandas.filter">DataFrame Filter</field>
+     </block>
+     <block type = "dataframe_Map">
         <field type= "dataframe_Map">DataFrame Map</field>
     </block>
     <block type = "skl_train_test_split">
         <field type= "skl_train_test_split">Train Test split</field>
+        <value name="TESTSIZE">
+          <shadow type="math_number">
+            <field name="NUM">0.2</field>
+          </shadow>
+        </value>
+
     </block>
 
     <block type = "Classification_Report">
@@ -531,15 +542,12 @@
       </block>
   
     </category>
-  
     <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
   
       <block type = "create_dict">
-        <field name="create_dict">create_dict</field>
       </block>
   
        <block type = "dict_append">
-        <field name="dict_append">create_dict</field>
       </block>
   
        </category>
@@ -553,18 +561,35 @@
       </block>
       <block type="pycaret_classifier">
       </block>
-
-      </block>
       <block type="pycaret_regressor">
       </block>
+      <block type="pycaret_plot_model">
       </block>
       <block type="pycaret_automl">
       </block>
+      <block type="pycaret_blend_model">
+        <value name="input_fold">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="pycaret_ensemble_model">
+        <value name="input_fold">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
       <block type="pycaret_predict">
+      </block>
+      <block type="pycaret_save">
+      </block>
+      <block type="pycaret_load">
       </block>
   </category>
   <sep></sep>
-    <category name="Classification Models" colour="%{BKY_LOGIC_HUE}">
+    <category name="Classification Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
 
       <block type = "CLR_LogisticRegression">
           <field type= "CLR_LogisticRegression">LogisticRegression</field>
@@ -589,7 +614,7 @@
       </block>
 
       </category>
-    <category name="Regression Models" colour="%{BKY_LOGIC_HUE}">
+    <category name="Regression Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
 
       <block type = "REG_LinearRegression">
           <field type= "REG_LinearRegression">Linear Regression</field>
