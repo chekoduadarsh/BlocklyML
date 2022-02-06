@@ -982,6 +982,7 @@
     Blockly.defineBlocksWithJsonArray([
     {
         type: "pycaret_setup",
+        colour: 0,
         previousStatement: null,
         nextStatement: null,
         message0 : "Setup()",
@@ -1013,9 +1014,10 @@
       }
     ])
 
-      Blockly.defineBlocksWithJsonArray([
+    Blockly.defineBlocksWithJsonArray([
     {
         type: "pycaret_predict",
+        colour: 0,
         output: "DataFrame",
         message0: "Predict()",
         message1: "Model %1",
@@ -1037,10 +1039,177 @@
         inputsInline: 0
         }
     ])
+    Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_save",
+        colour: 0,
+        previousStatement: null,
+        nextStatement: null,
+        message0: "Save()",
+        message1: "Model %1",
+        args1: [
+          {
+             type: "input_value",
+             check:"Pycaret_Model",
+             name: "input_model",
 
+          }],
+        message2: "Name %1",
+        args2: [
+          {
+             type: "input_value",
+             check: "String",
+             name: "input_data",
+
+          }],
+        inputsInline: 0
+        }
+    ])
+
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "pycaret_plot_model",
+            colour: 0,
+            previousStatement: null,
+            nextStatement: null,
+            message0: "Plot()",
+            message1: "Model %1",
+            args1: [
+              {
+                 type: "input_value",
+                 check:"Pycaret_Model",
+                 name: "input_model",
+    
+              }],
+            message2: "Plot %1",
+            args2: [
+                {
+                   type: "field_dropdown",
+                   name: "plot_data",
+                   options: [
+                      ["Area Under the Curve", "auc"],
+                      ["Discrimination Threshold", "threshold"],
+                      ["Precision Recall Curve", "pr"],
+                      ["Confusion Matrix", "confusion_matrix"],
+                      ["Class Prediction Error", "error"],
+                      ["Classification Report", "class_report"],
+                      ["Decision Boundary", "boundary"],
+                      ["Recursive Feature Selection", "rfe"],
+                      ["Learning Curve", "learning"],
+                      ["Manifold Learning", "manifold"],
+                      ["Calibration Curve", "calibration"],
+                      ["Validation Curve", "vc"],
+                      ["Dimension Learning", "dimension"],
+                      ["Feature Importance (Top 10)", "feature"],
+                      ["Feature IImportance (all)", "feature_all"],
+                      ["Model Hyperparameter", "parameter"],
+                      ["Lift Curve", "lift"],
+                      ["Gain Curve", "gain"],
+                      ["KS Statistic Plot", "ks"],
+
+
+                      ["Residuals Plot", "residuals"],
+                      ["Cooks Distance Plot", "cooks"],
+                   ],
+                }],
+            inputsInline: 0
+            }
+        ]) 
+
+    Blockly.defineBlocksWithJsonArray([
+    {
+        type: "pycaret_load",
+        colour: 0,
+        output: "Pycaret_Model",
+        message0: "Load()",
+        message1: "Name %1",
+        args1: [
+          {
+             type: "input_value",
+             check: "String",
+             name: "input_data",
+
+          }],
+        inputsInline: 0
+        }
+    ])
+
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "pycaret_blend_model",
+            colour: 0,
+            output: "Pycaret_Model",
+            message0: "Blend Models()",
+            message1: "List of Models %1",
+            args1: [
+              {
+                 type: "input_value",
+                 check: "Array",
+                 name: "input_models",
+    
+              }],
+            message2: "Fold %1",
+            args2: [
+              {
+                 type: "input_value",
+                 check: "Number",
+                 name: "input_fold",
+    
+              }],
+            message3: "method %1",
+            args3: [
+                {
+                   type: "field_dropdown",
+                   name: "input_method",
+                   options: [
+                      ["Soft", "soft"],
+                      ["Hard", "hard"],
+                   ]
+      
+                }],
+            inputsInline: 0
+            }
+        ])
+        Blockly.defineBlocksWithJsonArray([
+            {
+                type: "pycaret_ensemble_model",
+                colour: 0,
+                output: "Pycaret_Model",
+                message0: "Ensemble Models()",
+                message1: "Input Model %1",
+                args1: [
+                  {
+                     type: "input_value",
+                     check: "Pycaret_Model",
+                     name: "input_models",
+        
+                  }],
+                message2: "Fold %1",
+                args2: [
+                  {
+                     type: "input_value",
+                     check: "Number",
+                     name: "input_fold",
+        
+                  }],
+                message3: "method %1",
+                args3: [
+                    {
+                       type: "field_dropdown",
+                       name: "input_method",
+                       options: [
+                          ["Boosting", "Boosting"],
+                          ["Bagging", "Bagging"],
+                       ]
+          
+                    }],
+                inputsInline: 0
+                }
+            ])
       Blockly.defineBlocksWithJsonArray([
     {
         type: "pycaret_automl",
+        colour: 0,
         output: "Pycaret_Model",
         message0: "AutoML()",
         message1: "Optimizer %1",
@@ -1071,6 +1240,7 @@
         Blockly.defineBlocksWithJsonArray([
         {
         type: "pycaret_classifier",
+        colour: 0,
         output: "Pycaret_Model",
         message0 : "Classifier()",
         message1: "Algorithm %1",
@@ -1106,6 +1276,7 @@
         {
         type: "pycaret_regressor",
         output: "Pycaret_Model",
+        colour: 0,
         message0 : "Regression()",
         message1: "Algorithm %1",
         args1: [
@@ -1146,30 +1317,34 @@
    /*
    * pycaret end
    */
+   /*
+   * pandas start
+   */
         Blockly.defineBlocksWithJsonArray([
             {
             type: "pandas_set_columns",
-            message0: "Columns to Set %1 ",
+            message0: "Add Column to DataFrame  ",
+            message1: "Columns to Set %1 ",
             previousStatement: null,
             nextStatement: null,
-            tooltip: "Select columns mentioned in the list form pandas data frame",
+            tooltip: "Select columns mentioned in the list form pandas dataframe",
             setHelpUrl:"https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
 
-            args0: [
+            args1: [
               {
                 type: "input_value",
                 name: "COLUMN",
                 check: ["String", "Array"]
             }],
-              message1: "Input Dataframe %1",
-              args1: [
+            message2: "Input Dataframe %1",
+            args2: [
               {
                 type: "input_value",
                 name: "DATAFRAME_IN",
                 check:"DataFrame"
              }],
-              message2: "Output Dataframe %1",
-              args2: [
+            message3: "Output Dataframe %1",
+            args3: [
               {
                 type: "input_value",
                 name: "DATAFRAME_OUT",
@@ -1279,19 +1454,20 @@
          Blockly.defineBlocksWithJsonArray([
          {
             type: "pandas_select_columns",
-            message0: "Columns to Select %1 ",
-            tooltip: "Select columns mentioned in the list form pandas data frame",
+            message0: "Select DataFrame Columns  ",
+            message1: "Columns to Select %1 ",
+            tooltip: "Select columns mentioned in the list form pandas dataframe",
             setHelpUrl:"https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
 
-            args0: [
+            args1: [
               {
                 type: "input_value",
                 name: "COLUMN", 
                 check: ["String", "Array"],
                 value: 0 
             }],
-              message1: "Pandas Dataframe %1",
-              args1: [
+              message2: "Input Dataframe %1",
+              args2: [
               {
                 type: "input_value",
                 name: "DATAFRAME",
@@ -1302,6 +1478,57 @@
           }
         ]);
 
+         Blockly.defineBlocksWithJsonArray([
+         {
+            type: "pandas_sample",
+            message0: "Dataframe Sampling  ",
+            message1: "Sample Factor %1 ",
+            tooltip: "Select columns mentioned in the list/string will be dropped pandas dataframe",
+
+            args1: [
+              {
+                type: "input_value",
+                name: "FACTOR",
+                check: "Number",
+                value: 0
+            }],
+          message2: "Input Dataframe %1",
+              args2: [
+              {
+                type: "input_value",
+                name: "DATAFRAME",
+                check:"DataFrame",
+                value: 0
+             }],
+            output: "DataFrame"
+          }
+        ]);
+
+         Blockly.defineBlocksWithJsonArray([
+         {
+            type: "pandas_drop_columns",
+            message0: "Dataframe Drop Columns  ",
+            message1: "Columns to Drop %1 ",
+            tooltip: "Select columns mentioned in the list/string will be dropped pandas dataframe",
+
+            args1: [
+              {
+                type: "input_value",
+                name: "COLUMN",
+                check: ["String", "Array"],
+                value: 0
+            }],
+              message2: "Input Dataframe %1",
+              args2: [
+              {
+                type: "input_value",
+                name: "DATAFRAME",
+                check:"DataFrame",
+                value: 0
+             }],
+            output: ["DataFrame", "DataFrameSeries"]
+          }
+        ]);
 
         Blockly.defineBlocksWithJsonArray([
          {

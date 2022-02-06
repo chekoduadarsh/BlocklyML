@@ -488,27 +488,37 @@
 
   <category name=DataFrame colour="%{BKY_TEXTS_HUE}">
 
-  <block type = "pandas_read_csv">
+   <block type = "pandas_read_csv">
       <field type= "pandas.read_csv">Read DataFrame</field>
-  </block>
-  <block type = "pandas_select_columns">
-    <field type= "pandas_select_columns">DataFrame getColumns</field>
-  </block>
-      </block>
-         <block type = "pandas_set_columns">
-        <field type= "pandas.setcolumns">DataFrame setCoulmns</field>
     </block>
-      </block>
-         <block type = "dataframe_Filter">
-        <field type= "pandas.filter">DataFrame Filter</field>
-    </block>
+    <block type = "pandas_select_columns">
+       <field type= "pandas_select_columns">Select DataFrame Column</field>
+     </block>
 
-      </block>
-         <block type = "dataframe_Map">
+     <block type = "pandas_set_columns">
+        <field type= "pandas_set_columns">Add Column to DataFrame</field>
+     </block>
+
+     <block type = "pandas_drop_columns">
+        <field type= "pandas_drop_columns">Dataframe Drop Columns  </field>
+     </block>
+     <block type = "pandas_sample">
+        <field type= "pandas_sample">Dataframe Sampling</field>
+     </block>
+     <block type = "dataframe_Filter">
+        <field type= "pandas.filter">DataFrame Filter</field>
+     </block>
+     <block type = "dataframe_Map">
         <field type= "dataframe_Map">DataFrame Map</field>
     </block>
     <block type = "skl_train_test_split">
         <field type= "skl_train_test_split">Train Test split</field>
+        <value name="TESTSIZE">
+          <shadow type="math_number">
+            <field name="NUM">0.2</field>
+          </shadow>
+        </value>
+
     </block>
 
     <block type = "Classification_Report">
@@ -527,18 +537,12 @@
       </block>
   
     </category>
-
-      <category name=RegEx colour="%{BKY_LOGIC_HUE}">
-    </category>
-
     <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
   
       <block type = "create_dict">
-        <field name="create_dict">create_dict</field>
       </block>
   
        <block type = "dict_append">
-        <field name="dict_append">create_dict</field>
       </block>
   
        </category>
@@ -552,18 +556,35 @@
       </block>
       <block type="pycaret_classifier">
       </block>
-
-      </block>
       <block type="pycaret_regressor">
       </block>
+      <block type="pycaret_plot_model">
       </block>
       <block type="pycaret_automl">
       </block>
+      <block type="pycaret_blend_model">
+        <value name="input_fold">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="pycaret_ensemble_model">
+        <value name="input_fold">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
       <block type="pycaret_predict">
+      </block>
+      <block type="pycaret_save">
+      </block>
+      <block type="pycaret_load">
       </block>
   </category>
   <sep></sep>
-    <category name="Classification Models" colour="%{BKY_LOGIC_HUE}">
+    <category name="Classification Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
 
       <block type = "CLR_LogisticRegression">
           <field type= "CLR_LogisticRegression">LogisticRegression</field>
@@ -588,7 +609,7 @@
       </block>
 
       </category>
-    <category name="Regression Models" colour="%{BKY_LOGIC_HUE}">
+    <category name="Regression Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
 
       <block type = "REG_LinearRegression">
           <field type= "REG_LinearRegression">Linear Regression</field>

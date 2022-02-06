@@ -528,32 +528,6 @@ var VarData = {};
 
         }
 
-        var LabelEncodeClass = 'class HandleCatagoricalData():\n'+
-                               '   def __init__(self,method="labelEncoding",factor=0):\n'+
-                               '       self.method = method\n'+
-                               '       self.factor = factor\n'+
-                               '   def fit(self, X, y):\n'+
-                               '       if self.method == "labelEncoding":\n'+
-                               '         X = pd.DataFrame(data=X)\n'+
-                               '         y = pd.DataFrame(data=y)\n'+
-                               '         self.LE = LabelEncoder()\n'+
-                               '         for column in X:\n'+
-                               '           if X[column].dtype == np.object:\n'+
-                               '             X[column]=X[column].astype("category")\n'+
-                               '           if X[column].dtype.name == "category":\n'+
-                               '             X[column] = self.LE.fit_transform(X[column])\n'+
-                               '         X = X.to_numpy()\n'+
-                               '         y = y.to_numpy()\n'+
-                               '         return self\n'+
-                               '   def transform(self, X):\n'+
-                               '       X = pd.DataFrame(data=X)\n'+
-                               '       for column in X:\n'+
-                               '         if X[column].dtype == np.object:\n'+
-                               '           X[column]=X[column].astype("category")\n'+
-                               '         if X[column].dtype.name == "category":\n'+
-                               '           X[column] = self.LE.fit_transform(X[column])\n'+
-                               '       X = X.to_numpy()\n'+
-                               '       return X\n'
 
         Blockly.Python.definitions_.pandas = "import pandas as pd";
         Blockly.Python.definitions_.encoder = "from sklearn.preprocessing import LabelEncoder, OneHotEncoder";
@@ -563,7 +537,34 @@ var VarData = {};
         return ""
         }
         else{
-        return codeString+codeString2+LabelEncodeClass
+        return codeString+codeString2
+        }
+    }
+
+
+    Blockly.Python['pandas_drop_columns'] = function(a){
+        var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
+        if (columns == ""){
+            return ""
+        }
+        var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
+        if(a.getInputTargetBlock("COLUMN").outputConnection.getCheck()  == "String"){
+             return [DataFrame+".drop(["+columns+"], axis = 1)",  Blockly.Python.ORDER_ATOMIC];
+        }if(a.getInputTargetBlock("COLUMN").outputConnection.getCheck() == "Array"){
+            return [DataFrame+".drop(["+columns+"], axis = 1)",  Blockly.Python.ORDER_ATOMIC];
+        }if(columns == "" || DataFrame == ""){
+            return ["",  Blockly.Python.ORDER_ATOMIC];
+        }
+    }
+
+   Blockly.Python['pandas_sample'] = function(a){
+        var factor = Blockly.Python.valueToCode(a, "FACTOR", Blockly.Python.ORDER_UNARY_SIGN)
+        if (factor == ""){
+            return ""
+        }
+        var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
+       if(factor != "" || DataFrame != ""){
+            return [DataFrame+".sample(frac="+factor+", replace=True, random_state=123)",  Blockly.Python.ORDER_ATOMIC];
         }
     }
 
@@ -576,7 +577,8 @@ var VarData = {};
         var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
         return [DataFrame+"["+columns+"]",  Blockly.Python.ORDER_ATOMIC];
     }
-     Blockly.Python['Classification_Report'] = function(a){
+
+    Blockly.Python['Classification_Report'] = function(a){
         Blockly.Python.definitions_.classification_report = "from sklearn.metrics import classification_report";
         var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN) || "";
         var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN) || "";
@@ -602,16 +604,16 @@ var VarData = {};
         var End = a.getFieldValue("END")
 
         if (End == "newLine"){
-        return "print("+INPUT+")"+ "\n";
+            return "print("+INPUT+")"+ "\n";
         }
         if(End == "tab"){
-        return "print("+INPUT+",end='\\t')"+ "\n";
+            return "print("+INPUT+",end='\\t')"+ "\n";
         }
         if(End == "space"){
-        return "print("+INPUT+",end=' ')"+ "\n";
+            return "print("+INPUT+",end=' ')"+ "\n";
         }
         if(End == "comma"){
-        return "print("+INPUT+",end=',')"+ "\n";
+            return "print("+INPUT+",end=',')"+ "\n";
         }
     }
 
@@ -621,14 +623,14 @@ var VarData = {};
         var algorithm = a.getFieldValue("algorithm");
 
         if(input_data == ""){
-          return ""
+            return ""
         }
-          if(algorithm == "Classification" ){
+        if(algorithm == "Classification" ){
             Blockly.Python.definitions_.pycaret_classification = "from pycaret.classification import *";
-          }
-          if(algorithm == "Regression" ){
+        }
+        if(algorithm == "Regression" ){
             Blockly.Python.definitions_.pycaret_regression = "from pycaret.regression import *";
-          }
+        }
           return "setup("+input_data+", target = "+input_column+")"+ "\n";
 
 
@@ -644,7 +646,70 @@ var VarData = {};
             return  ["predict_model("+input_model+")",Blockly.Python.ORDER_FUNCTION_CALL]
         }
         if(input_model != "" && input_data != ""){
-            return  ["predict_model("+input_model+", data="+input_data+")",Blockly.Python.ORDER_FUNCTION_CALL]
+            return  ["predict_model("+ input_model +", data="+input_data+")",Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+    }
+    Blockly.Python['pycaret_save'] = function(a){
+        
+        var input_model = Blockly.Python.valueToCode(a, "input_model", Blockly.Python.ORDER_NONE) || "";
+        var input_data = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        if(input_model != "" || input_data  != ""){
+            return  "save_model("+input_model+","+input_data+")"+ "\n";
+        }
+        else{
+            return ""
+        }
+    }
+
+    Blockly.Python['pycaret_plot_model'] = function(a){
+        
+        var input_model = Blockly.Python.valueToCode(a, "input_model", Blockly.Python.ORDER_NONE) || "";
+        var plot_data = a.getFieldValue("plot_data");
+        if(input_model != "" || plot_data  != ""){
+            return  "plot_model("+input_model+", plot = '"+plot_data+"')"+ "\n";
+        }
+        else{
+            return ""
+        }
+    }
+
+    Blockly.Python['pycaret_blend_model'] = function(a){
+        var input_models = Blockly.Python.valueToCode(a, "input_models", Blockly.Python.ORDER_NONE) || "";
+        var input_fold = Blockly.Python.valueToCode(a, "input_fold", Blockly.Python.ORDER_NONE) || "";
+        var input_method = a.getFieldValue("input_method");
+        if(input_models != "" && input_fold == ""){
+            return  ["blend_models("+input_models+", method = '"+input_method+"')",Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if(input_models != "" && input_fold != ""){
+            return  ["blend_models("+input_models+" , fold = '"+input_fold+"' , method = '"+input_method+"')",Blockly.Python.ORDER_FUNCTION_CALL]
+        }        
+        else{
+            return ""
+        }
+    }
+
+    Blockly.Python['pycaret_ensemble_model'] = function(a){
+        var input_models = Blockly.Python.valueToCode(a, "input_models", Blockly.Python.ORDER_NONE) || "";
+        var input_fold = Blockly.Python.valueToCode(a, "input_fold", Blockly.Python.ORDER_NONE) || "";
+        var input_method = a.getFieldValue("input_method");
+        if(input_models != "" && input_fold == ""){
+            return  ["ensemble_model("+input_models+", method = '"+input_method+"')",Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if(input_models != "" && input_fold != ""){
+            return  ["ensemble_model("+input_models+" , fold = '"+input_fold+"' , method = '"+input_method+"')",Blockly.Python.ORDER_FUNCTION_CALL]
+        }        
+        else{
+            return ""
+        }
+    }
+    Blockly.Python['pycaret_load'] = function(a){
+        var input_model = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        if(input_model != "" ){
+        return  ["load_model("+input_model+")",Blockly.Python.ORDER_FUNCTION_CALL]
+
+        }
+        else{
+            return ""
         }
     }
     Blockly.Python['pycaret_automl'] = function(a){
@@ -659,7 +724,7 @@ var VarData = {};
         var model = a.getFieldValue("model");
         return  ["create_model('"+model+"')",Blockly.Python.ORDER_FUNCTION_CALL]
     }
- Blockly.Python['Input'] = function(a){
+    Blockly.Python['Input'] = function(a){
         var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_NONE) || "''";
         return  ["input("+INPUT+")",Blockly.Python.ORDER_FUNCTION_CALL]
         }
@@ -670,8 +735,16 @@ var VarData = {};
         }
         var DATAFRAME_IN = Blockly.Python.valueToCode(a, "DATAFRAME_IN", Blockly.Python.ORDER_UNARY_SIGN)
         var DATAFRAME_OUT = Blockly.Python.valueToCode(a, "DATAFRAME_OUT", Blockly.Python.ORDER_UNARY_SIGN)
-        return DATAFRAME_OUT+"["+columns+"]="+DATAFRAME_IN;
+        if(DATAFRAME_IN != "" || DATAFRAME_OUT != "" || columns != ""){
+         return DATAFRAME_OUT+"["+columns+"]="+DATAFRAME_IN+"\n";
+        }
+        else {
+         return ""
+        }
     }
+
+
+
 
     Blockly.Python['dataframe_Filter'] = function (a) {
         var b = { EQ: "==", NEQ: "!=", LT: "<", LTE: "<=", GT: ">", GTE: ">=" }[a.getFieldValue("OP")];
@@ -771,6 +844,36 @@ var VarData = {};
 
      Blockly.Python['REG_LinearRegression'] = function(a){
         Blockly.Python.definitions_.LinearRegression = "from sklearn.linear_model import LinearRegression";
+
+         var HandleCatagoricalData = Blockly.Python.provideFunction_("REG_LinearRegression", [
+                                'class HandleCatagoricalData():\n'+
+                               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+                               '       self.method = method\n'+
+                               '       self.factor = factor\n'+
+                               '   def fit(self, X, y):\n'+
+                               '       if self.method == "labelEncoding":\n'+
+                               '         X = pd.DataFrame(data=X)\n'+
+                               '         y = pd.DataFrame(data=y)\n'+
+                               '         self.LE = LabelEncoder()\n'+
+                               '         for column in X:\n'+
+                               '           if X[column].dtype == np.object:\n'+
+                               '             X[column]=X[column].astype("category")\n'+
+                               '           if X[column].dtype.name == "category":\n'+
+                               '             X[column] = self.LE.fit_transform(X[column])\n'+
+                               '         X = X.to_numpy()\n'+
+                               '         y = y.to_numpy()\n'+
+                               '         return self\n'+
+                               '   def transform(self, X):\n'+
+                               '       X = pd.DataFrame(data=X)\n'+
+                               '       for column in X:\n'+
+                               '         if X[column].dtype == np.object:\n'+
+                               '           X[column]=X[column].astype("category")\n'+
+                               '         if X[column].dtype.name == "category":\n'+
+                               '           X[column] = self.LE.fit_transform(X[column])\n'+
+                               '       X = X.to_numpy()\n'+
+                               '       return X\n'
+                                ])
+
         var codeString = ""
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -845,6 +948,37 @@ var VarData = {};
 
     Blockly.Python['REG_XGBRegressor'] = function(a){
         Blockly.Python.definitions_.XGBRegressor = "from xgboost import XGBRegressor";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("REG_XGBRegressor", [
+                                'class HandleCatagoricalData():\n'+
+                               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+                               '       self.method = method\n'+
+                               '       self.factor = factor\n'+
+                               '   def fit(self, X, y):\n'+
+                               '       if self.method == "labelEncoding":\n'+
+                               '         X = pd.DataFrame(data=X)\n'+
+                               '         y = pd.DataFrame(data=y)\n'+
+                               '         self.LE = LabelEncoder()\n'+
+                               '         for column in X:\n'+
+                               '           if X[column].dtype == np.object:\n'+
+                               '             X[column]=X[column].astype("category")\n'+
+                               '           if X[column].dtype.name == "category":\n'+
+                               '             X[column] = self.LE.fit_transform(X[column])\n'+
+                               '         X = X.to_numpy()\n'+
+                               '         y = y.to_numpy()\n'+
+                               '         return self\n'+
+                               '   def transform(self, X):\n'+
+                               '       X = pd.DataFrame(data=X)\n'+
+                               '       for column in X:\n'+
+                               '         if X[column].dtype == np.object:\n'+
+                               '           X[column]=X[column].astype("category")\n'+
+                               '         if X[column].dtype.name == "category":\n'+
+                               '           X[column] = self.LE.fit_transform(X[column])\n'+
+                               '       X = X.to_numpy()\n'+
+                               '       return X\n'
+                                ])
+
+
         var codeString = ""
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
@@ -918,6 +1052,35 @@ var VarData = {};
     }
         Blockly.Python['CLR_LogisticRegression'] = function(a){
         Blockly.Python.definitions_.LogisticRegression = "from sklearn.linear_model import LogisticRegression";
+
+                var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_LogisticRegression", [
+                                'class HandleCatagoricalData():\n'+
+                               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+                               '       self.method = method\n'+
+                               '       self.factor = factor\n'+
+                               '   def fit(self, X, y):\n'+
+                               '       if self.method == "labelEncoding":\n'+
+                               '         X = pd.DataFrame(data=X)\n'+
+                               '         y = pd.DataFrame(data=y)\n'+
+                               '         self.LE = LabelEncoder()\n'+
+                               '         for column in X:\n'+
+                               '           if X[column].dtype == np.object:\n'+
+                               '             X[column]=X[column].astype("category")\n'+
+                               '           if X[column].dtype.name == "category":\n'+
+                               '             X[column] = self.LE.fit_transform(X[column])\n'+
+                               '         X = X.to_numpy()\n'+
+                               '         y = y.to_numpy()\n'+
+                               '         return self\n'+
+                               '   def transform(self, X):\n'+
+                               '       X = pd.DataFrame(data=X)\n'+
+                               '       for column in X:\n'+
+                               '         if X[column].dtype == np.object:\n'+
+                               '           X[column]=X[column].astype("category")\n'+
+                               '         if X[column].dtype.name == "category":\n'+
+                               '           X[column] = self.LE.fit_transform(X[column])\n'+
+                               '       X = X.to_numpy()\n'+
+                               '       return X\n'
+                                ])
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -991,6 +1154,36 @@ var VarData = {};
 
     Blockly.Python['CLR_NaiveBayes'] = function(a){
         Blockly.Python.definitions_.GaussianNB   = "from sklearn.naive_bayes import GaussianNB";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_NaiveBayes", [
+                'class HandleCatagoricalData():\n'+
+               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+               '       self.method = method\n'+
+               '       self.factor = factor\n'+
+               '   def fit(self, X, y):\n'+
+               '       if self.method == "labelEncoding":\n'+
+               '         X = pd.DataFrame(data=X)\n'+
+               '         y = pd.DataFrame(data=y)\n'+
+               '         self.LE = LabelEncoder()\n'+
+               '         for column in X:\n'+
+               '           if X[column].dtype == np.object:\n'+
+               '             X[column]=X[column].astype("category")\n'+
+               '           if X[column].dtype.name == "category":\n'+
+               '             X[column] = self.LE.fit_transform(X[column])\n'+
+               '         X = X.to_numpy()\n'+
+               '         y = y.to_numpy()\n'+
+               '         return self\n'+
+               '   def transform(self, X):\n'+
+               '       X = pd.DataFrame(data=X)\n'+
+               '       for column in X:\n'+
+               '         if X[column].dtype == np.object:\n'+
+               '           X[column]=X[column].astype("category")\n'+
+               '         if X[column].dtype.name == "category":\n'+
+               '           X[column] = self.LE.fit_transform(X[column])\n'+
+               '       X = X.to_numpy()\n'+
+               '       return X\n'
+                ])
+
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -1062,6 +1255,37 @@ var VarData = {};
     }
     Blockly.Python['CLR_KNN'] = function(a){
         Blockly.Python.definitions_.KNeighborsClassifier   = "from sklearn.neighbors import KNeighborsClassifier";
+
+
+         var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_KNN", [
+                'class HandleCatagoricalData():\n'+
+               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+               '       self.method = method\n'+
+               '       self.factor = factor\n'+
+               '   def fit(self, X, y):\n'+
+               '       if self.method == "labelEncoding":\n'+
+               '         X = pd.DataFrame(data=X)\n'+
+               '         y = pd.DataFrame(data=y)\n'+
+               '         self.LE = LabelEncoder()\n'+
+               '         for column in X:\n'+
+               '           if X[column].dtype == np.object:\n'+
+               '             X[column]=X[column].astype("category")\n'+
+               '           if X[column].dtype.name == "category":\n'+
+               '             X[column] = self.LE.fit_transform(X[column])\n'+
+               '         X = X.to_numpy()\n'+
+               '         y = y.to_numpy()\n'+
+               '         return self\n'+
+               '   def transform(self, X):\n'+
+               '       X = pd.DataFrame(data=X)\n'+
+               '       for column in X:\n'+
+               '         if X[column].dtype == np.object:\n'+
+               '           X[column]=X[column].astype("category")\n'+
+               '         if X[column].dtype.name == "category":\n'+
+               '           X[column] = self.LE.fit_transform(X[column])\n'+
+               '       X = X.to_numpy()\n'+
+               '       return X\n'
+                ])
+
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -1134,6 +1358,37 @@ var VarData = {};
     }
     Blockly.Python['CLR_DecisionTree'] = function(a){
         Blockly.Python.definitions_.tree   = "from sklearn import tree";
+
+         var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_DecisionTree", [
+                'class HandleCatagoricalData():\n'+
+               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+               '       self.method = method\n'+
+               '       self.factor = factor\n'+
+               '   def fit(self, X, y):\n'+
+               '       if self.method == "labelEncoding":\n'+
+               '         X = pd.DataFrame(data=X)\n'+
+               '         y = pd.DataFrame(data=y)\n'+
+               '         self.LE = LabelEncoder()\n'+
+               '         for column in X:\n'+
+               '           if X[column].dtype == np.object:\n'+
+               '             X[column]=X[column].astype("category")\n'+
+               '           if X[column].dtype.name == "category":\n'+
+               '             X[column] = self.LE.fit_transform(X[column])\n'+
+               '         X = X.to_numpy()\n'+
+               '         y = y.to_numpy()\n'+
+               '         return self\n'+
+               '   def transform(self, X):\n'+
+               '       X = pd.DataFrame(data=X)\n'+
+               '       for column in X:\n'+
+               '         if X[column].dtype == np.object:\n'+
+               '           X[column]=X[column].astype("category")\n'+
+               '         if X[column].dtype.name == "category":\n'+
+               '           X[column] = self.LE.fit_transform(X[column])\n'+
+               '       X = X.to_numpy()\n'+
+               '       return X\n'
+                ])
+
+
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -1206,6 +1461,36 @@ var VarData = {};
     }
     Blockly.Python['CLR_SVM'] = function(a){
         Blockly.Python.definitions_.SVC   = "from sklearn.svm import SVC";
+
+         var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_SVM", [
+                'class HandleCatagoricalData():\n'+
+               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+               '       self.method = method\n'+
+               '       self.factor = factor\n'+
+               '   def fit(self, X, y):\n'+
+               '       if self.method == "labelEncoding":\n'+
+               '         X = pd.DataFrame(data=X)\n'+
+               '         y = pd.DataFrame(data=y)\n'+
+               '         self.LE = LabelEncoder()\n'+
+               '         for column in X:\n'+
+               '           if X[column].dtype == np.object:\n'+
+               '             X[column]=X[column].astype("category")\n'+
+               '           if X[column].dtype.name == "category":\n'+
+               '             X[column] = self.LE.fit_transform(X[column])\n'+
+               '         X = X.to_numpy()\n'+
+               '         y = y.to_numpy()\n'+
+               '         return self\n'+
+               '   def transform(self, X):\n'+
+               '       X = pd.DataFrame(data=X)\n'+
+               '       for column in X:\n'+
+               '         if X[column].dtype == np.object:\n'+
+               '           X[column]=X[column].astype("category")\n'+
+               '         if X[column].dtype.name == "category":\n'+
+               '           X[column] = self.LE.fit_transform(X[column])\n'+
+               '       X = X.to_numpy()\n'+
+               '       return X\n'
+                ])
+
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -1279,6 +1564,36 @@ var VarData = {};
 
     Blockly.Python['CLR_RandomForest'] = function(a){
         Blockly.Python.definitions_.RandomForestClassifier   = "from sklearn.ensemble import RandomForestClassifier";
+
+         var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_RandomForest", [
+                'class HandleCatagoricalData():\n'+
+               '   def __init__(self,method="labelEncoding",factor=0):\n'+
+               '       self.method = method\n'+
+               '       self.factor = factor\n'+
+               '   def fit(self, X, y):\n'+
+               '       if self.method == "labelEncoding":\n'+
+               '         X = pd.DataFrame(data=X)\n'+
+               '         y = pd.DataFrame(data=y)\n'+
+               '         self.LE = LabelEncoder()\n'+
+               '         for column in X:\n'+
+               '           if X[column].dtype == np.object:\n'+
+               '             X[column]=X[column].astype("category")\n'+
+               '           if X[column].dtype.name == "category":\n'+
+               '             X[column] = self.LE.fit_transform(X[column])\n'+
+               '         X = X.to_numpy()\n'+
+               '         y = y.to_numpy()\n'+
+               '         return self\n'+
+               '   def transform(self, X):\n'+
+               '       X = pd.DataFrame(data=X)\n'+
+               '       for column in X:\n'+
+               '         if X[column].dtype == np.object:\n'+
+               '           X[column]=X[column].astype("category")\n'+
+               '         if X[column].dtype.name == "category":\n'+
+               '           X[column] = self.LE.fit_transform(X[column])\n'+
+               '       X = X.to_numpy()\n'+
+               '       return X\n'
+                ])
+
         var codeString = ""
 
         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
@@ -1345,6 +1660,9 @@ var VarData = {};
 
 
         }
+
+
+
         return[codeString, Blockly.Python.ORDER_FUNCTION_CALL]
 
     }
