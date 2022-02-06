@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
   <meta charset="utf-8">
@@ -14,7 +15,7 @@
   <script src="{{ url_for('static', filename='js/dist/msg/en.js') }}"></script>
   <script src="{{ url_for('static', filename='js/screenshot.js') }}"></script>
   <script src="{{ url_for('static', filename='js/blockly.js') }}"></script>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
   <script src="{{ url_for('static', filename='/js/msg/js/en.js')}}"></script>
   <script src="http://pypyjs.org/pypyjs-release/lib/Promise.min.js"></script>
   <script src="http://pypyjs.org/pypyjs-release/lib/FunctionPromise.js"></script>
@@ -26,20 +27,25 @@
   <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
 
 
-  <link rel="stylesheet"  href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css"> 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
 
-<body onclick="CloseAllNav()" id = "body">
+<body onclick="CloseAllNav()" id="body">
 
   <nav class="navbar navbar-expand-lg  navbar-expand-sm  navbar-expand-md  navbar-expand-xl navbar-light bg-light">
 
@@ -48,21 +54,23 @@
       &nbsp;
       &nbsp;
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-     <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" h  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" h data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            onclick="blockly.runJS();CloseAllNav();getData()">
             View
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">View DataFrames</a>
-              <ul class="dropdown-menu DataFrameViewer" >
+              <ul class="dropdown-menu DataFrameViewer">
                 <div class="DataFrameViewer" id="DataFrameViewer">
                   <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
                   </li>
                 </div>
               </ul>
             </li>
-            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">View DataFrame Report</a>
-              <ul class="dropdown-menu DataFrameReportViewer" >
+            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">View DataFrame
+                Report</a>
+              <ul class="dropdown-menu DataFrameReportViewer">
                 <div class="DataFrameReportViewer" id="DataFrameReportViewer">
                   <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
                 </div>
@@ -71,7 +79,8 @@
           </ul>
         </li>
         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getDataDownload()">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            onclick="blockly.runJS();CloseAllNav();getDataDownload()">
             Download
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -79,15 +88,16 @@
             <li><a class="dropdown-item" onclick="downloadIpynb()">Download .ipynb</a></li>
             <li><a class="dropdown-item" onclick="blockly.DownloadCode()">Download .xml</a></li>
             <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Download DataFrames</a>
-              <ul class="dropdown-menu DataFrameViewer" >
+              <ul class="dropdown-menu DataFrameViewer">
                 <div class="DataFrameDownload" id="DataFrameDownload">
                   <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
                   </li>
                 </div>
               </ul>
             </li>
-            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReportDownload()">Download DataFrame Report</a>
-              <ul class="dropdown-menu DataFrameReportViewer" >
+            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReportDownload()">Download
+                DataFrame Report</a>
+              <ul class="dropdown-menu DataFrameReportViewer">
                 <div class="DataFrameReportDownload" id="DataFrameReportDownload">
                   <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
                 </div>
@@ -96,16 +106,21 @@
           </ul>
         </li>
         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" onclick="CloseAllNav()">
             About
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md" target="_blank" rel="noopener noreferrer">About BlocklyML</a></li>
-            <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank" rel="noopener noreferrer">About me</a></li>
+            <li><a class="dropdown-item" href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md"
+                target="_blank" rel="noopener noreferrer">About BlocklyML</a></li>
+            <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank"
+                rel="noopener noreferrer">About me</a></li>
           </ul>
         </li>
       </ul>
-      <a href="https://github.com/chekoduadarsh/BlocklyML" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="48px" height="48px"></a>
+      <a href="https://github.com/chekoduadarsh/BlocklyML" target="_blank"><img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="48px"
+          height="48px"></a>
 
       <select id="languageMenu"></select>
     </div>
@@ -132,10 +147,10 @@
                 <img src='/static/media/download.png' class="icon">
               </button>
               <div class="upload-btn-wrapper">
-              <button id="uplaodButton" class="notext" title="upload saved layout">
-                <img src='/static/media/upload.png' class="icon">
-              </button>
-              <input type="file" id="file-selector" oninput="blockly.UploadCode()" title="upload saved layout">
+                <button id="uplaodButton" class="notext" title="upload saved layout">
+                  <img src='/static/media/upload.png' class="icon">
+                </button>
+                <input type="file" id="file-selector" oninput="blockly.UploadCode()" title="upload saved layout">
               </div>
               <button id="copyButton" class="notext" title="copy python code">
                 <img src='/static/media/copy.png' class="icon">
@@ -169,7 +184,7 @@
 
   <pre><code id="content_python" class="language-python content prettyprint lang-py" ></code></pre>
 
-  <xml  id="toolbox" >
+  <xml id="toolbox">
     <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
@@ -478,81 +493,81 @@
 
 
 
-     <category name="Input/Output" colour="%{BKY_LISTS_HUE}">
+    <category name="Input/Output" colour="%{BKY_LISTS_HUE}">
 
-    <block type = "Print">
-      <field name="Print">Print</field>
-    </block>
-    <block type = "Input">
-      <field name="Input">Input</field>
-    </block>
+      <block type="Print">
+        <field name="Print">Print</field>
+      </block>
+      <block type="Input">
+        <field name="Input">Input</field>
+      </block>
 
     </category>
     <sep></sep>
 
 
-  <category name=DataFrame colour="%{BKY_TEXTS_HUE}">
+    <category name=DataFrame colour="%{BKY_TEXTS_HUE}">
 
-   <block type = "pandas_read_csv">
-      <field type= "pandas.read_csv">Read DataFrame</field>
-    </block>
-    <block type = "pandas_select_columns">
-       <field type= "pandas_select_columns">Select DataFrame Column</field>
-     </block>
+      <block type="pandas_read_csv">
+        <field type="pandas.read_csv">Read DataFrame</field>
+      </block>
+      <block type="pandas_select_columns">
+        <field type="pandas_select_columns">Select DataFrame Column</field>
+      </block>
 
-     <block type = "pandas_set_columns">
-        <field type= "pandas_set_columns">Add Column to DataFrame</field>
-     </block>
+      <block type="pandas_set_columns">
+        <field type="pandas_set_columns">Add Column to DataFrame</field>
+      </block>
 
-     <block type = "pandas_drop_columns">
-        <field type= "pandas_drop_columns">Dataframe Drop Columns  </field>
-     </block>
-     <block type = "pandas_sample">
-        <field type= "pandas_sample">Dataframe Sampling</field>
-     </block>
-     <block type = "dataframe_Filter">
-        <field type= "pandas.filter">DataFrame Filter</field>
-     </block>
-     <block type = "dataframe_Map">
-        <field type= "dataframe_Map">DataFrame Map</field>
-    </block>
-    <block type = "skl_train_test_split">
-        <field type= "skl_train_test_split">Train Test split</field>
+      <block type="pandas_drop_columns">
+        <field type="pandas_drop_columns">Dataframe Drop Columns </field>
+      </block>
+      <block type="pandas_sample">
+        <field type="pandas_sample">Dataframe Sampling</field>
+      </block>
+      <block type="dataframe_Filter">
+        <field type="pandas.filter">DataFrame Filter</field>
+      </block>
+      <block type="dataframe_Map">
+        <field type="dataframe_Map">DataFrame Map</field>
+      </block>
+      <block type="skl_train_test_split">
+        <field type="skl_train_test_split">Train Test split</field>
         <value name="TESTSIZE">
           <shadow type="math_number">
             <field name="NUM">0.2</field>
           </shadow>
         </value>
 
-    </block>
+      </block>
 
-    <block type = "Classification_Report">
-        <field type= "Classification_Report">Generate Classification Report</field>
-    </block>
-    <block type = "R2_Report">
-        <field type= "R2_Report">Generate Regression Report</field>
-    </block>
+      <block type="Classification_Report">
+        <field type="Classification_Report">Generate Classification Report</field>
+      </block>
+      <block type="R2_Report">
+        <field type="R2_Report">Generate Regression Report</field>
+      </block>
 
     </category>
 
     <category name=Datasets colour="%{BKY_LOGIC_HUE}">
 
-      <block type = "seaborn_dataset">
+      <block type="seaborn_dataset">
         <field name="Dataset">iris</field>
       </block>
-  
+
     </category>
     <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
-  
-      <block type = "create_dict">
+
+      <block type="create_dict">
       </block>
-  
-       <block type = "dict_append">
+
+      <block type="dict_append">
       </block>
-  
-       </category>
+
+    </category>
     <sep></sep>
-    
+
     <category name="Machine Learning (Pycaret)" colour="%{BKY_COLOUR_HUE}">
       <block type="pycaret_setup">
         <value name="input_column">
@@ -587,47 +602,48 @@
       </block>
       <block type="pycaret_load">
       </block>
-  </category>
-  <sep></sep>
-    <category name="Classification Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
-
-      <block type = "CLR_LogisticRegression">
-          <field type= "CLR_LogisticRegression">LogisticRegression</field>
-      </block>
-      <block type = "CLR_NaiveBayes">
-          <field type= "CLR_NaiveBayes">Naive Bayes</field>
-      </block>
-      <block type = "CLR_KNN">
-          <field type= "CLR_KNN">K-Nearest Neighbours</field>
-      </block>
-        <block type = "CLR_DecisionTree">
-          <field type= "CLR_DecisionTree">Decision Tree</field>
-      </block>
-      <block type = "CLR_RandomForest">
-          <field type= "CLR_RandomForest">Random Forest</field>
-      </block>
-        <block type = "CLR_SVM">
-          <field type= "CLR_SVM">Support Vector Machine</field>
-      </block>
-      <block type = "CLR_XGBoost">
-          <field type= "CLR_XGBoost">XGBoost</field>
-      </block>
-
-      </category>
-    <category name="Regression Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
-
-      <block type = "REG_LinearRegression">
-          <field type= "REG_LinearRegression">Linear Regression</field>
-        </block>
-      <block type = "REG_XGBRegressor">
-          <field type= "REG_XGBRegressor">XGBRegressor</field>
-        </block>
     </category>
     <sep></sep>
-  
+    <category name="Classification Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
+
+      <block type="CLR_LogisticRegression">
+        <field type="CLR_LogisticRegression">LogisticRegression</field>
+      </block>
+      <block type="CLR_NaiveBayes">
+        <field type="CLR_NaiveBayes">Naive Bayes</field>
+      </block>
+      <block type="CLR_KNN">
+        <field type="CLR_KNN">K-Nearest Neighbours</field>
+      </block>
+      <block type="CLR_DecisionTree">
+        <field type="CLR_DecisionTree">Decision Tree</field>
+      </block>
+      <block type="CLR_RandomForest">
+        <field type="CLR_RandomForest">Random Forest</field>
+      </block>
+      <block type="CLR_SVM">
+        <field type="CLR_SVM">Support Vector Machine</field>
+      </block>
+      <block type="CLR_XGBoost">
+        <field type="CLR_XGBoost">XGBoost</field>
+      </block>
+
+    </category>
+    <category name="Regression Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
+
+      <block type="REG_LinearRegression">
+        <field type="REG_LinearRegression">Linear Regression</field>
+      </block>
+      <block type="REG_XGBRegressor">
+        <field type="REG_XGBRegressor">XGBRegressor</field>
+      </block>
+    </category>
+    <sep></sep>
+
     <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
     <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"> </category>
   </xml>
 
 </body>
+
 </html>
