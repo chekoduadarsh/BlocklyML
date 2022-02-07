@@ -135,7 +135,7 @@
         },
         compose: function (a) {
             var b = a.getInputTargetBlock("STACK");
-            for (a = []; b && !b.isInsertionMarker(); ) a.push(b.valueConnection_), (b = b.nextConnection && b.nextConnection.targetBlock());
+            for (a = []; b && !b.isInsertionMarker();) a.push(b.valueConnection_), (b = b.nextConnection && b.nextConnection.targetBlock());
             for (b = 0; b < this.itemCount_; b++) {
                 var c = this.getInput("ADD" + b).connection.targetConnection;
                 c && -1 == a.indexOf(c) && c.disconnect();
@@ -146,7 +146,7 @@
         },
         saveConnections: function (a) {
             a = a.getInputTargetBlock("STACK");
-            for (var b = 0; a; ) {
+            for (var b = 0; a;) {
                 var c = this.getInput("ADD" + b);
                 a.valueConnection_ = c && c.connection.targetConnection;
                 b++;
@@ -160,7 +160,7 @@
                     var b = this.appendValueInput("ADD" + a).setAlign(Blockly.ALIGN_RIGHT);
                     0 == a && b.appendField(Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH);
                 }
-            for (; this.getInput("ADD" + a); ) this.removeInput("ADD" + a), a++;
+            for (; this.getInput("ADD" + a);) this.removeInput("ADD" + a), a++;
         },
     };
 
@@ -697,7 +697,7 @@
         compose: function (a) {
             a = a.nextConnection.targetBlock();
             this.elseCount_ = this.elseifCount_ = 0;
-            for (var b = [null], c = [null], d = null; a && !a.isInsertionMarker(); ) {
+            for (var b = [null], c = [null], d = null; a && !a.isInsertionMarker();) {
                 switch (a.type) {
                     case "controls_if_elseif":
                         this.elseifCount_++;
@@ -718,7 +718,7 @@
         },
         saveConnections: function (a) {
             a = a.nextConnection.targetBlock();
-            for (var b = 1; a; ) {
+            for (var b = 1; a;) {
                 switch (a.type) {
                     case "controls_if_elseif":
                         var c = this.getInput("IF" + b),
@@ -742,7 +742,7 @@
                 b = [null],
                 c = null;
             this.getInput("ELSE") && (c = this.getInput("ELSE").connection.targetConnection);
-            for (var d = 1; this.getInput("IF" + d); ) {
+            for (var d = 1; this.getInput("IF" + d);) {
                 var e = this.getInput("IF" + d),
                     f = this.getInput("DO" + d);
                 a.push(e.connection.targetConnection);
@@ -754,7 +754,7 @@
         },
         updateShape_: function () {
             this.getInput("ELSE") && this.removeInput("ELSE");
-            for (var a = 1; this.getInput("IF" + a); ) this.removeInput("IF" + a), this.removeInput("DO" + a), a++;
+            for (var a = 1; this.getInput("IF" + a);) this.removeInput("IF" + a), this.removeInput("DO" + a), a++;
             for (a = 1; a <= this.elseifCount_; a++)
                 this.appendValueInput("IF" + a)
                     .setCheck("Boolean")
@@ -790,12 +790,12 @@
                 c &&
                 !this.workspace.connectionChecker.doTypeChecks(b.outputConnection, c.outputConnection) &&
                 (Blockly.Events.setGroup(a.group),
-                (a = this.prevBlocks_[0]),
-                a !== b && (b.unplug(), !a || a.isDisposed() || a.isShadow() || this.getInput("A").connection.connect(a.outputConnection)),
-                (b = this.prevBlocks_[1]),
-                b !== c && (c.unplug(), !b || b.isDisposed() || b.isShadow() || this.getInput("B").connection.connect(b.outputConnection)),
-                this.bumpNeighbours(),
-                Blockly.Events.setGroup(!1));
+                    (a = this.prevBlocks_[0]),
+                    a !== b && (b.unplug(), !a || a.isDisposed() || a.isShadow() || this.getInput("A").connection.connect(a.outputConnection)),
+                    (b = this.prevBlocks_[1]),
+                    b !== c && (c.unplug(), !b || b.isDisposed() || b.isShadow() || this.getInput("B").connection.connect(b.outputConnection)),
+                    this.bumpNeighbours(),
+                    Blockly.Events.setGroup(!1));
             this.prevBlocks_[0] = this.getInputTargetBlock("A");
             this.prevBlocks_[1] = this.getInputTargetBlock("B");
         },
@@ -975,94 +975,94 @@
     * Custom
     */
 
-   /*
-   * pycaret
-   */
+    /*
+    * pycaret
+    */
 
     Blockly.defineBlocksWithJsonArray([
-    {
-        type: "pycaret_setup",
-        colour: 0,
-        previousStatement: null,
-        nextStatement: null,
-        message0 : "Setup()",
-        message1: "Input Dataset %1",
-        args1: [
-          {
-            type: "input_value",
-            name: "input_data",
-            check:"DataFrame"
-          }],
-        message2: "Target Column %1",
-        args2: [
-          {
-            type: "input_value",
-            name: "input_column",
-            check: "String"
-          }],
-      message3: "Algorithm Type Column %1",
-        args3: [
-          {
-             type: "field_dropdown",
-             name: "algorithm",
-             options: [
-                ["Classification", "Classification"],
-                ["Regression", "Regression"]
-             ],
-          }],
-        inputsInline: 0
-      }
+        {
+            type: "pycaret_setup",
+            colour: 0,
+            previousStatement: null,
+            nextStatement: null,
+            message0: "Setup()",
+            message1: "Input Dataset %1",
+            args1: [
+                {
+                    type: "input_value",
+                    name: "input_data",
+                    check: "DataFrame"
+                }],
+            message2: "Target Column %1",
+            args2: [
+                {
+                    type: "input_value",
+                    name: "input_column",
+                    check: "String"
+                }],
+            message3: "Algorithm Type Column %1",
+            args3: [
+                {
+                    type: "field_dropdown",
+                    name: "algorithm",
+                    options: [
+                        ["Classification", "Classification"],
+                        ["Regression", "Regression"]
+                    ],
+                }],
+            inputsInline: 0
+        }
     ])
 
     Blockly.defineBlocksWithJsonArray([
-    {
-        type: "pycaret_predict",
-        colour: 0,
-        output: "DataFrame",
-        message0: "Predict()",
-        message1: "Model %1",
-        args1: [
-          {
-             type: "input_value",
-             check:"pycaret_model",
-             name: "input_model",
+        {
+            type: "pycaret_predict",
+            colour: 0,
+            output: "DataFrame",
+            message0: "Predict()",
+            message1: "Model %1",
+            args1: [
+                {
+                    type: "input_value",
+                    check: "pycaret_model",
+                    name: "input_model",
 
-          }],
-        message2: "Data %1",
-        args2: [
-          {
-             type: "input_value",
-             check: "DataFrame",
-             name: "input_data",
+                }],
+            message2: "Data %1",
+            args2: [
+                {
+                    type: "input_value",
+                    check: "DataFrame",
+                    name: "input_data",
 
-          }],
-        inputsInline: 0
+                }],
+            inputsInline: 0
         }
     ])
     Blockly.defineBlocksWithJsonArray([
-    {
-        type: "pycaret_save",
-        colour: 0,
-        previousStatement: null,
-        nextStatement: null,
-        message0: "Save()",
-        message1: "Model %1",
-        args1: [
-          {
-             type: "input_value",
-             check:"Pycaret_Model",
-             name: "input_model",
+        {
+            type: "pycaret_save",
+            colour: 0,
+            previousStatement: null,
+            nextStatement: null,
+            message0: "Save()",
+            message1: "Model %1",
+            args1: [
+                {
+                    type: "input_value",
+                    check: "Pycaret_Model",
+                    name: "input_model",
 
-          }],
-        message2: "Name %1",
-        args2: [
-          {
-             type: "input_value",
-             check: "String",
-             name: "input_data",
+                }],
+            message2: "Name %1",
+            args2: [
+                {
+                    type: "input_value",
+                    check: "String",
+                    name: "input_data",
 
-          }],
-        inputsInline: 0
+                }],
+            inputsInline: 0
         }
     ])
 
@@ -1075,62 +1075,62 @@
             message0: "Plot()",
             message1: "Model %1",
             args1: [
-              {
-                 type: "input_value",
-                 check:"Pycaret_Model",
-                 name: "input_model",
-    
-              }],
+                {
+                    type: "input_value",
+                    check: "Pycaret_Model",
+                    name: "input_model",
+
+                }],
             message2: "Plot %1",
             args2: [
                 {
-                   type: "field_dropdown",
-                   name: "plot_data",
-                   options: [
-                      ["Area Under the Curve", "auc"],
-                      ["Discrimination Threshold", "threshold"],
-                      ["Precision Recall Curve", "pr"],
-                      ["Confusion Matrix", "confusion_matrix"],
-                      ["Class Prediction Error", "error"],
-                      ["Classification Report", "class_report"],
-                      ["Decision Boundary", "boundary"],
-                      ["Recursive Feature Selection", "rfe"],
-                      ["Learning Curve", "learning"],
-                      ["Manifold Learning", "manifold"],
-                      ["Calibration Curve", "calibration"],
-                      ["Validation Curve", "vc"],
-                      ["Dimension Learning", "dimension"],
-                      ["Feature Importance (Top 10)", "feature"],
-                      ["Feature IImportance (all)", "feature_all"],
-                      ["Model Hyperparameter", "parameter"],
-                      ["Lift Curve", "lift"],
-                      ["Gain Curve", "gain"],
-                      ["KS Statistic Plot", "ks"],
+                    type: "field_dropdown",
+                    name: "plot_data",
+                    options: [
+                        ["Area Under the Curve", "auc"],
+                        ["Discrimination Threshold", "threshold"],
+                        ["Precision Recall Curve", "pr"],
+                        ["Confusion Matrix", "confusion_matrix"],
+                        ["Class Prediction Error", "error"],
+                        ["Classification Report", "class_report"],
+                        ["Decision Boundary", "boundary"],
+                        ["Recursive Feature Selection", "rfe"],
+                        ["Learning Curve", "learning"],
+                        ["Manifold Learning", "manifold"],
+                        ["Calibration Curve", "calibration"],
+                        ["Validation Curve", "vc"],
+                        ["Dimension Learning", "dimension"],
+                        ["Feature Importance (Top 10)", "feature"],
+                        ["Feature IImportance (all)", "feature_all"],
+                        ["Model Hyperparameter", "parameter"],
+                        ["Lift Curve", "lift"],
+                        ["Gain Curve", "gain"],
+                        ["KS Statistic Plot", "ks"],
 
 
-                      ["Residuals Plot", "residuals"],
-                      ["Cooks Distance Plot", "cooks"],
-                   ],
+                        ["Residuals Plot", "residuals"],
+                        ["Cooks Distance Plot", "cooks"],
+                    ],
                 }],
             inputsInline: 0
-            }
-        ]) 
+        }
+    ])
 
     Blockly.defineBlocksWithJsonArray([
-    {
-        type: "pycaret_load",
-        colour: 0,
-        output: "Pycaret_Model",
-        message0: "Load()",
-        message1: "Name %1",
-        args1: [
-          {
-             type: "input_value",
-             check: "String",
-             name: "input_data",
+        {
+            type: "pycaret_load",
+            colour: 0,
+            output: "Pycaret_Model",
+            message0: "Load()",
+            message1: "Name %1",
+            args1: [
+                {
+                    type: "input_value",
+                    check: "String",
+                    name: "input_data",
 
-          }],
-        inputsInline: 0
+                }],
+            inputsInline: 0
         }
     ])
 
@@ -1142,220 +1142,220 @@
             message0: "Blend Models()",
             message1: "List of Models %1",
             args1: [
-              {
-                 type: "input_value",
-                 check: "Array",
-                 name: "input_models",
-    
-              }],
+                {
+                    type: "input_value",
+                    check: "Array",
+                    name: "input_models",
+
+                }],
             message2: "Fold %1",
             args2: [
-              {
-                 type: "input_value",
-                 check: "Number",
-                 name: "input_fold",
-    
-              }],
+                {
+                    type: "input_value",
+                    check: "Number",
+                    name: "input_fold",
+
+                }],
             message3: "method %1",
             args3: [
                 {
-                   type: "field_dropdown",
-                   name: "input_method",
-                   options: [
-                      ["Soft", "soft"],
-                      ["Hard", "hard"],
-                   ]
-      
+                    type: "field_dropdown",
+                    name: "input_method",
+                    options: [
+                        ["Soft", "soft"],
+                        ["Hard", "hard"],
+                    ]
+
                 }],
             inputsInline: 0
-            }
-        ])
-        Blockly.defineBlocksWithJsonArray([
-            {
-                type: "pycaret_ensemble_model",
-                colour: 0,
-                output: "Pycaret_Model",
-                message0: "Ensemble Models()",
-                message1: "Input Model %1",
-                args1: [
-                  {
-                     type: "input_value",
-                     check: "Pycaret_Model",
-                     name: "input_models",
-        
-                  }],
-                message2: "Fold %1",
-                args2: [
-                  {
-                     type: "input_value",
-                     check: "Number",
-                     name: "input_fold",
-        
-                  }],
-                message3: "method %1",
-                args3: [
-                    {
-                       type: "field_dropdown",
-                       name: "input_method",
-                       options: [
-                          ["Boosting", "Boosting"],
-                          ["Bagging", "Bagging"],
-                       ]
-          
-                    }],
-                inputsInline: 0
-                }
-            ])
-      Blockly.defineBlocksWithJsonArray([
-    {
-        type: "pycaret_automl",
-        colour: 0,
-        output: "Pycaret_Model",
-        message0: "AutoML()",
-        message1: "Optimizer %1",
-        args1: [
-          {
-             type: "field_dropdown",
-             name: "optimizer",
-             options: [
-                ["Accuracy", "Accuracy"],
-                ["AUC", "AUC"],
-                ["Recall", "Recall"],
-                ["Precision", "Precision"],
-                ["F1", "F1"],
-                ["Kappa", "Kappa"],
-                ["MCC", "MCC"],
-                ["MAE", "MAE"],
-                ["MSE", "MSE"],
-                ["RMSE", "RMSE"],
-                ["R2", "R2"],
-                ["RMSLE", "RMSLE"],
-                ["MAPE", "MAPE"],
-             ],
-          }],
-        inputsInline: 0
+        }
+    ])
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "pycaret_ensemble_model",
+            colour: 0,
+            output: "Pycaret_Model",
+            message0: "Ensemble Models()",
+            message1: "Input Model %1",
+            args1: [
+                {
+                    type: "input_value",
+                    check: "Pycaret_Model",
+                    name: "input_models",
+
+                }],
+            message2: "Fold %1",
+            args2: [
+                {
+                    type: "input_value",
+                    check: "Number",
+                    name: "input_fold",
+
+                }],
+            message3: "method %1",
+            args3: [
+                {
+                    type: "field_dropdown",
+                    name: "input_method",
+                    options: [
+                        ["Boosting", "Boosting"],
+                        ["Bagging", "Bagging"],
+                    ]
+
+                }],
+            inputsInline: 0
+        }
+    ])
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "pycaret_automl",
+            colour: 0,
+            output: "Pycaret_Model",
+            message0: "AutoML()",
+            message1: "Optimizer %1",
+            args1: [
+                {
+                    type: "field_dropdown",
+                    name: "optimizer",
+                    options: [
+                        ["Accuracy", "Accuracy"],
+                        ["AUC", "AUC"],
+                        ["Recall", "Recall"],
+                        ["Precision", "Precision"],
+                        ["F1", "F1"],
+                        ["Kappa", "Kappa"],
+                        ["MCC", "MCC"],
+                        ["MAE", "MAE"],
+                        ["MSE", "MSE"],
+                        ["RMSE", "RMSE"],
+                        ["R2", "R2"],
+                        ["RMSLE", "RMSLE"],
+                        ["MAPE", "MAPE"],
+                    ],
+                }],
+            inputsInline: 0
         }
     ])
 
-        Blockly.defineBlocksWithJsonArray([
+    Blockly.defineBlocksWithJsonArray([
         {
-        type: "pycaret_classifier",
-        colour: 0,
-        output: "Pycaret_Model",
-        message0 : "Classifier()",
-        message1: "Algorithm %1",
-        args1: [
-          {
-             type: "field_dropdown",
-             name: "model",
-             options: [
-                ["Logistic Regression","lr"],
-                ["K Nearest Neighbour","knn"],
-                ["Naives Bayes","nb"],
-                ["Decision Tree Classifier","dt"],
-                ["SVM – Linear Kernel","svm"],
-                ["SVM – Radial Kernel","rbfsvm"],
-                ["Gaussian Process Classifier","gpc"],
-                ["Multi Level Perceptron","mlp"],
-                [ "Ridge Classifier","ridge"],
-                ["Random Forest Classifier","rf"],
-                ["Quadratic Discriminant Analysis","qda"],
-                ["Ada Boost Classifier","ada"],
-                ["Gradient Boosting Classifier","gbc"],
-                ["Linear Discriminant Analysis","lda"],
-                ["Extra Trees Classifier","et"],
-                ["Extreme Gradient Boosting","xgboost"],
-                ["Light Gradient Boosting","lightgbm"],
-                ["CatBoost Classifier","catboost"],
-             ],
-         }
-        ],
-    }])
+            type: "pycaret_classifier",
+            colour: 0,
+            output: "Pycaret_Model",
+            message0: "Classifier()",
+            message1: "Algorithm %1",
+            args1: [
+                {
+                    type: "field_dropdown",
+                    name: "model",
+                    options: [
+                        ["Logistic Regression", "lr"],
+                        ["K Nearest Neighbour", "knn"],
+                        ["Naives Bayes", "nb"],
+                        ["Decision Tree Classifier", "dt"],
+                        ["SVM – Linear Kernel", "svm"],
+                        ["SVM – Radial Kernel", "rbfsvm"],
+                        ["Gaussian Process Classifier", "gpc"],
+                        ["Multi Level Perceptron", "mlp"],
+                        ["Ridge Classifier", "ridge"],
+                        ["Random Forest Classifier", "rf"],
+                        ["Quadratic Discriminant Analysis", "qda"],
+                        ["Ada Boost Classifier", "ada"],
+                        ["Gradient Boosting Classifier", "gbc"],
+                        ["Linear Discriminant Analysis", "lda"],
+                        ["Extra Trees Classifier", "et"],
+                        ["Extreme Gradient Boosting", "xgboost"],
+                        ["Light Gradient Boosting", "lightgbm"],
+                        ["CatBoost Classifier", "catboost"],
+                    ],
+                }
+            ],
+        }])
 
     Blockly.defineBlocksWithJsonArray([
         {
-        type: "pycaret_regressor",
-        output: "Pycaret_Model",
-        colour: 0,
-        message0 : "Regression()",
-        message1: "Algorithm %1",
-        args1: [
-          {
-             type: "field_dropdown",
-             name: "model",
-             options: [
-                ["Linear Regression","lr"],
-                ["Lasso Regression","lasso"],
-                ["Ridge Regression","ridge"],
-                ["Elastic Net","en"],
-                ["Least Angle Regression","lar"],
-                ["Lasso Least Angle Regression","llar"],
-                ["Orthogonal Matching Pursuit","omp"],
-                ["Bayesian Ridge","br"],
-                ["Automatic Relevance Determination","ard"],
-                ["Passive Aggressive Regressor","par"],
-                ["Random Sample Consensus","ransac"],
-                ["TheilSen Regressor","tr"],
-                ["Huber Regressor","huber"],
-                ["Kernel Ridge","kr"],
-                ["Support Vector Machine","svm"],
-                ["K Neighbors Regressor","knn"],
-                ["Decision Tree","dt"],
-                ["Random Forest","rf"],
-                ["Extra Trees Regressor","et"],
-                ["AdaBoost Regressor","gbr"],
-                ["Gradient Boosting Regressor","gbr"],
-                ["Multi Level Perceptron","mlp"],
-                ["Extreme Gradient Boosting","xgboost"],
-                ["Light Gradient Boosting","lightgbm"],
-                ["CatBoost Regressor","catboost"],
-             ],
-         }
-        ]
-    }])
+            type: "pycaret_regressor",
+            output: "Pycaret_Model",
+            colour: 0,
+            message0: "Regression()",
+            message1: "Algorithm %1",
+            args1: [
+                {
+                    type: "field_dropdown",
+                    name: "model",
+                    options: [
+                        ["Linear Regression", "lr"],
+                        ["Lasso Regression", "lasso"],
+                        ["Ridge Regression", "ridge"],
+                        ["Elastic Net", "en"],
+                        ["Least Angle Regression", "lar"],
+                        ["Lasso Least Angle Regression", "llar"],
+                        ["Orthogonal Matching Pursuit", "omp"],
+                        ["Bayesian Ridge", "br"],
+                        ["Automatic Relevance Determination", "ard"],
+                        ["Passive Aggressive Regressor", "par"],
+                        ["Random Sample Consensus", "ransac"],
+                        ["TheilSen Regressor", "tr"],
+                        ["Huber Regressor", "huber"],
+                        ["Kernel Ridge", "kr"],
+                        ["Support Vector Machine", "svm"],
+                        ["K Neighbors Regressor", "knn"],
+                        ["Decision Tree", "dt"],
+                        ["Random Forest", "rf"],
+                        ["Extra Trees Regressor", "et"],
+                        ["AdaBoost Regressor", "gbr"],
+                        ["Gradient Boosting Regressor", "gbr"],
+                        ["Multi Level Perceptron", "mlp"],
+                        ["Extreme Gradient Boosting", "xgboost"],
+                        ["Light Gradient Boosting", "lightgbm"],
+                        ["CatBoost Regressor", "catboost"],
+                    ],
+                }
+            ]
+        }])
 
-   /*
-   * pycaret end
-   */
-   /*
-   * pandas start
-   */
-        Blockly.defineBlocksWithJsonArray([
-            {
+    /*
+    * pycaret end
+    */
+    /*
+    * pandas start
+    */
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "pandas_set_columns",
             message0: "Add Column to DataFrame  ",
             message1: "Columns to Set %1 ",
             previousStatement: null,
             nextStatement: null,
             tooltip: "Select columns mentioned in the list form pandas dataframe",
-            setHelpUrl:"https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
+            setHelpUrl: "https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
 
             args1: [
-              {
-                type: "input_value",
-                name: "COLUMN",
-                check: ["String", "Array"]
-            }],
+                {
+                    type: "input_value",
+                    name: "COLUMN",
+                    check: ["String", "Array"]
+                }],
             message2: "Input Dataframe %1",
             args2: [
-              {
-                type: "input_value",
-                name: "DATAFRAME_IN",
-                check:"DataFrame"
-             }],
+                {
+                    type: "input_value",
+                    name: "DATAFRAME_IN",
+                    check: "DataFrame"
+                }],
             message3: "Output Dataframe %1",
             args3: [
-              {
-                type: "input_value",
-                name: "DATAFRAME_OUT",
-                check: "DataFrame"
-             }]
-          }
-        ]);
+                {
+                    type: "input_value",
+                    name: "DATAFRAME_OUT",
+                    check: "DataFrame"
+                }]
+        }
+    ]);
 
-          Blockly.defineBlocksWithJsonArray([
-            {
-             type: "dataframe_Filter",
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "dataframe_Filter",
             message0: "DataFrame Filter \n %1 %2 %3 Apply to %4",
             args0: [
                 { type: "input_value", name: "A" },
@@ -1376,40 +1376,40 @@
             ],
             inputsInline: !0,
             output: "DataFrame",
-              }
-        ]);
+        }
+    ]);
 
 
-          Blockly.defineBlocksWithJsonArray([
-            {
-             type: "dataframe_Map",
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "dataframe_Map",
             message0: "DataFrame Map \n %1 Apply to %2",
             args0: [
-                { type: "input_value", name: "Map" , check:"DICT"},
-                { type: "input_value", name: "Series" , check:"DataFrameSeries"},
+                { type: "input_value", name: "Map", check: "DICT" },
+                { type: "input_value", name: "Series", check: "DataFrameSeries" },
             ],
             inputsInline: !0,
             output: ["DataFrame", "DataFrameSeries"],
-              }
-        ]);
+        }
+    ]);
 
 
-      Blockly.Blocks['pandas_read_csv'] = {
-        init: function() {
-        this.appendValueInput('VALUE')
-            .setCheck(['String'])
-            .appendField('Read DataFrame');
-        this.setOutput(true, 'DataFrame');
-        this.setTooltip('Read CSV from Url or path');
-        this.setHelpUrl('https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html');
+    Blockly.Blocks['pandas_read_csv'] = {
+        init: function () {
+            this.appendValueInput('VALUE')
+                .setCheck(['String'])
+                .appendField('Read DataFrame');
+            this.setOutput(true, 'DataFrame');
+            this.setTooltip('Read CSV from Url or path');
+            this.setHelpUrl('https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html');
         }
     };
 
     Blockly.defineBlocksWithJsonArray([
         {
             type: "skl_train_test_split",
-            tooltip:"Scikit learn test train split, X will be input and Y will be the target to Train ML model",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
+            tooltip: "Scikit learn test train split, X will be input and Y will be the target to Train ML model",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
 
             previousStatement: null,
             nextStatement: null,
@@ -1417,655 +1417,657 @@
 
             message1: "%1 %2 %3 %4 = %5",
             args1: [
-              { type: "field_variable", name: "VAR", variable: "train_X"},
-              { type: "field_variable", name: "VAR1", variable: "test_X" },
-              { type: "field_variable", name: "VAR2", variable: "train_Y" },
-              { type: "field_variable", name: "VAR3", variable: "test_Y" },
-              { type: "input_value", name: "DATAFRAME", variable: "%{BKY_VARIABLES_DEFAULT_NAME}" , check:"DataFrame"},
+                { type: "field_variable", name: "VAR", variable: "train_X" },
+                { type: "field_variable", name: "VAR1", variable: "test_X" },
+                { type: "field_variable", name: "VAR2", variable: "train_Y" },
+                { type: "field_variable", name: "VAR3", variable: "test_Y" },
+                { type: "input_value", name: "DATAFRAME", variable: "%{BKY_VARIABLES_DEFAULT_NAME}", check: "DataFrame" },
 
-              ],
-              extensions: ["contextMenu_variableSetterGetter"],
-              message2: "Test Size %1  ",
-              args2: [
-              {
-                type: "input_value",
-                name: "TESTSIZE",
-                check:"Number"
-             }],
-             message3: " Target Variable %1",
-           args3: [
-           {
-                type: "input_value",
-                name: "TARGETVAR",
-                check: ["String", "Array"]
-             }],
+            ],
+            extensions: ["contextMenu_variableSetterGetter"],
+            message2: "Test Size %1  ",
+            args2: [
+                {
+                    type: "input_value",
+                    name: "TESTSIZE",
+                    check: "Number"
+                }],
+            message3: " Target Variable %1",
+            args3: [
+                {
+                    type: "input_value",
+                    name: "TARGETVAR",
+                    check: ["String", "Array"]
+                }],
             message4: " Handle Missing Values %1",
             args4: [
-             { type: "field_dropdown",
-             name: "SPLIT",
-             options: [["Delete", "dropNa"]]
-             }],
-              inputsInline: 0
-          }
+                {
+                    type: "field_dropdown",
+                    name: "SPLIT",
+                    options: [["Delete", "dropNa"]]
+                }],
+            inputsInline: 0
+        }
 
-        ]);
+    ]);
 
 
-         Blockly.defineBlocksWithJsonArray([
-         {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "pandas_select_columns",
             message0: "Select DataFrame Columns  ",
             message1: "Columns to Select %1 ",
             tooltip: "Select columns mentioned in the list form pandas dataframe",
-            setHelpUrl:"https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
+            setHelpUrl: "https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html",
 
             args1: [
-              {
-                type: "input_value",
-                name: "COLUMN", 
-                check: ["String", "Array"],
-                value: 0 
-            }],
-              message2: "Input Dataframe %1",
-              args2: [
-              {
-                type: "input_value",
-                name: "DATAFRAME",
-                check:"DataFrame",
-                value: 0
-             }],
+                {
+                    type: "input_value",
+                    name: "COLUMN",
+                    check: ["String", "Array"],
+                    value: 0
+                }],
+            message2: "Input Dataframe %1",
+            args2: [
+                {
+                    type: "input_value",
+                    name: "DATAFRAME",
+                    check: "DataFrame",
+                    value: 0
+                }],
             output: ["DataFrame", "DataFrameSeries"]
-          }
-        ]);
+        }
+    ]);
 
-         Blockly.defineBlocksWithJsonArray([
-         {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "pandas_sample",
             message0: "Dataframe Sampling  ",
             message1: "Sample Factor %1 ",
             tooltip: "Select columns mentioned in the list/string will be dropped pandas dataframe",
 
             args1: [
-              {
-                type: "input_value",
-                name: "FACTOR",
-                check: "Number",
-                value: 0
-            }],
-          message2: "Input Dataframe %1",
-              args2: [
-              {
-                type: "input_value",
-                name: "DATAFRAME",
-                check:"DataFrame",
-                value: 0
-             }],
+                {
+                    type: "input_value",
+                    name: "FACTOR",
+                    check: "Number",
+                    value: 0
+                }],
+            message2: "Input Dataframe %1",
+            args2: [
+                {
+                    type: "input_value",
+                    name: "DATAFRAME",
+                    check: "DataFrame",
+                    value: 0
+                }],
             output: "DataFrame"
-          }
-        ]);
+        }
+    ]);
 
-         Blockly.defineBlocksWithJsonArray([
-         {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "pandas_drop_columns",
             message0: "Dataframe Drop Columns  ",
             message1: "Columns to Drop %1 ",
             tooltip: "Select columns mentioned in the list/string will be dropped pandas dataframe",
 
             args1: [
-              {
-                type: "input_value",
-                name: "COLUMN",
-                check: ["String", "Array"],
-                value: 0
-            }],
-              message2: "Input Dataframe %1",
-              args2: [
-              {
-                type: "input_value",
-                name: "DATAFRAME",
-                check:"DataFrame",
-                value: 0
-             }],
+                {
+                    type: "input_value",
+                    name: "COLUMN",
+                    check: ["String", "Array"],
+                    value: 0
+                }],
+            message2: "Input Dataframe %1",
+            args2: [
+                {
+                    type: "input_value",
+                    name: "DATAFRAME",
+                    check: "DataFrame",
+                    value: 0
+                }],
             output: ["DataFrame", "DataFrameSeries"]
-          }
-        ]);
+        }
+    ]);
 
-        Blockly.defineBlocksWithJsonArray([
-         {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "create_dict",
 
             tooltip: "Create Dictionary",
-            setHelpUrl:"https://docs.python.org/3/tutorial/datastructures.html",
-            message0:"Create Dictionary",
-             mutator:"DICT_mutator",
+            setHelpUrl: "https://docs.python.org/3/tutorial/datastructures.html",
+            message0: "Create Dictionary",
+            mutator: "DICT_mutator",
             output: "DICT"
-          }
-        ]);
+        }
+    ]);
 
     Blockly.Constants.Logic.DICT_Logic = {
-            elementcount_: 0,
-            suppressPrefixSuffix: !0,
-            mutationToDom: function () {
-                if (!this.elementcount_ ) return null;
-                var a = Blockly.utils.xml.createElement("mutation");
-                this.elementcount_ && a.setAttribute("Element", this.elementcount_);
-                return a;
-            },
-            domToMutation: function (a) {
-                this.elementcount_ = parseInt(a.getAttribute("Element"), 10) || 0;
-                this.rebuildShape_();
-            },
-            decompose: function (a) {
-                var b = a.newBlock("Control_DICT");
-                b.initSvg();
-                for (var c = b.nextConnection, d = 1; d <= this.elementcount_; d++) {
-                    var e = a.newBlock("DICT_Element");
-                    e.initSvg();
-                    c.connect(e.previousConnection);
-                    c = e.nextConnection;
+        elementcount_: 0,
+        suppressPrefixSuffix: !0,
+        mutationToDom: function () {
+            if (!this.elementcount_) return null;
+            var a = Blockly.utils.xml.createElement("mutation");
+            this.elementcount_ && a.setAttribute("Element", this.elementcount_);
+            return a;
+        },
+        domToMutation: function (a) {
+            this.elementcount_ = parseInt(a.getAttribute("Element"), 10) || 0;
+            this.rebuildShape_();
+        },
+        decompose: function (a) {
+            var b = a.newBlock("Control_DICT");
+            b.initSvg();
+            for (var c = b.nextConnection, d = 1; d <= this.elementcount_; d++) {
+                var e = a.newBlock("DICT_Element");
+                e.initSvg();
+                c.connect(e.previousConnection);
+                c = e.nextConnection;
+            }
+            return b;
+        },
+        compose: function (a) {
+            a = a.nextConnection.targetBlock();
+            this.elementcount_ = 0;
+            for (var b = [null], c = [null]; a && !a.isInsertionMarker();) {
+                switch (a.type) {
+                    case "DICT_Element":
+                        this.elementcount_++;
+                        b.push(a.valueConnection_);
+                        c.push(a.statementConnection_);
+                        break;
+                    default:
+                        throw TypeError("Unknown block type: " + a.type);
                 }
-                return b;
-            },
-            compose: function (a) {
-                a = a.nextConnection.targetBlock();
-                this.elementcount_ = 0;
-                for (var b = [null], c = [null]; a && !a.isInsertionMarker(); ) {
-                    switch (a.type) {
-                        case "DICT_Element":
-                            this.elementcount_++;
-                            b.push(a.valueConnection_);
-                            c.push(a.statementConnection_);
-                            break;
-                        default:
-                            throw TypeError("Unknown block type: " + a.type);
-                    }
-                    a = a.nextConnection && a.nextConnection.targetBlock();
+                a = a.nextConnection && a.nextConnection.targetBlock();
+            }
+            this.updateShape_();
+            this.reconnectChildBlocks_(b, c);
+        },
+        saveConnections: function (a) {
+            a = a.nextConnection.targetBlock();
+            for (var b = 1; a;) {
+                switch (a.type) {
+                    case "DICT_Element":
+                        var c = this.getInput("Key" + b),
+                            d = this.getInput("Value" + b);
+                        a.valueConnection_ = c && c.connection.targetConnection;
+                        a.statementConnection_ = d && d.connection.targetConnection;
+                        b++;
+                        break;
+                    default:
+                        throw TypeError("Unknown block type: " + a.type);
                 }
-                this.updateShape_();
-                this.reconnectChildBlocks_(b, c);
-            },
-            saveConnections: function (a) {
-                a = a.nextConnection.targetBlock();
-                for (var b = 1; a; ) {
-                    switch (a.type) {
-                        case "DICT_Element":
-                            var c = this.getInput("Key"+b),
-                                d = this.getInput("Value"+b);
-                            a.valueConnection_ = c && c.connection.targetConnection;
-                            a.statementConnection_ = d && d.connection.targetConnection;
-                            b++;
-                            break;
-                        default:
-                            throw TypeError("Unknown block type: " + a.type);
-                    }
-                    a = a.nextConnection && a.nextConnection.targetBlock();
-                }
-            },
-            rebuildShape_: function () {
-                var e = [null],
-                    f = [null];
-                for (var d = 1; this.getInput("KEY"+d); ) {
-                    var h = this.getInput("KEY"+d),
-                        i = this.getInput("VAL"+d);
+                a = a.nextConnection && a.nextConnection.targetBlock();
+            }
+        },
+        rebuildShape_: function () {
+            var e = [null],
+                f = [null];
+            for (var d = 1; this.getInput("KEY" + d);) {
+                var h = this.getInput("KEY" + d),
+                    i = this.getInput("VAL" + d);
 
-                    e.push(h.connection.targetConnection);
-                    f.push(i.connection.targetConnection);
-                    d++;
-                }
-                this.updateShape_();
-                this.reconnectChildBlocks_(e, f);
-            },
-            updateShape_: function () {
-                for (var a = 1; this.getInput("KEY" + a); ) this.removeInput("KEY" + a), this.removeInput("VAL" + a), a++;
-                for (var a = 1; a <= this.elementcount_; a++)
-                    this.appendValueInput("KEY"+a).appendField("Key"),
-                                    this.appendValueInput("VAL"+a).appendField("Value");
-            },
-            reconnectChildBlocks_: function (b, c) {
-                for (var d = 1; d <= this.elementcount_; d++){
-                Blockly.Mutator.reconnect(b[d], this, "KEY"+d);
-                Blockly.Mutator.reconnect(c[d], this, "VAL"+d);
-                }
-            },
-        };
+                e.push(h.connection.targetConnection);
+                f.push(i.connection.targetConnection);
+                d++;
+            }
+            this.updateShape_();
+            this.reconnectChildBlocks_(e, f);
+        },
+        updateShape_: function () {
+            for (var a = 1; this.getInput("KEY" + a);) this.removeInput("KEY" + a), this.removeInput("VAL" + a), a++;
+            for (var a = 1; a <= this.elementcount_; a++)
+                this.appendValueInput("KEY" + a).appendField("Key"),
+                    this.appendValueInput("VAL" + a).appendField("Value");
+        },
+        reconnectChildBlocks_: function (b, c) {
+            for (var d = 1; d <= this.elementcount_; d++) {
+                Blockly.Mutator.reconnect(b[d], this, "KEY" + d);
+                Blockly.Mutator.reconnect(c[d], this, "VAL" + d);
+            }
+        },
+    };
 
-        Blockly.defineBlocksWithJsonArray([
-            { type: "Control_DICT", message0: "Control_DICT", nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
-            { type: "DICT_Element", message0: "Key : Value",previousStatement: null,  nextStatement: null, enableContextMenu: !1, style: "logic_blocks"}
-             ]);
+    Blockly.defineBlocksWithJsonArray([
+        { type: "Control_DICT", message0: "Control_DICT", nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
+        { type: "DICT_Element", message0: "Key : Value", previousStatement: null, nextStatement: null, enableContextMenu: !1, style: "logic_blocks" }
+    ]);
 
-        Blockly.Extensions.registerMutator("DICT_mutator", Blockly.Constants.Logic.DICT_Logic, null, ["DICT_Element"]);
+    Blockly.Extensions.registerMutator("DICT_mutator", Blockly.Constants.Logic.DICT_Logic, null, ["DICT_Element"]);
 
 
-        Blockly.defineBlocksWithJsonArray([
-            {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "dict_append",
             previousStatement: null,
             nextStatement: null,
             tooltip: "Add Key and Value Dictionary",
-            setHelpUrl:"https://docs.python.org/3/tutorial/datastructures.html",
+            setHelpUrl: "https://docs.python.org/3/tutorial/datastructures.html",
             message0: "Add Values to Dictionary",
             message1: "Input Dictionary %1",
-              args1: [
-              {
-                type: "input_value",
-                name: "DICTIONARY",
-                check:"DICT"
-             }],
+            args1: [
+                {
+                    type: "input_value",
+                    name: "DICTIONARY",
+                    check: "DICT"
+                }],
 
             message2: "Key %1",
-              args2: [
-              {
-                type: "input_value",
-                name: "KEY"
-             }],
+            args2: [
+                {
+                    type: "input_value",
+                    name: "KEY"
+                }],
             message3: "Value %1",
-              args3: [
-              {
-                type: "input_value",
-                name: "VALUE",
-             }]
-            }
-            ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
+            args3: [
+                {
+                    type: "input_value",
+                    name: "VALUE",
+                }]
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "Classification_Report",
             output: "String",
             message0: "Generate Classification Report",
             message1: "Prediction %1",
-              args1: [
-              {
-                type: "input_value",
-                name: "Pred",
-                check: "DataFrame"
-             }],
+            args1: [
+                {
+                    type: "input_value",
+                    name: "Pred",
+                    check: "DataFrame"
+                }],
 
             message2: "Ground Truth %1",
-              args2: [
-              {
-                type: "input_value",
-                name: "True",
-                check: "DataFrame"
-             }]
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
+            args2: [
+                {
+                    type: "input_value",
+                    name: "True",
+                    check: "DataFrame"
+                }]
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "R2_Report",
             output: "String",
             message0: "Generate Regression R2 score",
             message1: "Prediction %1",
-              args1: [
-              {
-                type: "input_value",
-                name: "Pred",
-                check: "DataFrame"
-             }],
+            args1: [
+                {
+                    type: "input_value",
+                    name: "Pred",
+                    check: "DataFrame"
+                }],
 
             message2: "Ground Truth %1",
-              args2: [
-              {
-                type: "input_value",
-                name: "True",
-                check: "DataFrame"
-             }]
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
+            args2: [
+                {
+                    type: "input_value",
+                    name: "True",
+                    check: "DataFrame"
+                }]
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
         {
             type: "Print",
             previousStatement: null,
             nextStatement: null,
             message0: "Print %1",
             args0: [
-              { type: "input_value", name: "INPUT"}
-              ],
+                { type: "input_value", name: "INPUT" }
+            ],
             message1: " End: %1",
             args1: [
-             { type: "field_dropdown",
-             name: "END",
-             options: [["New Line", "newLine"],
-                        ["Tab", "tab"],
-                        ["Space", "space"],
-                        ["Comma", "comma"]]
-             }],
-              inputsInline: 0
-          }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
+                {
+                    type: "field_dropdown",
+                    name: "END",
+                    options: [["New Line", "newLine"],
+                    ["Tab", "tab"],
+                    ["Space", "space"],
+                    ["Comma", "comma"]]
+                }],
+            inputsInline: 0
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
         {
             type: "Input",
             message0: "Input %1",
             args0: [
-              { type: "input_value", name: "INPUT", check: "String"}
-              ],
-              output: "String"
-              }
-        ]);
-        Blockly.defineBlocksWithJsonArray([ 
-            {
+                { type: "input_value", name: "INPUT", check: "String" }
+            ],
+            output: "String"
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "CLR_XGBoost",
             tooltip: "XGBoost Classification Algorithm",
-            setHelpUrl:"https://xgboost.readthedocs.io/en/latest/",
+            setHelpUrl: "https://xgboost.readthedocs.io/en/latest/",
             message0: "XGBoost",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
+        }
+    ]);
 
-        Blockly.defineBlocksWithJsonArray([
-            {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "REG_LinearRegression",
             tooltip: "Linear Regression Algorithm",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html",
             message0: "REG_LinearRegression",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
+        }
+    ]);
 
-         Blockly.defineBlocksWithJsonArray([
-            {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "REG_XGBRegressor",
             tooltip: "XGBRegressor Algorithm",
-            setHelpUrl:"https://xgboost.readthedocs.io/en/latest/python/python_api.html",
+            setHelpUrl: "https://xgboost.readthedocs.io/en/latest/python/python_api.html",
             message0: "REG_XGBRegressor",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
+        }
+    ]);
 
-        Blockly.defineBlocksWithJsonArray([
-            {
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "CLR_LogisticRegression",
             tooltip: "LogisticRegression Classification Algorithm",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
             message0: "Logistic Regression",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "CLR_NaiveBayes",
             tooltip: "NaiveBayes Classification Algorithm",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/naive_bayes.html",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/naive_bayes.html",
             message0: "Naive Bayes",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "CLR_KNN",
             tooltip: "K nearest Neighbor Classification Algorithm",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/neighbors.html",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/neighbors.html",
             message0: "K-Nearest Neighbours",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "CLR_DecisionTree",
             tooltip: "Decision Tree Classification Algorithm",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/tree.html",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/tree.html",
             message0: "Decision Tree",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "CLR_RandomForest",
             tooltip: "RandomForestClassifier Classification Algorithm",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
             message0: "Random Forest",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
-            }
-        ]);
-        Blockly.defineBlocksWithJsonArray([
-            {
+        }
+    ]);
+    Blockly.defineBlocksWithJsonArray([
+        {
             type: "CLR_SVM",
             tooltip: "Support Vector Machine Classification Algorithm",
-            setHelpUrl:"https://scikit-learn.org/stable/modules/svm.html",
+            setHelpUrl: "https://scikit-learn.org/stable/modules/svm.html",
             message0: "Support Vector Machine",
             style: "logic_blocks",
             mutator: "CLR_mutator",
             output: "Sklearn_Model"
+        }
+    ]);
+    Blockly.Constants.Logic.CLR_Logic = {
+        //elseifCount_ -> validCount_
+        // elseCount_ -> parmCount_
+        validCount_: 0,
+        parmCount_: 0,
+        trainCount_: 0,
+        testCount_: 0,
+        suppressPrefixSuffix: !0,
+        mutationToDom: function () {
+            if (!this.validCount_ && !this.parmCount_ && !this.trainCount_ && !this.testCount_) return null;
+            var a = Blockly.utils.xml.createElement("mutation");
+            this.validCount_ && a.setAttribute("ValidData", this.validCount_);
+            this.parmCount_ && a.setAttribute("Params", 1);
+            this.trainCount_ && a.setAttribute("TrainData", this.trainCount_)
+            this.testCount_ && a.setAttribute("TestData", 1)
+            return a;
+        },
+        domToMutation: function (a) {
+            this.validCount_ = parseInt(a.getAttribute("ValidData"), 10) || 0;
+            this.parmCount_ = parseInt(a.getAttribute("Params"), 10) || 0;
+            this.trainCount_ = parseInt(a.getAttribute("TrainData"), 10) || 0;
+            this.testCount_ = parseInt(a.getAttribute("TestData"), 10) || 0;
+            this.rebuildShape_();
+        },
+        decompose: function (a) {
+            var b = a.newBlock("Control_CLR");
+            b.initSvg();
+            for (var c = b.nextConnection, d = 1; d <= this.validCount_; d++) {
+                var e = a.newBlock("CLR_Valid");
+                e.initSvg();
+                c.connect(e.previousConnection);
+                c = e.nextConnection;
             }
-        ]);
-        Blockly.Constants.Logic.CLR_Logic = {
-            //elseifCount_ -> validCount_
-            // elseCount_ -> parmCount_
-            validCount_: 0,
-            parmCount_: 0,
-            trainCount_:0,
-            testCount_:0,
-            suppressPrefixSuffix: !0,
-            mutationToDom: function () {
-                if (!this.validCount_ && !this.parmCount_ && !this.trainCount_ && !this.testCount_) return null;
-                var a = Blockly.utils.xml.createElement("mutation");
-                this.validCount_ && a.setAttribute("ValidData", this.validCount_);
-                this.parmCount_ && a.setAttribute("Params", 1);
-                this.trainCount_ && a.setAttribute("TrainData", this.trainCount_)
-                this.testCount_ && a.setAttribute("TestData", 1)
-                return a;
-            },
-            domToMutation: function (a) {
-                this.validCount_ = parseInt(a.getAttribute("ValidData"), 10) || 0;
-                this.parmCount_ = parseInt(a.getAttribute("Params"), 10) || 0;
-                this.trainCount_ = parseInt(a.getAttribute("TrainData"), 10) || 0;
-                this.testCount_ = parseInt(a.getAttribute("TestData"), 10) || 0;
-                this.rebuildShape_();
-            },
-            decompose: function (a) {
-                var b = a.newBlock("Control_CLR");
-                b.initSvg();
-                for (var c = b.nextConnection, d = 1; d <= this.validCount_; d++) {
-                    var e = a.newBlock("CLR_Valid");
-                    e.initSvg();
-                    c.connect(e.previousConnection);
-                    c = e.nextConnection;
+            for (var c = b.nextConnection, d = 1; d <= this.trainCount_; d++) {
+                var e = a.newBlock("CLR_Train");
+                e.initSvg();
+                c.connect(e.previousConnection);
+                c = e.nextConnection;
+            }
+            this.parmCount_ && ((e = a.newBlock("CLR_Params")), e.initSvg(), c.connect(e.previousConnection), c = e.nextConnection);
+            this.testCount_ && ((e = a.newBlock("CLR_Test")), e.initSvg(), c.connect(e.previousConnection), c = e.nextConnection);
+
+            return b;
+        },
+        compose: function (a) {
+            a = a.nextConnection.targetBlock();
+            this.parmCount_ = this.validCount_ = this.testCount_ = this.trainCount_ = 0;
+            for (var b = [null], c = [null], d = null, e = [null], f = [null], g = null; a && !a.isInsertionMarker();) {
+                switch (a.type) {
+                    case "CLR_Valid":
+                        this.validCount_++;
+                        b.push(a.valueConnection_);
+                        c.push(a.statementConnection_);
+                        break;
+                    case "CLR_Train":
+                        this.trainCount_++;
+                        e.push(a.valueConnection_);
+                        f.push(a.statementConnection_);
+                        break;
+                    case "CLR_Params":
+                        this.parmCount_++;
+                        d = a.statementConnection_;
+                        break;
+                    case "CLR_Test":
+                        this.testCount_++;
+                        g = a.statementConnection_;
+                        break;
+                    default:
+                        throw TypeError("Unknown block type: " + a.type);
                 }
-                for (var c = b.nextConnection, d = 1; d <= this.trainCount_; d++) {
-                    var e = a.newBlock("CLR_Train");
-                    e.initSvg();
-                    c.connect(e.previousConnection);
-                    c = e.nextConnection;
+                a = a.nextConnection && a.nextConnection.targetBlock();
+            }
+            this.updateShape_();
+            this.reconnectChildBlocks_(b, c, d, e, f, g);
+        },
+        saveConnections: function (a) {
+            a = a.nextConnection.targetBlock();
+            for (var b = 1; a;) {
+                switch (a.type) {
+                    case "CLR_Valid":
+                        var c = this.getInput("X - Valid"),
+                            d = this.getInput("y - Valid");
+                        a.valueConnection_ = c && c.connection.targetConnection;
+                        a.statementConnection_ = d && d.connection.targetConnection;
+                        b++;
+                        break;
+                    case "CLR_Train":
+                        var c = this.getInput("X - Train"),
+                            d = this.getInput("y - Train");
+                        a.valueConnection_ = c && c.connection.targetConnection;
+                        a.statementConnection_ = d && d.connection.targetConnection;
+                        b++;
+                        break;
+                    case "CLR_Params":
+                        var d = this.getInput("Control Parameters");
+                        a.statementConnection_ = d && d.connection.targetConnection;
+                        break;
+                    case "CLR_Test":
+                        var d = this.getInput("X - Test");
+                        a.statementConnection_ = d && d.connection.targetConnection;
+                        break;
+                    default:
+                        throw TypeError("Unknown block type: " + a.type);
                 }
-                this.parmCount_ && ((e = a.newBlock("CLR_Params")), e.initSvg(), c.connect(e.previousConnection), c = e.nextConnection); 
-                this.testCount_ && ((e = a.newBlock("CLR_Test")), e.initSvg(), c.connect(e.previousConnection), c = e.nextConnection);
+                a = a.nextConnection && a.nextConnection.targetBlock();
+            }
+        },
+        rebuildShape_: function () {
+            var a = [null],
+                b = [null],
+                c = null,
+                e = [null],
+                f = [null],
+                g = null;
+            this.getInput("PARAMS") && (c = this.getInput("PARAMS").connection.targetConnection);
+            this.getInput("XTEST") && (g = this.getInput("XTEST").connection.targetConnection);
 
-                return b;
-            },
-            compose: function (a) {
-                a = a.nextConnection.targetBlock();
-                this.parmCount_ = this.validCount_ = this.testCount_ = this.trainCount_ = 0;
-                for (var b = [null], c = [null], d = null, e = [null], f = [null], g = null; a && !a.isInsertionMarker(); ) {
-                    switch (a.type) {
-                        case "CLR_Valid":
-                            this.validCount_++;
-                            b.push(a.valueConnection_);
-                            c.push(a.statementConnection_);
-                            break;
-                        case "CLR_Train":
-                            this.trainCount_++;
-                            e.push(a.valueConnection_);
-                            f.push(a.statementConnection_);
-                            break;
-                        case "CLR_Params":
-                            this.parmCount_++;
-                            d = a.statementConnection_;
-                            break;
-                        case "CLR_Test":
-                            this.testCount_++;
-                            g = a.statementConnection_;
-                            break;
-                        default:
-                            throw TypeError("Unknown block type: " + a.type);
-                    }
-                    a = a.nextConnection && a.nextConnection.targetBlock();
+            for (var d = 1; this.getInput("XTRAIN");) {
+                var h = this.getInput("XTRAIN"),
+                    i = this.getInput("YTRAIN");
+
+                e.push(h.connection.targetConnection);
+                f.push(i.connection.targetConnection);
+                d++;
+            }
+            for (var d = 1; this.getInput("XVALID");) {
+                var h = this.getInput("XVALID"),
+                    i = this.getInput("YVALID");
+                a.push(h.connection.targetConnection);
+                b.push(i.connection.targetConnection);
+                d++;
+            }
+
+
+            this.updateShape_();
+            this.reconnectChildBlocks_(a, b, c, e, f, g);
+        },
+        updateShape_: function () {
+            this.getInput("PARAMS") && this.removeInput("PARAMS");
+            this.getInput("XTEST") && this.removeInput("XTEST");
+            this.getInput("TMODEL") && this.removeInput("TMODEL");
+
+            if (this.validCount_ > 1) {
+                this.validCount_ = 1
+            }
+            if (this.trainCount_ > 1) {
+                this.trainCount_ = 1
+            }
+            var model = false
+            for (var a = 1; this.getInput("XTRAIN");) this.removeInput("XTRAIN"), this.removeInput("YTRAIN"), a++;
+            for (a = 1; a <= this.trainCount_; a++)
+                this.appendValueInput("XTRAIN").appendField("X - Train").setCheck("DataFrame"),
+                    this.appendValueInput("YTRAIN").appendField("y - Train").setCheck("DataFrame"), model = true;
+            for (var a = 1; this.getInput("XVALID");) this.removeInput("XVALID"), this.removeInput("YVALID"), a++;
+            for (a = 1; a <= this.validCount_; a++)
+                this.appendValueInput("XVALID").appendField("X - Valid").setCheck("DataFrame"),
+                    this.appendValueInput("YVALID").appendField("y - Valid").setCheck("DataFrame"), model = true;
+
+            //this.removeInput("TModel");
+
+
+            this.parmCount_ && this.appendValueInput("PARAMS").appendField("Control Parameters");
+            if (this.testCount_ > 0) {
+                this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test").setCheck("DataFrame");
+                model = true;
+            }
+
+            if (model) {
+                this.appendValueInput("TMODEL").appendField("Model").setCheck("Sklearn_Model")
+            }
+
+        },
+        reconnectChildBlocks_: function (a, b, c, e, f, g) {
+            var d = 0
+            Blockly.Mutator.reconnect(a[d], this, "XVALID");
+            Blockly.Mutator.reconnect(b[d], this, "YVALID");
+            Blockly.Mutator.reconnect(e[d], this, "XTRAIN");
+            Blockly.Mutator.reconnect(f[d], this, "YTRAIN");
+            Blockly.Mutator.reconnect(c, this, "PARAMS");
+            Blockly.Mutator.reconnect(g, this, "XTEST");
+
+        },
+    };
+
+
+
+    Blockly.defineBlocksWithJsonArray([
+        { type: "Control_CLR", message0: "Control_CLR", nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
+        { type: "CLR_Train", message0: "Training Data", previousStatement: null, nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
+        { type: "CLR_Test", message0: "Testing Data", previousStatement: null, nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
+        { type: "CLR_Valid", message0: "Validation Data", previousStatement: null, nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
+        { type: "CLR_Params", message0: "Parameters", previousStatement: null, nextStatement: null, enableContextMenu: !1, style: "logic_blocks" }
+    ]);
+
+    Blockly.Extensions.registerMutator("CLR_mutator", Blockly.Constants.Logic.CLR_Logic, null, ["CLR_Valid", "CLR_Train", "CLR_Params", "CLR_Test"]);
+
+    Blockly.defineBlocksWithJsonArray([
+        {
+            type: "seaborn_dataset",
+            message0: "Load Dataset %1",
+            args0: [
+                {
+                    type: "field_dropdown",
+                    name: "VAR",
+                    options: [
+                        ["Auto-Mpg Data", "mpg"],
+                        ["Iris Data", "iris"],
+                        ["Car-Crash Data", "car_crashes"],
+                        ["Anagrams", "anagrams"],
+                        ["Exercise", "exercise"],
+                        ["Diamonds", "diamonds"],
+                        ["Brain Networks", "brain_networks"],
+                        ["Flights", "flights"],
+                        ["Penguins", "penguins"],
+                        ["Planets", "planets"],
+                        ["Titanic", "titanic"],
+                        ["Tips", "tips"]
+                    ]
                 }
-                this.updateShape_();
-                this.reconnectChildBlocks_(b, c, d, e, f, g);
-            },
-            saveConnections: function (a) {
-                a = a.nextConnection.targetBlock();
-                for (var b = 1; a; ) {
-                    switch (a.type) {
-                        case "CLR_Valid":
-                            var c = this.getInput("X - Valid"),
-                                d = this.getInput("y - Valid");
-                            a.valueConnection_ = c && c.connection.targetConnection;
-                            a.statementConnection_ = d && d.connection.targetConnection;
-                            b++;
-                            break;
-                        case "CLR_Train":
-                            var c = this.getInput("X - Train"),
-                                d = this.getInput("y - Train" );
-                            a.valueConnection_ = c && c.connection.targetConnection;
-                            a.statementConnection_ = d && d.connection.targetConnection;
-                            b++;
-                            break;
-                        case "CLR_Params":
-                            var d = this.getInput("Control Parameters");
-                            a.statementConnection_ = d && d.connection.targetConnection;
-                            break;
-                        case "CLR_Test":
-                            var d = this.getInput("X - Test");
-                            a.statementConnection_ = d && d.connection.targetConnection;
-                            break;
-                        default:
-                            throw TypeError("Unknown block type: " + a.type);
-                    }
-                    a = a.nextConnection && a.nextConnection.targetBlock();
-                }
-            },
-            rebuildShape_: function () {
-                var a = [null],
-                    b = [null],
-                    c = null,
-                    e = [null],
-                    f = [null],
-                    g = null;
-                this.getInput("PARAMS") && (c = this.getInput("PARAMS").connection.targetConnection);
-                this.getInput("XTEST") && (g = this.getInput("XTEST").connection.targetConnection);
-
-                for (var d = 1; this.getInput("XTRAIN"); ) {
-                    var h = this.getInput("XTRAIN"),
-                        i = this.getInput("YTRAIN");
-
-                    e.push(h.connection.targetConnection);
-                    f.push(i.connection.targetConnection);
-                    d++;
-                }
-                for (var d = 1; this.getInput("XVALID"); ) {
-                    var h = this.getInput("XVALID"),
-                        i = this.getInput("YVALID");
-                    a.push(h.connection.targetConnection);
-                    b.push(i.connection.targetConnection);
-                    d++;
-                }
-
-
-                this.updateShape_();
-                this.reconnectChildBlocks_(a, b, c, e, f, g);
-            },
-            updateShape_: function () {
-                this.getInput("PARAMS") && this.removeInput("PARAMS");
-                this.getInput("XTEST") && this.removeInput("XTEST");
-                this.getInput("TMODEL") && this.removeInput("TMODEL");
-
-                if (this.validCount_ > 1){
-                    this.validCount_ = 1
-                }
-                if (this.trainCount_ > 1){
-                    this.trainCount_ = 1
-                }   
-                var model = false
-                for (var a = 1; this.getInput("XTRAIN"); ) this.removeInput("XTRAIN"), this.removeInput("YTRAIN"),a++;
-                for (a = 1; a <= this.trainCount_; a++)
-                    this.appendValueInput("XTRAIN").appendField("X - Train").setCheck("DataFrame"),
-                                    this.appendValueInput("YTRAIN").appendField("y - Train").setCheck("DataFrame"),model = true;
-                for (var a = 1; this.getInput("XVALID"); ) this.removeInput("XVALID"), this.removeInput("YVALID"),a++;
-                for (a = 1; a <= this.validCount_; a++)
-                    this.appendValueInput("XVALID").appendField("X - Valid").setCheck("DataFrame"),
-                                    this.appendValueInput("YVALID").appendField("y - Valid").setCheck("DataFrame"),model = true;
-
-                //this.removeInput("TModel");
-
-
-                this.parmCount_ && this.appendValueInput("PARAMS").appendField("Control Parameters");
-                if(this.testCount_ > 0){
-                    this.testCount_ && this.appendValueInput("XTEST").appendField("X - Test").setCheck("DataFrame");
-                    model = true;
-                }
-
-                if(model){
-                    this.appendValueInput("TMODEL").appendField("Model").setCheck("Sklearn_Model")
-                }
-
-            },
-            reconnectChildBlocks_: function (a, b, c, e, f, g) {
-                var d = 0
-                Blockly.Mutator.reconnect(a[d], this, "XVALID");
-                Blockly.Mutator.reconnect(b[d], this, "YVALID");
-                Blockly.Mutator.reconnect(e[d], this, "XTRAIN");
-                Blockly.Mutator.reconnect(f[d], this, "YTRAIN");
-                Blockly.Mutator.reconnect(c, this, "PARAMS");
-                Blockly.Mutator.reconnect(g, this, "XTEST");
-                
-            },
-        };
-
-
-
-        Blockly.defineBlocksWithJsonArray([
-            { type: "Control_CLR", message0: "Control_CLR", nextStatement: null, enableContextMenu: !1, style: "logic_blocks" },
-            { type: "CLR_Train", message0: "Training Data",previousStatement: null,  nextStatement: null, enableContextMenu: !1, style: "logic_blocks"},
-            { type: "CLR_Test", message0: "Testing Data",previousStatement: null,  nextStatement: null, enableContextMenu: !1, style: "logic_blocks"},
-            { type: "CLR_Valid", message0: "Validation Data",previousStatement: null,  nextStatement: null, enableContextMenu: !1, style: "logic_blocks"},
-            { type: "CLR_Params", message0: "Parameters", previousStatement: null, nextStatement: null, enableContextMenu: !1, style: "logic_blocks"}
-        ]);
-
-        Blockly.Extensions.registerMutator("CLR_mutator", Blockly.Constants.Logic.CLR_Logic, null, ["CLR_Valid", "CLR_Train", "CLR_Params", "CLR_Test"]);
-
-    Blockly.defineBlocksWithJsonArray([ 
-    {
-        type: "seaborn_dataset",
-        message0: "Load Dataset %1",
-        args0: [
-          {
-            type: "field_dropdown",
-            name: "VAR",
-            options: [
-                ["Auto-Mpg Data", "mpg"],
-                ["Iris Data", "iris"],
-                ["Car-Crash Data", "car_crashes"],
-                ["Anagrams", "anagrams"],
-                ["Exercise", "exercise"],
-                ["Diamonds", "diamonds"],
-                ["Brain Networks","brain_networks"],
-                ["Flights","flights"],
-                ["Penguins","penguins"],
-                ["Planets","planets"],
-                ["Titanic","titanic"],
-                ["Tips","tips"]
-            ]  
-          }
-        ],
-        output: "DataFrame"
-      }
+            ],
+            output: "DataFrame"
+        }
     ])
 
     Blockly.Extensions.registerMixin("controls_flow_in_loop_check", Blockly.Constants.Loops.CONTROL_FLOW_IN_LOOP_CHECK_MIXIN);
@@ -2479,7 +2481,7 @@
             this.arguments_ = [];
             this.paramIds_ = [];
             this.argumentVarModels_ = [];
-            for (var b = a.getInputTargetBlock("STACK"); b && !b.isInsertionMarker(); ) {
+            for (var b = a.getInputTargetBlock("STACK"); b && !b.isInsertionMarker();) {
                 var c = b.getFieldValue("NAME");
                 this.arguments_.push(c);
                 c = this.workspace.getVariable(c, "");
@@ -2713,7 +2715,7 @@
                             .appendField(b, "ARGNAME" + a)
                             .init();
             }
-            for (; this.getInput("ARG" + a); ) this.removeInput("ARG" + a), a++;
+            for (; this.getInput("ARG" + a);) this.removeInput("ARG" + a), a++;
             if ((a = this.getInput("TOPROW"))) this.arguments_.length ? this.getField("WITH") || (a.appendField(Blockly.Msg.PROCEDURES_CALL_BEFORE_PARAMS, "WITH"), a.init()) : this.getField("WITH") && a.removeField("WITH");
         },
         mutationToDom: function () {
@@ -2770,14 +2772,14 @@
                     a.type == Blockly.Events.BLOCK_DELETE
                         ? ((b = this.getProcedureCall()), (b = Blockly.Procedures.getDefinition(b, this.workspace)), b || (Blockly.Events.setGroup(a.group), this.dispose(!0), Blockly.Events.setGroup(!1)))
                         : a.type == Blockly.Events.CHANGE &&
-                          "disabled" == a.element &&
-                          ((b = this.getProcedureCall()),
-                          (b = Blockly.Procedures.getDefinition(b, this.workspace)) &&
-                              b.id == a.blockId &&
-                              ((b = Blockly.Events.getGroup()) && console.log("Saw an existing group while responding to a definition change"),
-                              Blockly.Events.setGroup(a.group),
-                              a.newValue ? ((this.previousEnabledState_ = this.isEnabled()), this.setEnabled(!1)) : this.setEnabled(this.previousEnabledState_),
-                              Blockly.Events.setGroup(b)));
+                        "disabled" == a.element &&
+                        ((b = this.getProcedureCall()),
+                            (b = Blockly.Procedures.getDefinition(b, this.workspace)) &&
+                            b.id == a.blockId &&
+                            ((b = Blockly.Events.getGroup()) && console.log("Saw an existing group while responding to a definition change"),
+                                Blockly.Events.setGroup(a.group),
+                                a.newValue ? ((this.previousEnabledState_ = this.isEnabled()), this.setEnabled(!1)) : this.setEnabled(this.previousEnabledState_),
+                                Blockly.Events.setGroup(b)));
         },
         customContextMenu: function (a) {
             if (this.workspace.isMovable()) {
@@ -2852,10 +2854,10 @@
                 } while (b);
                 a
                     ? ("procedures_defnoreturn" == b.type && this.hasReturnValue_
-                          ? (this.removeInput("VALUE"), this.appendDummyInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN), (this.hasReturnValue_ = !1))
-                          : "procedures_defreturn" != b.type || this.hasReturnValue_ || (this.removeInput("VALUE"), this.appendValueInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN), (this.hasReturnValue_ = !0)),
-                      this.setWarningText(null),
-                      this.isInFlyout || this.setEnabled(!0))
+                        ? (this.removeInput("VALUE"), this.appendDummyInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN), (this.hasReturnValue_ = !1))
+                        : "procedures_defreturn" != b.type || this.hasReturnValue_ || (this.removeInput("VALUE"), this.appendValueInput("VALUE").appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN), (this.hasReturnValue_ = !0)),
+                        this.setWarningText(null),
+                        this.isInFlyout || this.setEnabled(!0))
                     : (this.setWarningText(Blockly.Msg.PROCEDURES_IFRETURN_WARNING), this.isInFlyout || this.getInheritedDisabled() || this.setEnabled(!1));
             }
         },
@@ -3111,9 +3113,9 @@
         init: function () {
             this.mixin(Blockly.Constants.Text.QUOTE_IMAGE_MIXIN);
             var a = [
-                    [Blockly.Msg.TEXT_PROMPT_TYPE_TEXT, "TEXT"],
-                    [Blockly.Msg.TEXT_PROMPT_TYPE_NUMBER, "NUMBER"],
-                ],
+                [Blockly.Msg.TEXT_PROMPT_TYPE_TEXT, "TEXT"],
+                [Blockly.Msg.TEXT_PROMPT_TYPE_NUMBER, "NUMBER"],
+            ],
                 b = this;
             this.setHelpUrl(Blockly.Msg.TEXT_PROMPT_HELPURL);
             this.setStyle("text_blocks");
@@ -3225,7 +3227,7 @@
         },
         compose: function (a) {
             var b = a.getInputTargetBlock("STACK");
-            for (a = []; b && !b.isInsertionMarker(); ) a.push(b.valueConnection_), (b = b.nextConnection && b.nextConnection.targetBlock());
+            for (a = []; b && !b.isInsertionMarker();) a.push(b.valueConnection_), (b = b.nextConnection && b.nextConnection.targetBlock());
             for (b = 0; b < this.itemCount_; b++) {
                 var c = this.getInput("ADD" + b).connection.targetConnection;
                 c && -1 == a.indexOf(c) && c.disconnect();
@@ -3236,7 +3238,7 @@
         },
         saveConnections: function (a) {
             a = a.getInputTargetBlock("STACK");
-            for (var b = 0; a; ) {
+            for (var b = 0; a;) {
                 var c = this.getInput("ADD" + b);
                 a.valueConnection_ = c && c.connection.targetConnection;
                 b++;
@@ -3250,7 +3252,7 @@
                     var b = this.appendValueInput("ADD" + a).setAlign(Blockly.ALIGN_RIGHT);
                     0 == a && b.appendField(Blockly.Msg.TEXT_JOIN_TITLE_CREATEWITH);
                 }
-            for (; this.getInput("ADD" + a); ) this.removeInput("ADD" + a), a++;
+            for (; this.getInput("ADD" + a);) this.removeInput("ADD" + a), a++;
         },
     };
     Blockly.Constants.Text.TEXT_JOIN_EXTENSION = function () {

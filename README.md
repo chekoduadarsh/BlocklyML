@@ -8,14 +8,16 @@
 https://blocklyml.herokuapp.com/
 
 ### What is BlocklyML?
-BlocklyML is a **No Code** training ground for python and ML. This tool is designed to simplify standard machine learning implementation.
-This tool can assist anyone who wants to start with ML or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
+BlocklyML is a **No Code** training ground for python and Machine Learning. This tool is designed to simplify standard machine learning implementation.
+This tool can assist anyone who wants to start with Machine Learning or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
 
 For a sample run go to sampleLayouts folder upload and try it out :smiley:
 
-In the Example given below we will train a random forest for Iris Dataset
 
 Read the ![UserGuide.md]() for further info
+
+
+In the Example given below we will train a random forest for Iris Dataset
 
 <img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/IrisRandomForest.png" alt="drawing" width="500"/>
 
@@ -91,17 +93,7 @@ If you find any error or need support please raise a issue. If you think you can
 
 Feel free to adapt it criticize it and support it the way you like!!
 
-## TBD
 
- - [x] Classification Algorithms
- - [x] Regression Algorithms
- - [x] Appropriate Color Coding
- - [x] Support for Pycaret
- - [ ] Support for Deep Learning (ANN)
- - [ ] Support for Image Dataset
- - [ ] Support for CNN
- - [ ] Support for Running Code in Heroku
- 
 # License
 ![Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
