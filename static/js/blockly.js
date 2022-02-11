@@ -580,13 +580,17 @@ blockly.DownloadCode = function() {
 blockly.UploadXml = function() {
   document.getElementById("myForm").style.display = "block";
 
+    $(document).keyup(function(e) {
+      if (e.key === "Escape") { // escape key maps to keycode `27`
+        document.getElementById("myForm").style.display = "none";
+    }
+  });
 
   
   document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
     const dropZoneElement = inputElement.closest(".drop-zone");
   
     dropZoneElement.addEventListener("click", (e) => {
-      console.log("clicked")
       inputElement.click();
       
     });
