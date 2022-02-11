@@ -445,7 +445,7 @@ blockly.init = function() {
   blockly.bindClick('colabButton', blockly.OpenColab);
   blockly.bindClick('copyButton', blockly.copyCode);
   blockly.bindClick('downlaodButton', blockly.DownloadCode);
-  blockly.bindClick('uplaodButton', blockly.uploadCode);
+  blockly.bindClick('uplaodButton', blockly.UploadXml);
 
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
@@ -577,22 +577,137 @@ blockly.DownloadCode = function() {
     document.body.removeChild(a);
     setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
 };
-blockly.UploadCode = function() {
-    const fileSelector = document.getElementById('file-selector');
-    var fr= new FileReader();
-        fr.onload=function(){
-            var xml = Blockly.Xml.textToDom(fr.result);
-            Blockly.Xml.domToWorkspace(xml, blockly.workspace);
-            fr = new FileReader();
-        }
+blockly.UploadXml = function() {
+  document.getElementById("myForm").style.display = "block";
 
-    fileSelector.addEventListener('change', (event) => {
-        const input = event.target
+
+  
+  document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+    const dropZoneElement = inputElement.closest(".drop-zone");
+  
+    dropZoneElement.addEventListener("click", (e) => {
+      console.log("clicked")
+      inputElement.click();
+      
+    });
+    inputElement.addEventListener("change", (e) => {
+      console.log(e)
+      if (inputElement.files.length) {
+        updateThumbnail(dropZoneElement, inputElement.files[0]);
+        const input = e.target
         var file = input.files[0]
+        
+        var fr= new FileReader();
         fr.readAsText(file)
 
-    });
 
+        fr.onload=function(){
+          var xml = Blockly.Xml.textToDom(fr.result);
+          Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+          fr = new FileReader();
+          document.getElementById("myForm").style.display = "none";
+      }
+
+      }
+    });
+  
+    dropZoneElement.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropZoneElement.classList.add("drop-zone--over");
+    });
+  
+    ["dragleave", "dragend"].forEach((type) => {
+      dropZoneElement.addEventListener(type, (e) => {
+        dropZoneElement.classList.remove("drop-zone--over");
+      });
+    });
+    
+    dropZoneElement.addEventListener("drop", (e) => {
+      e.preventDefault();
+      console.log(e.dataTransfer.files.length);
+      var files = e.dataTransfer.files;
+      console.log(files)
+      if(e.dataTransfer.files.length) {
+        //var files = e.target.files || (e.dataTransfer && e.dataTransfer.files);
+        inputElement.files = files;
+        //updateThumbnail(dropZoneElement, files[0]);
+        console.log(e.dataTransfer.files)
+        var file = files[0]
+        if (typeof file !== "undefined"){
+          console.log(file)
+
+
+          var fr= new FileReader();
+
+          fr.readAsText(file)
+          console.log("Read")
+
+
+          fr.onload=function(){
+            var xml = Blockly.Xml.textToDom(fr.result);
+            console.log("Load")
+            Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+            document.getElementById("myForm").style.display = "none";
+        }
+
+        }
+      }
+  
+      dropZoneElement.classList.remove("drop-zone--over");
+    });
+  });
+  
+  /**
+   * Updates the thumbnail on a drop zone element.
+   *
+   * @param {HTMLElement} dropZoneElement
+   * @param {File} file
+   */
+  function updateThumbnail(dropZoneElement, file) {
+    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+  
+    // First time - remove the prompt
+    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+      dropZoneElement.querySelector(".drop-zone__prompt").remove();
+    }
+  
+    // First time - there is no thumbnail element, so lets create it
+    if (!thumbnailElement) {
+      thumbnailElement = document.createElement("div");
+      thumbnailElement.classList.add("drop-zone__thumb");
+      dropZoneElement.appendChild(thumbnailElement);
+    }
+  
+
+    
+    thumbnailElement.dataset.label = file.name;
+  
+    // Show thumbnail for image files
+    if (file.type.startsWith("text/")) {
+      const reader = new FileReader();
+  
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+      };
+    } else {
+      thumbnailElement.style.backgroundImage = null;
+    }
+  }
+  
+
+};
+
+
+blockly.UploadFromUrl = function() {
+
+  let url = document.forms["urlForm"]["url"].value;
+  fetch(url).then((r)=>{r.text().then((d)=>{
+    var xml = Blockly.Xml.textToDom(d);
+    Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+  })})
+
+  document.getElementById("myForm").style.display = "none";
 };
 
 

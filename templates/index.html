@@ -147,11 +147,36 @@
                 <img src='/static/media/download.png' class="icon">
               </button>
               <div class="upload-btn-wrapper">
-                <button id="uplaodButton" class="notext" title="upload saved layout">
+                <button id="uplaodButton" onclick="blockly.UploadXml()" class="notext" title="upload saved layout">
                   <img src='/static/media/upload.png' class="icon">
                 </button>
-                <input type="file" id="file-selector" oninput="blockly.UploadCode()" title="upload saved layout">
               </div>
+<div class="form-popup" id="myForm">
+  <form class="form-container" name="urlForm">
+    <h1>Upload</h1>
+
+    <div class="drop-zone" id="">
+      <span class="drop-zone__prompt">Drop file here or click to upload</span>
+      <input type="file" name="myFile" class="drop-zone__input">
+    </div>
+  </br>
+  <hr class="hr1">
+</br>
+    <label for="url"><b>Enter Layout Url</b></label>
+    <input type="text" placeholder="Enter Url" name="url" required>
+
+
+    <button type="button" onclick="blockly.UploadFromUrl()"  class="btn">Upload</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function closeForm() {
+   document.getElementById("myForm").style.display = "none";
+}
+</script>
+
               <button id="copyButton" class="notext" title="copy python code">
                 <img src='/static/media/copy.png' class="icon">
               </button>
