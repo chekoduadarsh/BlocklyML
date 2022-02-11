@@ -360,3 +360,6 @@ function displayHTMLReport(stringdata, id, VarData) {
 
   //tableHtml.document.write(stringdata);  
 };
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+};
