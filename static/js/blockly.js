@@ -597,7 +597,6 @@ blockly.UploadXml = function() {
     inputElement.addEventListener("change", (e) => {
       console.log(e)
       if (inputElement.files.length) {
-        updateThumbnail(dropZoneElement, inputElement.files[0]);
         const input = e.target
         var file = input.files[0]
         var fr= new FileReader();
@@ -631,7 +630,6 @@ blockly.UploadXml = function() {
       if(e.dataTransfer.files.length) {
         //var files = e.target.files || (e.dataTransfer && e.dataTransfer.files);
         inputElement.files = files;
-        //updateThumbnail(dropZoneElement, files[0]);
         var file = files[0]
         if (typeof file !== "undefined"){
           var fr= new FileReader();
@@ -650,45 +648,6 @@ blockly.UploadXml = function() {
       dropZoneElement.classList.remove("drop-zone--over");
     });
   });
-  
-  /**
-   * Updates the thumbnail on a drop zone element.
-   *
-   * @param {HTMLElement} dropZoneElement
-   * @param {File} file
-   */
-  function updateThumbnail(dropZoneElement, file) {
-    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-  
-    // First time - remove the prompt
-    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-      dropZoneElement.querySelector(".drop-zone__prompt").remove();
-    }
-  
-    // First time - there is no thumbnail element, so lets create it
-    if (!thumbnailElement) {
-      thumbnailElement = document.createElement("div");
-      thumbnailElement.classList.add("drop-zone__thumb");
-      dropZoneElement.appendChild(thumbnailElement);
-    }
-  
-
-    
-    thumbnailElement.dataset.label = file.name;
-  
-    // Show thumbnail for image files
-    if (file.type.startsWith("text/")) {
-      const reader = new FileReader();
-  
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-      };
-    } else {
-      thumbnailElement.style.backgroundImage = null;
-    }
-  }
-  
 
 };
 
