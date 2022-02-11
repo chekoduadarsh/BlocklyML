@@ -236,13 +236,12 @@ html, body {
   border: 3px solid #f1f1f1;
   z-index: 9;
   text-align: left;
-
   box-shadow:0 0 0 1600px rgba(0,0,0,0.65);/* dark around it */
 }
 
 
 .form-popup h1{
-  color: grey;
+  color: black;
   font-weight: normal;
   text-align:center;
 }
