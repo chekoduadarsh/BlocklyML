@@ -14,7 +14,7 @@ This tool can assist anyone who wants to start with Machine Learning or python. 
 For a sample run go to sampleLayouts folder upload and try it out :smiley:
 
 
-Read the ![UserGuide.md]() for further info
+Read the ![UserGuide.md](https://github.com/chekoduadarsh/BlocklyML/blob/main/UserGuide.md) for further info
 
 
 In the Example given below we will train a random forest for Iris Dataset
