@@ -62,8 +62,13 @@ Simple as that :man_shrugging:
 
 ## How to download layouts? 
 
-## How to upload layouts?
 
+<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/butttons.png" alt="drawing" width="500"/>
+
+Use Download button form the buttons given above. which will download the `blocklyML.xml` file. This XML file contatins details regarding the layout of the project.This can be used to share or save the layout.
+
+
+## How to upload layouts?
 
 <img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/butttons.png" alt="drawing" width="500"/>
 
