@@ -63,3 +63,5 @@ Simple as that :man_shrugging:
 ## How to download layouts? 
 
 ## How to upload layouts?
+
+<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_upload.png" alt="drawing" width="500"/>
