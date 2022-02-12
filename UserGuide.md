@@ -64,4 +64,11 @@ Simple as that :man_shrugging:
 
 ## How to upload layouts?
 
+
+<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/butttons.png" alt="drawing" width="500"/>
+
+Use Upload button form the buttons given above. Which will create a popup window as given below.
+
 <img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_upload.png" alt="drawing" width="500"/>
+
+In this pop windows you can drop/upload file or you can provide the URL of the file. This will load the laout xml file
