@@ -445,7 +445,7 @@ blockly.init = function() {
   blockly.bindClick('colabButton', blockly.OpenColab);
   blockly.bindClick('copyButton', blockly.copyCode);
   blockly.bindClick('downlaodButton', blockly.DownloadCode);
-  blockly.bindClick('uplaodButton', blockly.uploadCode);
+  blockly.bindClick('uplaodButton', blockly.UploadXml);
 
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
@@ -577,27 +577,95 @@ blockly.DownloadCode = function() {
     document.body.removeChild(a);
     setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
 };
-blockly.UploadCode = function() {
-    const fileSelector = document.getElementById('file-selector');
-    var fr= new FileReader();
+blockly.UploadXml = function() {
+  document.getElementById("myForm").style.display = "block";
+
+    $(document).keyup(function(e) {
+      if (e.key === "Escape") { // escape key maps to keycode `27`
+        document.getElementById("myForm").style.display = "none";
+    }
+  });
+
+  
+  document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+    const dropZoneElement = inputElement.closest(".drop-zone");
+  
+    dropZoneElement.addEventListener("click", (e) => {
+      inputElement.click();
+      
+    });
+    inputElement.addEventListener("change", (e) => {
+      console.log(e)
+      if (inputElement.files.length) {
+        const input = e.target
+        var file = input.files[0]
+        var fr= new FileReader();
+
+        fr.readAsText(file)
+        console.log(file)
         fr.onload=function(){
+          var xml = Blockly.Xml.textToDom(fr.result);
+          Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+          fr = new FileReader();
+          document.getElementById("myForm").style.display = "none";
+      }
+
+      }
+    });
+  
+    dropZoneElement.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropZoneElement.classList.add("drop-zone--over");
+    });
+  
+    ["dragleave", "dragend"].forEach((type) => {
+      dropZoneElement.addEventListener(type, (e) => {
+        dropZoneElement.classList.remove("drop-zone--over");
+      });
+    });
+    
+    dropZoneElement.addEventListener("drop", (e) => {
+      e.preventDefault();
+      var files = e.dataTransfer.files;
+      if(e.dataTransfer.files.length) {
+        //var files = e.target.files || (e.dataTransfer && e.dataTransfer.files);
+        inputElement.files = files;
+        var file = files[0]
+        if (typeof file !== "undefined"){
+          var fr= new FileReader();
+
+          fr.readAsText(file)
+
+          fr.onload=function(){
             var xml = Blockly.Xml.textToDom(fr.result);
             Blockly.Xml.domToWorkspace(xml, blockly.workspace);
-            fr = new FileReader();
+            document.getElementById("myForm").style.display = "none";
         }
 
-    fileSelector.addEventListener('change', (event) => {
-        const input = event.target
-        var file = input.files[0]
-        fr.readAsText(file)
-
+        }
+      }
+  
+      dropZoneElement.classList.remove("drop-zone--over");
     });
+  });
 
 };
 
 
+blockly.UploadFromUrl = function() {
+
+  let url = document.forms["urlForm"]["url"].value;
+  fetch(url).then((r)=>{r.text().then((d)=>{
+    var xml = Blockly.Xml.textToDom(d);
+    Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+  })})
+
+  document.getElementById("myForm").style.display = "none";
+};
+
+
 blockly.OpenColab = function() {
-    window.open("https://colab.research.google.com/");
+    window.open("https://colab.research.google.com/#create=true");
 };
 
 blockly.copyCode = function() {
