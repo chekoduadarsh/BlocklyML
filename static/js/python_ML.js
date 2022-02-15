@@ -501,7 +501,6 @@ var VarData = {};
 
     Blockly.Python['seaborn_dataset'] = function (a) {
         Blockly.Python.definitions_.seaborn = "import seaborn as sns";
-        console.log("this :" + Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE) || "0")
         VarData[a.inputList[0].fieldRow[1].value_] = 'sns.load_dataset("' + a.inputList[0].fieldRow[1].value_ + '")', Blockly.Python.ORDER_FUNCTION_CALL;
         return ['sns.load_dataset("' + a.inputList[0].fieldRow[1].value_ + '")', Blockly.Python.ORDER_FUNCTION_CALL]
     }
@@ -2085,11 +2084,13 @@ var VarData = {};
     Blockly.Python.variables_set = function (a) {
 
         var b = Blockly.Python.valueToCode(a, "VALUE", Blockly.Python.ORDER_NONE) || "0";
+        if (a.getInputTargetBlock() != null){
 
-        if (a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame") {
-            VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
+            if (a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame") {
+                VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
+            }
+    
         }
-
         return Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME) + " = " + b + "\n";
     };
     Blockly.Python.variablesDynamic = {};
