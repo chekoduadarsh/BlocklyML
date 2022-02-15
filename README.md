@@ -94,6 +94,8 @@ If you find any error or need support please raise a issue. If you think you can
 
 Feel free to adapt it criticize it and support it the way you like!!
 
+Read : ![CONTRIBUTING.md](https://github.com/ThioJoe/YT-Spammer-Purge/blob/main/CONTRIBUTING.md)
+
 
 # License
 ![Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
