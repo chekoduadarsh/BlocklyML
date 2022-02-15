@@ -2085,11 +2085,13 @@ var VarData = {};
     Blockly.Python.variables_set = function (a) {
 
         var b = Blockly.Python.valueToCode(a, "VALUE", Blockly.Python.ORDER_NONE) || "0";
+        if (a.getInputTargetBlock() != null){
 
-        if (a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame") {
-            VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
+            if (a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame") {
+                VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
+            }
+    
         }
-
         return Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME) + " = " + b + "\n";
     };
     Blockly.Python.variablesDynamic = {};
