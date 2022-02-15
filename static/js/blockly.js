@@ -583,7 +583,6 @@ blockly.DownloadCode = function () {
 };
 blockly.UploadXml = function () {
 
-  console.log("ABCC  ")
 
   document.getElementById("myForm").style.display = "block";
 
@@ -598,23 +597,26 @@ blockly.UploadXml = function () {
 
     console.log(inputElement)
 
+    var eventChanger = false;
+
     inputElement.addEventListener("change", (e) => {
-      console.log(e)
-      if (inputElement.files.length) {
-        const input = e.target
-        var file = input.files[0]
-        var fr = new FileReader();
+      if(!eventChanger){  //hot fix
+        if (inputElement.files.length) {
+          const input = e.target
+          var file = input.files[0]
+          var fr = new FileReader();
 
-        fr.readAsText(file)
-        console.log(file)
-        fr.onload = function () {
-          var xml = Blockly.Xml.textToDom(fr.result);
-          Blockly.Xml.domToWorkspace(xml, blockly.workspace);
-          fr = new FileReader();
-          document.getElementById("myForm").style.display = "none";
+          fr.readAsText(file)
+          fr.onload = function () {
+            var xml = Blockly.Xml.textToDom(fr.result);
+            Blockly.Xml.domToWorkspace(xml, blockly.workspace);
+            fr = new FileReader();
+            document.getElementById("myForm").style.display = "none";
+          }
+
         }
-
-      }
+      eventChanger = true
+    }
     });
     const dropZoneElement = inputElement.closest(".drop-zone");
     dropZoneElement.addEventListener("click", (e) => {
