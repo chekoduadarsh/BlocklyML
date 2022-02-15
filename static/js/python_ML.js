@@ -501,7 +501,6 @@ var VarData = {};
 
     Blockly.Python['seaborn_dataset'] = function (a) {
         Blockly.Python.definitions_.seaborn = "import seaborn as sns";
-        console.log("this :" + Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE) || "0")
         VarData[a.inputList[0].fieldRow[1].value_] = 'sns.load_dataset("' + a.inputList[0].fieldRow[1].value_ + '")', Blockly.Python.ORDER_FUNCTION_CALL;
         return ['sns.load_dataset("' + a.inputList[0].fieldRow[1].value_ + '")', Blockly.Python.ORDER_FUNCTION_CALL]
     }
