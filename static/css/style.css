@@ -391,23 +391,30 @@ button {
 
 .tool-tip-popup {
     position: fixed;
-    bottom: 15%;
-    right: 20%;
-    height: 70%;
-    width: 50%;
+    top: 10%;
+    bottom: 10%;
+    right: 25%;
     z-index: 100000;
     /* big value for bootstrap3 compatibility */
     text-align: left;
     box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
     /* dark around it */
-    background-color: #cccccc;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right, #402a7a,  #49001d);
 }
 
+
 .tool-tip-popup h2 {
-    color: black;
+    color: white;
     font-weight: normal;
     text-align: center;
 }
+
+
+.tool-tip-popup h4 {
+    color: white;
+}
+
 
 .tool-tip-close {
     display: block;
@@ -426,12 +433,17 @@ button {
 }
 
 .tool-tip-upload-page {
+  
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     height: 55%;
     width: 55%;
 }
 
 .tool-tip-popup P {
-    color: black;
+    
+    color: white;
     font-weight: normal;
     font-size: 18px;
 }
