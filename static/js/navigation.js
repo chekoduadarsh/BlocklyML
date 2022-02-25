@@ -371,3 +371,9 @@ function closeForm() {
 function closeToolTip() {
     document.getElementById("tip-popup").style.display = "none";
 };
+
+$(document).keyup(function (e) {
+    if (e.key === "Escape") { // escape key maps to keycode `27`
+        document.getElementById("tip-popup").style.display = "none";
+    }
+  });
