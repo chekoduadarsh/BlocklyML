@@ -527,8 +527,6 @@ blockly.initLanguage = function () {
   }
   codeMenu.addEventListener('change', blockly.changeCodingLanguage);
 
-  // Inject language strings.
-  document.title += ' ' + MSG['title'];
   //document.getElementById('title').textContent = MSG['title'];
   document.getElementById('tab_blocks').textContent = MSG['blocks'];
 
