@@ -394,13 +394,14 @@ button {
     top: 10%;
     bottom: 10%;
     right: 25%;
+    overflow-y: scroll;
     z-index: 100000;
     /* big value for bootstrap3 compatibility */
     text-align: left;
     box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
     /* dark around it */
-  background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to right, #402a7a,  #49001d);
+    background-color: #2f0743; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #41295a, #2f0743);
 }
 
 
