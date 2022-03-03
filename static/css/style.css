@@ -456,3 +456,71 @@ button {
     height: 10%;
     width: 30%;
 }
+
+.download-code-popup{
+    display: none;
+    position: fixed;
+    top: 30%;
+    bottom: 40%;
+    right: 35%;
+    left:35%;
+    overflow-y: scroll;
+    z-index: 100000;
+    /* big value for bootstrap3 compatibility */
+    text-align: left;
+    box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
+    /* dark around it */
+    background-color: #2f0743; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #41295a, #2f0743);
+}
+
+
+.download-code-close{
+    display: block;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: red;
+    border-radius: 100%;
+    background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%, white 56%, transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%, white 56%, transparent 56%, transparent 100%);
+    background-color: red;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    float: right;
+}
+.download-code-popup h2 {
+    color: white;
+    font-weight: normal;
+    text-align: center;
+}
+
+.download-code-button{  
+    text-align: center;  
+}
+.download-code-form{  
+    text-align: center;  
+}
+
+.download-code-popup h4 {
+    color: white;
+}
+.download-code-popup .btn {
+    margin: auto;  
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+
+/* Add some hover effects to buttons */
+
+.download-code-popup .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
