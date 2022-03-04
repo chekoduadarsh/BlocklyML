@@ -268,8 +268,6 @@ function downloadHTMLReport(stringdata, id, VarData) {
     a.click();
     document.body.removeChild(a);
     setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
-
-    //tableHtml.document.write(stringdata);
 };
 
 function downloadPy(fileName) {
@@ -389,6 +387,8 @@ function downloadPyIpynbCode(){
     if (extention == ".ipynb"){
         downloadIpynb(fileName)
     }
+
+    document.getElementById("download-code-popup").style.display = "none";
 }
 
 
