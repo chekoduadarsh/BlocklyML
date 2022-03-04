@@ -54,8 +54,8 @@
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" h data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
-            View
-          </a>
+                      File
+                    </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">View DataFrames</a>
                             <ul class="dropdown-menu DataFrameViewer">
@@ -80,9 +80,9 @@
             Download
           </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" onclick="downloadPy()">Download .py</a></li>
-                        <li><a class="dropdown-item" onclick="downloadIpynb()">Download .ipynb</a></li>
-                        <li><a class="dropdown-item" onclick="blockly.DownloadCode()">Download .xml</a></li>
+                        
+                        <li><a class="dropdown-item" onclick="downloadView()">Download Code</a></li>
+                        <li><a class="dropdown-item" onclick="blockly.DownloadCode()">Download layout</a></li>
                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Download DataFrames</a>
                             <ul class="dropdown-menu DataFrameViewer">
                                 <div class="DataFrameDownload" id="DataFrameDownload">
@@ -108,6 +108,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md" target="_blank" rel="noopener noreferrer">About BlocklyML</a></li>
                         <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank" rel="noopener noreferrer">About me</a></li>
+                        <li><a class="dropdown-item" href="mailto:chekodu.adarsh@gmail.com" target="_blank" rel="noopener noreferrer">Contact me</a></li>
                     </ul>
                 </li>
             </ul>
@@ -162,7 +163,28 @@
                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                 </form>
                             </div>
+                            <div class="download-code-popup" id="download-code-popup">
+                                <a href="#" class="download-code-close" onclick=closeDownloadCode()></a>
+                                <h2>Download Code 💾</h2>
+                                
+                                </br>
+                                </br>
 
+                                <div class="download-code-form" id="download-code-form">
+
+                                    <input type="text" id="download-code-fname" name="fname">
+                                    <select id="download-code-extention" name="extention">
+                                        <option value=".py">.py</option>
+                                        <option value=".ipynb">.ipynb</option>
+                                    </select>
+                                    </br>
+                                    </br>
+                                    <div class="download-code-button" id="download-code-button">
+                                        <button type="button" class="btn" onclick=downloadPyIpynbCode()>Download</button>
+                                    </div>
+                            
+                                </div>
+                            </div>
                             <div class="tool-tip-popup" id="tip-popup">
                                 <a href="#" class="tool-tip-close" onclick=closeToolTip()></a>
                                 <h2>Tool Tip 💡</h2>
