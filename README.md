@@ -1,4 +1,4 @@
-<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_Banner.png"></img>
+<img src="https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_Banner.png">
 
 <h1 style="text-align: center;"><a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a></h1>
 
