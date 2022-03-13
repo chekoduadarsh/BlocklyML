@@ -1,7 +1,8 @@
 <img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_Banner.png"></img>
 
-<h1><a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a></h1>
-# BlocklyML
+<h1 style="text-align: center;"><a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a></h1>
+
+
 ![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fchekoduadarsh%2FBlocklyML)
