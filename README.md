@@ -1,4 +1,5 @@
-![](https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_Banner.png)
+<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_Banner.png"></img>
+
 # BlocklyML
 ![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
@@ -6,7 +7,7 @@
 ![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
 
 
-https://blocklyml.herokuapp.com/
+<a href="https://blocklyml.herokuapp.com/"> https://blocklyml.herokuapp.com/ </a>
 
 ### What is BlocklyML?
 BlocklyML is a **No Code** training ground for python and Machine Learning. This tool is designed to simplify standard machine learning implementation.
