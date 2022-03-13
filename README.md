@@ -1,15 +1,24 @@
-![](https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_Banner.png)
-# BlocklyML
+<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/blocklyML_Banner.png"></img>
+
+<h1 style="text-align: center;"><a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a></h1>
+
+
 ![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
 
 
-https://blocklyml.herokuapp.com/
+<a href="https://blocklyml.herokuapp.com/"> https://blocklyml.herokuapp.com/ </a>
 
-Blockly is a simple visual programming language for python and ML. This tool is designed to simplify standard machine learning implementation. This tool can assist anyone who wants to start with ML or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
+### What is BlocklyML?
+BlocklyML is a **No Code** training ground for python and Machine Learning. This tool is designed to simplify standard machine learning implementation.
+This tool can assist anyone who wants to start with Machine Learning or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
 
 For a sample run go to sampleLayouts folder upload and try it out :smiley:
+
+
+Read the <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/UserGuide.md"> UserGuide.md</a> for further info
+
 
 In the Example given below we will train a random forest for Iris Dataset
 
@@ -17,14 +26,14 @@ In the Example given below we will train a random forest for Iris Dataset
 
 # Table of contents
 
-* ![Project Title](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#blocklyml)
-* ![Installlation](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#installing-as-blocklyml-app)
-* ![UI Features](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#ui-features)
-   * ![Shortcuts](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#shortcuts)
-   * ![Dataframe Viewer](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#dataframe-viewer)
-   * ![Download Code](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#download-code)
-* ![Contribute](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#contribute)
-* ![License](https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#license)
+* <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#blocklyml">  Project Title</a>
+* <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#installing-as-blocklyml-app"> Installlation</a>
+* <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#ui-features"> UI Features</a>
+   * <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#shortcuts"> Shortcuts</a>
+   * <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#dataframe-viewer"> Dataframe Viewer</a>
+   * <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#download-code"> Download Code</a>
+* <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#contribute"> Contribute</a>
+* <a href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md#license"> License</a>
 # Installing as BlocklyML App
 First clone this repo
 
@@ -87,17 +96,10 @@ If you find any error or need support please raise a issue. If you think you can
 
 Feel free to adapt it criticize it and support it the way you like!!
 
-## TBD
+Read : <a href="https://github.com/ThioJoe/YT-Spammer-Purge/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
 
- - [x] Classification Algorithms
- - [x] Regression Algorithms
- - [x] Appropriate Color Coding
- - [ ] Support for Deep Learning (ANN)
- - [ ] Support for Image Dataset
- - [ ] Support for CNN
- - [ ] Support for Running Code in Heroku
- 
+
 # License
-![Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+<a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/chekoduadarsh)

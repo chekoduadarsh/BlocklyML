@@ -121,12 +121,12 @@ var VarData = {};
     };
     Blockly.Python.colour_rgb = function (a) {
         var b = Blockly.Python.provideFunction_("colour_rgb", [
-                "def " + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + "(r, g, b):",
-                "  r = round(min(100, max(0, r)) * 2.55)",
-                "  g = round(min(100, max(0, g)) * 2.55)",
-                "  b = round(min(100, max(0, b)) * 2.55)",
-                "  return '#%02x%02x%02x' % (r, g, b)",
-            ]),
+            "def " + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + "(r, g, b):",
+            "  r = round(min(100, max(0, r)) * 2.55)",
+            "  g = round(min(100, max(0, g)) * 2.55)",
+            "  b = round(min(100, max(0, b)) * 2.55)",
+            "  return '#%02x%02x%02x' % (r, g, b)",
+        ]),
             c = Blockly.Python.valueToCode(a, "RED", Blockly.Python.ORDER_NONE) || 0,
             d = Blockly.Python.valueToCode(a, "GREEN", Blockly.Python.ORDER_NONE) || 0;
         a = Blockly.Python.valueToCode(a, "BLUE", Blockly.Python.ORDER_NONE) || 0;
@@ -134,16 +134,16 @@ var VarData = {};
     };
     Blockly.Python.colour_blend = function (a) {
         var b = Blockly.Python.provideFunction_("colour_blend", [
-                "def " + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + "(colour1, colour2, ratio):",
-                "  r1, r2 = int(colour1[1:3], 16), int(colour2[1:3], 16)",
-                "  g1, g2 = int(colour1[3:5], 16), int(colour2[3:5], 16)",
-                "  b1, b2 = int(colour1[5:7], 16), int(colour2[5:7], 16)",
-                "  ratio = min(1, max(0, ratio))",
-                "  r = round(r1 * (1 - ratio) + r2 * ratio)",
-                "  g = round(g1 * (1 - ratio) + g2 * ratio)",
-                "  b = round(b1 * (1 - ratio) + b2 * ratio)",
-                "  return '#%02x%02x%02x' % (r, g, b)",
-            ]),
+            "def " + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + "(colour1, colour2, ratio):",
+            "  r1, r2 = int(colour1[1:3], 16), int(colour2[1:3], 16)",
+            "  g1, g2 = int(colour1[3:5], 16), int(colour2[3:5], 16)",
+            "  b1, b2 = int(colour1[5:7], 16), int(colour2[5:7], 16)",
+            "  ratio = min(1, max(0, ratio))",
+            "  r = round(r1 * (1 - ratio) + r2 * ratio)",
+            "  g = round(g1 * (1 - ratio) + g2 * ratio)",
+            "  b = round(b1 * (1 - ratio) + b2 * ratio)",
+            "  return '#%02x%02x%02x' % (r, g, b)",
+        ]),
             c = Blockly.Python.valueToCode(a, "COLOUR1", Blockly.Python.ORDER_NONE) || "'#000000'",
             d = Blockly.Python.valueToCode(a, "COLOUR2", Blockly.Python.ORDER_NONE) || "'#000000'";
         a = Blockly.Python.valueToCode(a, "RATIO", Blockly.Python.ORDER_NONE) || 0;
@@ -309,13 +309,13 @@ var VarData = {};
                 "  list_cpy = list(my_list)",
                 "  return sorted(list_cpy, key=key_func, reverse=reverse)",
             ]) +
-                "(" +
-                b +
-                ', "' +
-                c +
-                '", ' +
-                a +
-                ")",
+            "(" +
+            b +
+            ', "' +
+            c +
+            '", ' +
+            a +
+            ")",
             Blockly.Python.ORDER_FUNCTION_CALL,
         ];
     };
@@ -462,50 +462,49 @@ var VarData = {};
      * Custom 
      */
     Blockly.Python.pandas = {};
-    Blockly.Python['pandas_read_csv'] = function(a){
+    Blockly.Python['pandas_read_csv'] = function (a) {
         Blockly.Python.definitions_.pandas = "import pandas as pd";
-        return ['pd.read_csv('+String(a).split(" ")[2]+')' ,Blockly.Python.ORDER_FUNCTION_CALL]
+        return ['pd.read_csv(' + String(a).split(" ")[2] + ')', Blockly.Python.ORDER_FUNCTION_CALL]
     }
 
-    Blockly.Python["create_dict"] = function(a){
+    Blockly.Python["create_dict"] = function (a) {
 
-     var b = 1,
-        c = "{";
+        var b = 1,
+            c = "{";
         do {
-            var d = Blockly.Python.valueToCode(a, "KEY" + b, Blockly.Python.ORDER_NONE)|| "";
-            var e = Blockly.Python.valueToCode(a, "VAL" + b,  Blockly.Python.ORDER_NONE)|| "";
+            var d = Blockly.Python.valueToCode(a, "KEY" + b, Blockly.Python.ORDER_NONE) || "";
+            var e = Blockly.Python.valueToCode(a, "VAL" + b, Blockly.Python.ORDER_NONE) || "";
             Blockly.Python.STATEMENT_SUFFIX && (e = Blockly.Python.prefixLines(Blockly.Python.injectId(Blockly.Python.STATEMENT_SUFFIX, a), Blockly.Python.INDENT) + e);
-            if(b>1){
-            c += ",";
+            if (b > 1) {
+                c += ",";
             }
-            c += d+":"+e;
+            c += d + ":" + e;
             ++b;
         } while (a.getInput("KEY" + b));
         c += "}";
-        if ((e != "") && (d != "")){
+        if ((e != "") && (d != "")) {
             return [c, Blockly.Python.ORDER_FUNCTION_CALL];
-        }else{
+        } else {
             return ["None", Blockly.Python.ORDER_FUNCTION_CALL];
         }
     }
-  Blockly.Python["dict_append"] = function(a){
-  var e = ""
-  var b = Blockly.Python.valueToCode(a, "DICTIONARY" , Blockly.Python.ORDER_NONE) || "";
-  var c = Blockly.Python.valueToCode(a, "KEY" , Blockly.Python.ORDER_NONE) || "";
-  var d = Blockly.Python.valueToCode(a, "VALUE" , Blockly.Python.ORDER_NONE) || "";
-  if ((b != "") && (c != "") &&(d != "")){
-    e = b+"["+c+"] = "+d;
-   }
-    return e;
-  }
-
-    Blockly.Python['seaborn_dataset'] = function(a){
-        Blockly.Python.definitions_.seaborn = "import seaborn as sns";
-        console.log("this :"+Blockly.Python.valueToCode(a, "VAR", Blockly.Python.ORDER_NONE) || "0")
-        VarData[a.inputList[0].fieldRow[1].value_] = 'sns.load_dataset("'+a.inputList[0].fieldRow[1].value_+'")' ,Blockly.Python.ORDER_FUNCTION_CALL;
-        return ['sns.load_dataset("'+a.inputList[0].fieldRow[1].value_+'")' ,Blockly.Python.ORDER_FUNCTION_CALL]
+    Blockly.Python["dict_append"] = function (a) {
+        var e = ""
+        var b = Blockly.Python.valueToCode(a, "DICTIONARY", Blockly.Python.ORDER_NONE) || "";
+        var c = Blockly.Python.valueToCode(a, "KEY", Blockly.Python.ORDER_NONE) || "";
+        var d = Blockly.Python.valueToCode(a, "VALUE", Blockly.Python.ORDER_NONE) || "";
+        if ((b != "") && (c != "") && (d != "")) {
+            e = b + "[" + c + "] = " + d;
+        }
+        return e;
     }
-    Blockly.Python['skl_train_test_split'] = function(a){
+
+    Blockly.Python['seaborn_dataset'] = function (a) {
+        Blockly.Python.definitions_.seaborn = "import seaborn as sns";
+        VarData[a.inputList[0].fieldRow[1].value_] = 'sns.load_dataset("' + a.inputList[0].fieldRow[1].value_ + '")', Blockly.Python.ORDER_FUNCTION_CALL;
+        return ['sns.load_dataset("' + a.inputList[0].fieldRow[1].value_ + '")', Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['skl_train_test_split'] = function (a) {
         Blockly.Python.definitions_.sklearn_test_train_split = "from sklearn.model_selection import train_test_split";
         var dataframe = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_NONE) || ""
         var train_X = Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)
@@ -515,119 +514,236 @@ var VarData = {};
         var target = Blockly.Python.valueToCode(a, "TARGETVAR", Blockly.Python.ORDER_NONE)
         var TestSize = Blockly.Python.valueToCode(a, "TESTSIZE", Blockly.Python.ORDER_NONE)
 
-        var codeString =  '\n'+train_X+', '+test_X+', '+train_Y+', '+test_Y+'=train_test_split('+dataframe+'.drop(columns = ['+target+']),'+dataframe+'['+target+']'+', test_size='+TestSize+', random_state=42)\n'
+        var codeString = '\n' + train_X + ', ' + test_X + ', ' + train_Y + ', ' + test_Y + '=train_test_split(' + dataframe + '.drop(columns = [' + target + ']),' + dataframe + '[' + target + ']' + ', test_size=' + TestSize + ', random_state=42)\n'
         var codeString2 = ""
-        if (a.getFieldValue("SPLIT") == "dropNa"){
-            codeString2 = 'def dropNa('+train_X+', '+test_X+', '+train_Y+', '+test_Y+'):\n'+
-                          '     '+train_X+' = '+train_X+'.dropna()\n'+
-                          '     '+train_Y+" = "+train_Y+".loc["+train_X+".index.values.tolist()]\n"+
-                          '     '+test_X+" = "+test_X+".dropna()\n"+
-                          '     '+test_Y+" = "+test_Y+".loc["+test_X+".index.values.tolist()]\n"+
-                          '     return '+train_X+', '+test_X+', '+train_Y+', '+test_Y+'\n'+
-                          train_X+', '+test_X+', '+train_Y+', '+test_Y+" = "+"dropNa("+train_X+', '+test_X+', '+train_Y+', '+test_Y+")\n"
+        if (a.getFieldValue("SPLIT") == "dropNa") {
+            codeString2 = 'def dropNa(' + train_X + ', ' + test_X + ', ' + train_Y + ', ' + test_Y + '):\n' +
+                '     ' + train_X + ' = ' + train_X + '.dropna()\n' +
+                '     ' + train_Y + " = " + train_Y + ".loc[" + train_X + ".index.values.tolist()]\n" +
+                '     ' + test_X + " = " + test_X + ".dropna()\n" +
+                '     ' + test_Y + " = " + test_Y + ".loc[" + test_X + ".index.values.tolist()]\n" +
+                '     return ' + train_X + ', ' + test_X + ', ' + train_Y + ', ' + test_Y + '\n' +
+                train_X + ', ' + test_X + ', ' + train_Y + ', ' + test_Y + " = " + "dropNa(" + train_X + ', ' + test_X + ', ' + train_Y + ', ' + test_Y + ")\n"
 
         }
 
-        var LabelEncodeClass = 'class HandleCatagoricalData():\n'+
-                               '   def __init__(self,method="labelEncoding",factor=0):\n'+
-                               '       self.method = method\n'+
-                               '       self.factor = factor\n'+
-                               '   def fit(self, X, y):\n'+
-                               '       if self.method == "labelEncoding":\n'+
-                               '         X = pd.DataFrame(data=X)\n'+
-                               '         y = pd.DataFrame(data=y)\n'+
-                               '         self.LE = LabelEncoder()\n'+
-                               '         for column in X:\n'+
-                               '           if X[column].dtype == np.object:\n'+
-                               '             X[column]=X[column].astype("category")\n'+
-                               '           if X[column].dtype.name == "category":\n'+
-                               '             X[column] = self.LE.fit_transform(X[column])\n'+
-                               '         X = X.to_numpy()\n'+
-                               '         y = y.to_numpy()\n'+
-                               '         return self\n'+
-                               '   def transform(self, X):\n'+
-                               '       X = pd.DataFrame(data=X)\n'+
-                               '       for column in X:\n'+
-                               '         if X[column].dtype == np.object:\n'+
-                               '           X[column]=X[column].astype("category")\n'+
-                               '         if X[column].dtype.name == "category":\n'+
-                               '           X[column] = self.LE.fit_transform(X[column])\n'+
-                               '       X = X.to_numpy()\n'+
-                               '       return X\n'
 
         Blockly.Python.definitions_.pandas = "import pandas as pd";
         Blockly.Python.definitions_.encoder = "from sklearn.preprocessing import LabelEncoder, OneHotEncoder";
         Blockly.Python.definitions_.numpy = "import numpy as np"
 
-        if(dataframe == ""){
-        return ""
+        if (dataframe == "") {
+            return ""
         }
-        else{
-        return codeString+codeString2+LabelEncodeClass
+        else {
+            return codeString + codeString2
         }
     }
 
 
-    Blockly.Python['pandas_select_columns'] = function(a){
+    Blockly.Python['pandas_drop_columns'] = function (a) {
         var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
-        if (columns == ""){
-            columns="[]"
+        if (columns == "") {
+            return ""
         }
         var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
-        return [DataFrame+"["+columns+"]",  Blockly.Python.ORDER_ATOMIC];
+        if (a.getInputTargetBlock("COLUMN").outputConnection.getCheck() == "String") {
+            return [DataFrame + ".drop([" + columns + "], axis = 1)", Blockly.Python.ORDER_ATOMIC];
+        } if (a.getInputTargetBlock("COLUMN").outputConnection.getCheck() == "Array") {
+            return [DataFrame + ".drop([" + columns + "], axis = 1)", Blockly.Python.ORDER_ATOMIC];
+        } if (columns == "" || DataFrame == "") {
+            return ["", Blockly.Python.ORDER_ATOMIC];
+        }
     }
-     Blockly.Python['Classification_Report'] = function(a){
+
+    Blockly.Python['pandas_sample'] = function (a) {
+        var factor = Blockly.Python.valueToCode(a, "FACTOR", Blockly.Python.ORDER_UNARY_SIGN)
+        if (factor == "") {
+            return ""
+        }
+        var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
+        if (factor != "" || DataFrame != "") {
+            return [DataFrame + ".sample(frac=" + factor + ", replace=True, random_state=123)", Blockly.Python.ORDER_ATOMIC];
+        }
+    }
+
+
+    Blockly.Python['pandas_select_columns'] = function (a) {
+        var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
+        if (columns == "") {
+            columns = "[]"
+        }
+        var DataFrame = Blockly.Python.valueToCode(a, "DATAFRAME", Blockly.Python.ORDER_UNARY_SIGN)
+        return [DataFrame + "[" + columns + "]", Blockly.Python.ORDER_ATOMIC];
+    }
+
+    Blockly.Python['Classification_Report'] = function (a) {
         Blockly.Python.definitions_.classification_report = "from sklearn.metrics import classification_report";
         var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN) || "";
         var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN) || "";
-        if ((Pred!="")&&(True!="")){
-            return ["classification_report("+True+", "+Pred+")",Blockly.Python.ORDER_FUNCTION_CALL];
-        }else{
-             return ["",Blockly.Python.ORDER_FUNCTION_CALL];
+        if ((Pred != "") && (True != "")) {
+            return ["classification_report(" + True + ", " + Pred + ")", Blockly.Python.ORDER_FUNCTION_CALL];
+        } else {
+            return ["", Blockly.Python.ORDER_FUNCTION_CALL];
         }
 
     }
-     Blockly.Python['R2_Report'] = function(a){
+    Blockly.Python['R2_Report'] = function (a) {
         Blockly.Python.definitions_.r2_score = "from sklearn.metrics import r2_score";
         var Pred = Blockly.Python.valueToCode(a, "Pred", Blockly.Python.ORDER_UNARY_SIGN)
         var True = Blockly.Python.valueToCode(a, "True", Blockly.Python.ORDER_UNARY_SIGN)
-        if ((Pred!="")&&(True!="")){
-             return ["r2_score("+True+", "+Pred+")",Blockly.Python.ORDER_FUNCTION_CALL];
-        }else{
-             return ["",Blockly.Python.ORDER_FUNCTION_CALL];
+        if ((Pred != "") && (True != "")) {
+            return ["r2_score(" + True + ", " + Pred + ")", Blockly.Python.ORDER_FUNCTION_CALL];
+        } else {
+            return ["", Blockly.Python.ORDER_FUNCTION_CALL];
         }
     }
-    Blockly.Python['Print'] = function(a){
+    Blockly.Python['Print'] = function (a) {
         var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_FUNCTION_CALL) || "''";
         var End = a.getFieldValue("END")
 
-        if (End == "newLine"){
-        return "print("+INPUT+")";
+        if (End == "newLine") {
+            return "print(" + INPUT + ")" + "\n";
         }
-        if(End == "tab"){
-        return "print("+INPUT+",end='\\t')";
+        if (End == "tab") {
+            return "print(" + INPUT + ",end='\\t')" + "\n";
         }
-        if(End == "space"){
-        return "print("+INPUT+",end=' ')";
+        if (End == "space") {
+            return "print(" + INPUT + ",end=' ')" + "\n";
         }
-        if(End == "comma"){
-        return "print("+INPUT+",end=',')";
+        if (End == "comma") {
+            return "print(" + INPUT + ",end=',')" + "\n";
         }
     }
 
- Blockly.Python['Input'] = function(a){
-        var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_NONE) || "''";
-        return  ["input("+INPUT+")",Blockly.Python.ORDER_FUNCTION_CALL]
+    Blockly.Python['pycaret_setup'] = function (a) {
+        var input_data = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        var input_column = Blockly.Python.valueToCode(a, "input_column", Blockly.Python.ORDER_NONE) || "";
+        var algorithm = a.getFieldValue("algorithm");
+
+        if (input_data == "") {
+            return ""
         }
-    Blockly.Python['pandas_set_columns'] = function(a){
+        if (algorithm == "Classification") {
+            Blockly.Python.definitions_.pycaret_classification = "from pycaret.classification import *";
+        }
+        if (algorithm == "Regression") {
+            Blockly.Python.definitions_.pycaret_regression = "from pycaret.regression import *";
+        }
+        return "setup(" + input_data + ", target = " + input_column + ")" + "\n";
+
+
+    }
+    Blockly.Python['pycaret_predict'] = function (a) {
+        var input_model = Blockly.Python.valueToCode(a, "input_model", Blockly.Python.ORDER_NONE) || "";
+        var input_data = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        console.log(input_model)
+        if (input_model == "") {
+            return ["", Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if (input_model != "" && input_data == "") {
+            return ["predict_model(" + input_model + ")", Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if (input_model != "" && input_data != "") {
+            return ["predict_model(" + input_model + ", data=" + input_data + ")", Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+    }
+    Blockly.Python['pycaret_save'] = function (a) {
+
+        var input_model = Blockly.Python.valueToCode(a, "input_model", Blockly.Python.ORDER_NONE) || "";
+        var input_data = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        if (input_model != "" || input_data != "") {
+            return "save_model(" + input_model + "," + input_data + ")" + "\n";
+        }
+        else {
+            return ""
+        }
+    }
+
+    Blockly.Python['pycaret_plot_model'] = function (a) {
+
+        var input_model = Blockly.Python.valueToCode(a, "input_model", Blockly.Python.ORDER_NONE) || "";
+        var plot_data = a.getFieldValue("plot_data");
+        if (input_model != "" || plot_data != "") {
+            return "plot_model(" + input_model + ", plot = '" + plot_data + "')" + "\n";
+        }
+        else {
+            return ""
+        }
+    }
+
+    Blockly.Python['pycaret_blend_model'] = function (a) {
+        var input_models = Blockly.Python.valueToCode(a, "input_models", Blockly.Python.ORDER_NONE) || "";
+        var input_fold = Blockly.Python.valueToCode(a, "input_fold", Blockly.Python.ORDER_NONE) || "";
+        var input_method = a.getFieldValue("input_method");
+        if (input_models != "" && input_fold == "") {
+            return ["blend_models(" + input_models + ", method = '" + input_method + "')", Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if (input_models != "" && input_fold != "") {
+            return ["blend_models(" + input_models + " , fold = '" + input_fold + "' , method = '" + input_method + "')", Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        else {
+            return ""
+        }
+    }
+
+    Blockly.Python['pycaret_ensemble_model'] = function (a) {
+        var input_models = Blockly.Python.valueToCode(a, "input_models", Blockly.Python.ORDER_NONE) || "";
+        var input_fold = Blockly.Python.valueToCode(a, "input_fold", Blockly.Python.ORDER_NONE) || "";
+        var input_method = a.getFieldValue("input_method");
+        if (input_models != "" && input_fold == "") {
+            return ["ensemble_model(" + input_models + ", method = '" + input_method + "')", Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        if (input_models != "" && input_fold != "") {
+            return ["ensemble_model(" + input_models + " , fold = '" + input_fold + "' , method = '" + input_method + "')", Blockly.Python.ORDER_FUNCTION_CALL]
+        }
+        else {
+            return ""
+        }
+    }
+    Blockly.Python['pycaret_load'] = function (a) {
+        var input_model = Blockly.Python.valueToCode(a, "input_data", Blockly.Python.ORDER_NONE) || "";
+        if (input_model != "") {
+            return ["load_model(" + input_model + ")", Blockly.Python.ORDER_FUNCTION_CALL]
+
+        }
+        else {
+            return ""
+        }
+    }
+    Blockly.Python['pycaret_automl'] = function (a) {
+        var optimizer = a.getFieldValue("optimizer");
+        return ["automl(optimize = '" + optimizer + "')", Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['pycaret_classifier'] = function (a) {
+        var model = a.getFieldValue("model");
+        return ["create_model('" + model + "')", Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['pycaret_regressor'] = function (a) {
+        var model = a.getFieldValue("model");
+        return ["create_model('" + model + "')", Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['Input'] = function (a) {
+        var INPUT = Blockly.Python.valueToCode(a, "INPUT", Blockly.Python.ORDER_NONE) || "''";
+        return ["input(" + INPUT + ")", Blockly.Python.ORDER_FUNCTION_CALL]
+    }
+    Blockly.Python['pandas_set_columns'] = function (a) {
         var columns = Blockly.Python.valueToCode(a, "COLUMN", Blockly.Python.ORDER_UNARY_SIGN)
-        if (columns == ""){
-            columns="[]"
+        if (columns == "") {
+            columns = "[]"
         }
         var DATAFRAME_IN = Blockly.Python.valueToCode(a, "DATAFRAME_IN", Blockly.Python.ORDER_UNARY_SIGN)
         var DATAFRAME_OUT = Blockly.Python.valueToCode(a, "DATAFRAME_OUT", Blockly.Python.ORDER_UNARY_SIGN)
-        return DATAFRAME_OUT+"["+columns+"]="+DATAFRAME_IN;
+        if (DATAFRAME_IN != "" || DATAFRAME_OUT != "" || columns != "") {
+            return DATAFRAME_OUT + "[" + columns + "]=" + DATAFRAME_IN + "\n";
+        }
+        else {
+            return ""
+        }
     }
+
+
+
 
     Blockly.Python['dataframe_Filter'] = function (a) {
         var b = { EQ: "==", NEQ: "!=", LT: "<", LTE: "<=", GT: ">", GTE: ">=" }[a.getFieldValue("OP")];
@@ -635,11 +751,11 @@ var VarData = {};
         var d = Blockly.Python.valueToCode(a, "A", c) || "";
         var e = Blockly.Python.valueToCode(a, "C", c) || "";
         a = Blockly.Python.valueToCode(a, "B", c) || "";
-        if (d =="" || e=="" || a==""){
+        if (d == "" || e == "" || a == "") {
             return ["", Blockly.Python.ORDER_NONE]
         }
 
-        return [e+"["+d + " " + b + " " + a+"]",  Blockly.Python.ORDER_FUNCTION_CALL];
+        return [e + "[" + d + " " + b + " " + a + "]", Blockly.Python.ORDER_FUNCTION_CALL];
     };
 
 
@@ -647,296 +763,366 @@ var VarData = {};
         var c = Blockly.Python.ORDER_NONE;
         var b = Blockly.Python.valueToCode(a, "Map", c) || "";
         var d = Blockly.Python.valueToCode(a, "Series", c) || "";
-        if (b =="" || d==""){
+        if (b == "" || d == "") {
             return ["", Blockly.Python.ORDER_NONE]
         }
 
-        return [d+".map("+b+")",  Blockly.Python.ORDER_ATOMIC];
+        return [d + ".map(" + b + ")", Blockly.Python.ORDER_ATOMIC];
     };
 
 
-    Blockly.Python['CLR_XGBoost'] = function(a){
+    Blockly.Python['CLR_XGBoost'] = function (a) {
         Blockly.Python.definitions_.XGBClassifier = "from xgboost import XGBClassifier";
         var codeString = ""
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" && 
-            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" && 
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += "XGBClassifier(**"+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += "XGBClassifier(**" + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + ")"
         }
-                if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += "XGBClassifier()"
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" && 
-            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" && 
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" && 
-            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" && 
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                        +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)
-                        +", eval_set = [("+Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE)
-                        +","+Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)
+                + ", eval_set = [(" + Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" && 
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" && 
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return([codeString, Blockly.Python.ORDER_FUNCTION_CALL])
+        return ([codeString, Blockly.Python.ORDER_FUNCTION_CALL])
 
     }
 
-     Blockly.Python['REG_LinearRegression'] = function(a){
+    Blockly.Python['REG_LinearRegression'] = function (a) {
         Blockly.Python.definitions_.LinearRegression = "from sklearn.linear_model import LinearRegression";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("REG_LinearRegression", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
+
         var codeString = ""
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += "Pipeline([('encoding', HandleCatagoricalData('labelEncoding')), ('scaler', StandardScaler()), ('LR', LinearRegression(**"+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+"))])"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += "Pipeline([('encoding', HandleCatagoricalData('labelEncoding')), ('scaler', StandardScaler()), ('LR', LinearRegression(**" + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + "))])"
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-                if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("LR", LinearRegression())])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                        +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)
-                        +", eval_set = [("+Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE)
-                        +","+Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)
+                + ", eval_set = [(" + Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return([codeString, Blockly.Python.ORDER_FUNCTION_CALL])
+        return ([codeString, Blockly.Python.ORDER_FUNCTION_CALL])
 
     }
 
-    Blockly.Python['REG_XGBRegressor'] = function(a){
+    Blockly.Python['REG_XGBRegressor'] = function (a) {
         Blockly.Python.definitions_.XGBRegressor = "from xgboost import XGBRegressor";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("REG_XGBRegressor", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
+
+
         var codeString = ""
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += "Pipeline([('encoding', HandleCatagoricalData('labelEncoding')), ('scaler', StandardScaler()), ('XGB', XGBRegressor(**"+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+"))])"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += "Pipeline([('encoding', HandleCatagoricalData('labelEncoding')), ('scaler', StandardScaler()), ('XGB', XGBRegressor(**" + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + "))])"
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-                if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("XGB", XGBRegressor())])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                        +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)
-                        +", eval_set = [("+Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE)
-                        +","+Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)
+                + ", eval_set = [(" + Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return([codeString, Blockly.Python.ORDER_FUNCTION_CALL])
+        return ([codeString, Blockly.Python.ORDER_FUNCTION_CALL])
 
     }
-        Blockly.Python['CLR_LogisticRegression'] = function(a){
+    Blockly.Python['CLR_LogisticRegression'] = function (a) {
         Blockly.Python.definitions_.LogisticRegression = "from sklearn.linear_model import LogisticRegression";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_LogisticRegression", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
         var codeString = ""
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("LR",LogisticRegression(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+'))])'
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("LR",LogisticRegression(**' + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + '))])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-          if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("LR", LogisticRegression())])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ") # Eval TBD"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
@@ -945,363 +1131,493 @@ var VarData = {};
     }
 
 
-    Blockly.Python['CLR_NaiveBayes'] = function(a){
-        Blockly.Python.definitions_.GaussianNB   = "from sklearn.naive_bayes import GaussianNB";
+    Blockly.Python['CLR_NaiveBayes'] = function (a) {
+        Blockly.Python.definitions_.GaussianNB = "from sklearn.naive_bayes import GaussianNB";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_NaiveBayes", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
+
         var codeString = ""
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("GNB",GaussianNB())])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("GNB",GaussianNB(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+"))])"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("GNB",GaussianNB(**' + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + "))])"
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ") # Eval TBD"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return[codeString, Blockly.Python.ORDER_FUNCTION_CALL]
+        return [codeString, Blockly.Python.ORDER_FUNCTION_CALL]
 
     }
-    Blockly.Python['CLR_KNN'] = function(a){
-        Blockly.Python.definitions_.KNeighborsClassifier   = "from sklearn.neighbors import KNeighborsClassifier";
+    Blockly.Python['CLR_KNN'] = function (a) {
+        Blockly.Python.definitions_.KNeighborsClassifier = "from sklearn.neighbors import KNeighborsClassifier";
+
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_KNN", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
+
         var codeString = ""
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("KNN",KNeighborsClassifier())])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("KNN",KNeighborsClassifier(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) +"))])"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("KNN",KNeighborsClassifier(**' + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + "))])"
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ") # Eval TBD"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return[codeString, Blockly.Python.ORDER_FUNCTION_CALL]
+        return [codeString, Blockly.Python.ORDER_FUNCTION_CALL]
 
     }
-    Blockly.Python['CLR_DecisionTree'] = function(a){
-        Blockly.Python.definitions_.tree   = "from sklearn import tree";
+    Blockly.Python['CLR_DecisionTree'] = function (a) {
+        Blockly.Python.definitions_.tree = "from sklearn import tree";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_DecisionTree", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
+
+
         var codeString = ""
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("Dtree",tree.DecisionTreeClassifier(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+"))])"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("Dtree",tree.DecisionTreeClassifier(**' + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + "))])"
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-         if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("Dtree",tree.DecisionTreeClassifier())])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
             Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ") # Eval TBD"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return[codeString, Blockly.Python.ORDER_FUNCTION_CALL]
+        return [codeString, Blockly.Python.ORDER_FUNCTION_CALL]
 
     }
-    Blockly.Python['CLR_SVM'] = function(a){
-        Blockly.Python.definitions_.SVC   = "from sklearn.svm import SVC";
+    Blockly.Python['CLR_SVM'] = function (a) {
+        Blockly.Python.definitions_.SVC = "from sklearn.svm import SVC";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_SVM", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
+
         var codeString = ""
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("SVC", SVC(gamma="auto"))])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
-            Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-           codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("SVC", SVC(gamma="auto"))])'
-           Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
-           Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("SVC", SVC(gamma="auto"))])'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ") # Eval TBD"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return[codeString, Blockly.Python.ORDER_FUNCTION_CALL]
+        return [codeString, Blockly.Python.ORDER_FUNCTION_CALL]
 
     }
 
-    Blockly.Python['CLR_RandomForest'] = function(a){
-        Blockly.Python.definitions_.RandomForestClassifier   = "from sklearn.ensemble import RandomForestClassifier";
+    Blockly.Python['CLR_RandomForest'] = function (a) {
+        Blockly.Python.definitions_.RandomForestClassifier = "from sklearn.ensemble import RandomForestClassifier";
+
+        var HandleCatagoricalData = Blockly.Python.provideFunction_("CLR_RandomForest", [
+            'class HandleCatagoricalData():\n' +
+            '   def __init__(self,method="labelEncoding",factor=0):\n' +
+            '       self.method = method\n' +
+            '       self.factor = factor\n' +
+            '   def fit(self, X, y):\n' +
+            '       if self.method == "labelEncoding":\n' +
+            '         X = pd.DataFrame(data=X)\n' +
+            '         y = pd.DataFrame(data=y)\n' +
+            '         self.LE = LabelEncoder()\n' +
+            '         for column in X:\n' +
+            '           if X[column].dtype == np.object:\n' +
+            '             X[column]=X[column].astype("category")\n' +
+            '           if X[column].dtype.name == "category":\n' +
+            '             X[column] = self.LE.fit_transform(X[column])\n' +
+            '         X = X.to_numpy()\n' +
+            '         y = y.to_numpy()\n' +
+            '         return self\n' +
+            '   def transform(self, X):\n' +
+            '       X = pd.DataFrame(data=X)\n' +
+            '       for column in X:\n' +
+            '         if X[column].dtype == np.object:\n' +
+            '           X[column]=X[column].astype("category")\n' +
+            '         if X[column].dtype.name == "category":\n' +
+            '           X[column] = self.LE.fit_transform(X[column])\n' +
+            '       X = X.to_numpy()\n' +
+            '       return X\n'
+        ])
+
         var codeString = ""
 
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("RFC", RandomForestClassifier())])'
             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
-            Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-             codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("RFC", RandomForestClassifier(**'+Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE)+')'
-             Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
-            Blockly.Python.definitions_.StandardScaler   =  "from sklearn.preprocessing import StandardScaler"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += 'Pipeline([("encoding", HandleCatagoricalData("labelEncoding")), ("scaler", StandardScaler()), ("RFC", RandomForestClassifier(**' + Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) + ')'
+            Blockly.Python.definitions_.pipeline = "from sklearn.pipeline import Pipeline"
+            Blockly.Python.definitions_.StandardScaler = "from sklearn.preprocessing import StandardScaler"
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+")"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
             Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) != "" &&
             Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) != "" &&
-            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "" )
-        {
-            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)+".fit("+Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
-                            +","+Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE)+") # Eval TBD"
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) != "") {
+            codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) + ".fit(" + Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE)
+                + "," + Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) + ") # Eval TBD"
 
 
         }
-        if(Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
-        Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
-        Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "" )
-        {
+        if (Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) != "" &&
+            Blockly.Python.valueToCode(a, "PARAMS", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YTRAIN", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "XVALID", Blockly.Python.ORDER_NONE) == "" &&
+            Blockly.Python.valueToCode(a, "YVALID", Blockly.Python.ORDER_NONE) == "") {
             codeString += Blockly.Python.valueToCode(a, "TMODEL", Blockly.Python.ORDER_NONE)
-            +".predict("
-            +Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE)+")"
+                + ".predict("
+                + Blockly.Python.valueToCode(a, "XTEST", Blockly.Python.ORDER_NONE) + ")"
 
 
         }
-        return[codeString, Blockly.Python.ORDER_FUNCTION_CALL]
+
+
+
+        return [codeString, Blockly.Python.ORDER_FUNCTION_CALL]
 
     }
 
@@ -1318,12 +1634,12 @@ var VarData = {};
     };
     Blockly.Python.math_arithmetic = function (a) {
         var b = {
-                ADD: [" + ", Blockly.Python.ORDER_ADDITIVE],
-                MINUS: [" - ", Blockly.Python.ORDER_ADDITIVE],
-                MULTIPLY: [" * ", Blockly.Python.ORDER_MULTIPLICATIVE],
-                DIVIDE: [" / ", Blockly.Python.ORDER_MULTIPLICATIVE],
-                POWER: [" ** ", Blockly.Python.ORDER_EXPONENTIATION],
-            }[a.getFieldValue("OP")],
+            ADD: [" + ", Blockly.Python.ORDER_ADDITIVE],
+            MINUS: [" - ", Blockly.Python.ORDER_ADDITIVE],
+            MULTIPLY: [" * ", Blockly.Python.ORDER_MULTIPLICATIVE],
+            DIVIDE: [" / ", Blockly.Python.ORDER_MULTIPLICATIVE],
+            POWER: [" ** ", Blockly.Python.ORDER_EXPONENTIATION],
+        }[a.getFieldValue("OP")],
             c = b[0];
         b = b[1];
         var d = Blockly.Python.valueToCode(a, "A", b) || "0";
@@ -1432,9 +1748,9 @@ var VarData = {};
                         "      return False",
                         "  return True",
                     ]) +
-                        "(" +
-                        b +
-                        ")",
+                    "(" +
+                    b +
+                    ")",
                     Blockly.Python.ORDER_FUNCTION_CALL,
                 ]
             );
@@ -1768,16 +2084,18 @@ var VarData = {};
     Blockly.Python.variables_set = function (a) {
 
         var b = Blockly.Python.valueToCode(a, "VALUE", Blockly.Python.ORDER_NONE) || "0";
+        if (a.getInputTargetBlock() != null){
 
-        if(a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame"){
-            VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
+            if (a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame") {
+                VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
+            }
+    
         }
-
         return Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME) + " = " + b + "\n";
     };
     Blockly.Python.variablesDynamic = {};
     Blockly.Python.variables_get_dynamic = Blockly.Python.variables_get;
     Blockly.Python.variables_set_dynamic = Blockly.Python.variables_set;
     return Blockly.Python;
-    
+
 });

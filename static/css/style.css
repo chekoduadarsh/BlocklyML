@@ -1,24 +1,23 @@
-html, body {
+html,
+body {
     height: 100%;
-  }
-  
-  body {
-    background-color: #fff;
+}
+
+body {
+    background-color: #f8f9fa;
     font-family: sans-serif;
     margin: 0;
     overflow: hidden;
-  }
-  
-  .farSide {
-    text-align: right;
-  }
-  
-  html[dir="RTL"] .farSide {
+}
+
+html[dir="RTL"] .farSide {
     text-align: left;
-  }
-  
-  /* Buttons */
-  button {
+}
+
+
+/* Buttons */
+
+button {
     margin: 5px;
     padding: 10px;
     border-radius: 4px;
@@ -26,69 +25,85 @@ html, body {
     font-size: large;
     background-color: #eee;
     color: #000;
-  }
-  button.primary {
+}
+
+button.primary {
     border: 1px solid #dd4b39;
     background-color: #dd4b39;
     color: #fff;
-  }
-  button.primary>img {
+}
+
+button.primary>img {
     opacity: 1;
-  }
-  button>img {
+}
+
+button>img {
     opacity: 0.6;
     vertical-align: text-bottom;
-  }
-  button:hover>img {
+}
+
+button:hover>img {
     opacity: 1;
-  }
-  button:active {
+}
+
+button:active {
     border: 1px solid #888 !important;
-  }
-  button:hover {
+}
+
+button:hover {
     box-shadow: 2px 2px 5px #888;
-  }
-  button.disabled:hover>img {
+}
+
+button.disabled:hover>img {
     opacity: 0.6;
-  }
-  button.disabled {
+}
+
+button.disabled {
     display: none;
-  }
-  button.notext {
+}
+
+button.notext {
     font-size: 10%;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-weight: normal;
     font-size: 140%;
     margin-left: 5px;
     margin-right: 5px;
-  }
-  
-  /* Tabs */
-  #tabRow>td {
+}
+
+
+/* Tabs */
+
+#tabRow>td {
     border: 1px solid #ccc;
     border-bottom: none;
-  }
-  td.tabon {
+}
+
+td.tabon {
     border-bottom-color: #ddd !important;
     background-color: #ddd;
     padding: 5px 19px;
     white-space: nowrap;
-  }
-  td.taboff {
+}
+
+td.taboff {
     cursor: pointer;
     padding: 5px 19px;
-  }
-  td.taboff:hover {
+}
+
+td.taboff:hover {
     background-color: #eee;
-  }
-  td.tabmin {
+}
+
+td.tabmin {
     border-top-style: none !important;
     border-left-style: none !important;
     border-right-style: none !important;
-  }
-  td.tabmax {
+}
+
+td.tabmax {
     border-top-style: none !important;
     border-left-style: none !important;
     border-right-style: none !important;
@@ -96,129 +111,416 @@ html, body {
     padding-left: 10px;
     padding-right: 10px;
     text-align: right;
-  }
-  html[dir=rtl] td.tabmax {
+}
+
+html[dir=rtl] td.tabmax {
     text-align: left;
-  }
-  #tab_code {
+}
+
+#tab_code {
     display: none;
-  }
-  
-  table {
+}
+
+table {
     border-collapse: collapse;
     margin: 0;
     padding: 0;
     border: none;
-  }
-  td {
+}
+
+td {
     padding: 0;
     vertical-align: top;
-  }
-  .content {
+}
+
+.content {
     visibility: hidden;
     margin: 0;
     padding: 1ex;
     position: absolute;
     direction: ltr;
-  }
-  pre.content {
+}
+
+code.content {
     border: 1px solid #ccc;
     overflow: scroll;
-  }
-  #content_blocks {
+}
+
+#content_blocks {
     padding: 0;
-  }
-  .blocklySvg {
+}
+
+.blocklySvg {
     border-top: none !important;
     background-color: #888;
-  }
-  #content_xml {
+}
+
+#content_xml {
     resize: none;
     outline: none;
     border: 1px solid #ccc;
     font-family: monospace;
     overflow: scroll;
-  }
-  #languageMenu {
+}
+
+#languageMenu {
     vertical-align: top;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 15px;
-  }
-  
-  /* Buttons */
-  button {
+}
+
+
+/* Buttons */
+
+button {
     padding: 1px 10px;
     margin: 1px 5px;
-  }
-  
-  /* Sprited icons. */
-  .icon21 {
+}
+
+
+/* Sprited icons. */
+
+.icon21 {
     height: 21px;
     width: 21px;
     background-image: url(icons.png);
-  }
-  .icon {
+}
+
+.icon {
     height: 21px;
     width: 21px;
-  }
-  .upload-btn-wrapper {
-  position: relative;
-  display: inline-block;
 }
+
+.upload-btn-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
 .upload-btn-wrapper input[type=file] {
-  border: none;
+    border: none;
     height: 100%;
     width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }
-  .trash {
+
+.trash {
     background-position: 0px 0px;
-  }
-  .link {
+}
+
+.link {
     background-position: -21px 0px;
-  }
-  .run {
+}
+
+.run {
     background-position: -42px 0px;
-  }
-  
-  @media (max-width: 710px) {
+}
+
+@media (max-width: 710px) {
     .tab_collapse {
-      display: none;
+        display: none;
     }
     #tab_code {
-      display: table-cell;
+        display: table-cell;
     }
-  }
-  
-  /* Privacy link */
-  .privacyLink {
+}
+
+
+/* Privacy link */
+
+.privacyLink {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-size: small;
     text-decoration: none;
-  }
-  
+}
 
-  /**/
 
-  
+/**/
+
 .dropdown-submenu {
-  position: relative;
+    position: relative;
 }
 
 .dropdown-submenu a::after {
-  transform: rotate(-90deg);
-  position: absolute;
-  right: 6px;
-  top: .8em;
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
 }
 
 .dropdown-submenu .dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-left: .1rem;
-  margin-right: .1rem;
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* The popup form - hidden by default */
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 25%;
+    right: 20%;
+    height: 50%;
+    width: 50%;
+    z-index: 100000;
+    /* big value for bootstrap3 compatibility */
+    text-align: left;
+    box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
+    /* dark around it */
+}
+
+.form-popup h1 {
+    color: black;
+    font-weight: normal;
+    text-align: center;
+}
+
+.form-popup hr {
+    border-top: 2px solid green;
+}
+
+.form-container label {
+    color: black;
+    font-weight: normal;
+    width: 150px;
+    text-align: center;
+}
+
+
+/* Add styles to the form container */
+
+.form-container {
+    padding: 10px;
+    background-color: white;
+}
+
+
+/* Full-width input fields */
+
+.form-container input[type=text],
+.form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+
+/* When the inputs get focus, do something */
+
+.form-container input[type=text]:focus,
+.form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+
+/* Set a style for the submit/login button */
+
+.form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+
+/* Add a red background color to the cancel button */
+
+.form-container .cancel {
+    background-color: red;
+}
+
+
+/* Add some hover effects to buttons */
+
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+.drop-zone {
+    max-width: 100%;
+    height: 300px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    border-radius: 10px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.tool-tip-popup {
+    position: fixed;
+    top: 10%;
+    bottom: 10%;
+    right: 25%;
+    overflow-y: scroll;
+    z-index: 100000;
+    /* big value for bootstrap3 compatibility */
+    text-align: left;
+    box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
+    /* dark around it */
+    background-color: #2f0743; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #41295a, #2f0743);
+}
+
+
+.tool-tip-popup h2 {
+    color: white;
+    font-weight: normal;
+    text-align: center;
+}
+
+
+.tool-tip-popup h4 {
+    color: white;
+}
+
+
+.tool-tip-close {
+    display: block;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: red;
+    border-radius: 100%;
+    background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%, white 56%, transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%, white 56%, transparent 56%, transparent 100%);
+    background-color: red;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    float: right;
+}
+
+.tool-tip-upload-page {
+  
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 55%;
+    width: 55%;
+}
+
+.tool-tip-popup P {
+    
+    color: white;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.tool-tip-github-button {
+    float: right;
+    bottom: 15%;
+    right: 20%;
+    height: 10%;
+    width: 30%;
+}
+
+.download-code-popup{
+    display: none;
+    position: fixed;
+    top: 30%;
+    bottom: 40%;
+    right: 35%;
+    left:35%;
+    overflow-y: scroll;
+    z-index: 100000;
+    /* big value for bootstrap3 compatibility */
+    text-align: left;
+    box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
+    /* dark around it */
+    background-color: #2f0743; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #41295a, #2f0743);
+}
+
+
+.download-code-close{
+    display: block;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: red;
+    border-radius: 100%;
+    background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%, white 56%, transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%, white 56%, transparent 56%, transparent 100%);
+    background-color: red;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    float: right;
+}
+.download-code-popup h2 {
+    color: white;
+    font-weight: normal;
+    text-align: center;
+}
+
+.download-code-button{  
+    text-align: center;  
+}
+.download-code-form{  
+    text-align: center;  
+}
+
+.download-code-popup h4 {
+    color: white;
+}
+.download-code-popup .btn {
+    margin: auto;  
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+
+/* Add some hover effects to buttons */
+
+.download-code-popup .btn:hover,
+.open-button:hover {
+    opacity: 1;
 }

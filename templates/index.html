@@ -1,579 +1,706 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google" value="notranslate">
-  <title>BlocklyML</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" value="notranslate">
+    <title>BlocklyML</title>
 
-  <script src="{{ url_for('static', filename='js/blockly_ML.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/blocks_ML.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/javascript_compressed.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/python_ML.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/dist/msg/en.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/screenshot.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/blockly.js') }}"></script>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"/>
-  <script src="{{ url_for('static', filename='/js/msg/js/en.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/blockly_ML.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/blocks_ML.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/javascript_compressed.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/python_ML.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dist/msg/en.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/screenshot.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/blockly.js') }}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+    <script src="{{ url_for('static', filename='/js/msg/js/en.js')}}"></script>
+    <script src="http://pypyjs.org/pypyjs-release/lib/Promise.min.js"></script>
+    <script src="http://pypyjs.org/pypyjs-release/lib/FunctionPromise.js"></script>
+    <script src="http://pypyjs.org/pypyjs-release/lib/pypyjs.js"></script>
 
-  <script src="http://pypyjs.org/pypyjs-release/lib/Promise.min.js"></script>
-  <script src="http://pypyjs.org/pypyjs-release/lib/FunctionPromise.js"></script>
-  <script src="http://pypyjs.org/pypyjs-release/lib/pypyjs.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-  <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-  <script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<body onclick="CloseAllNav()">
 
-  <nav class="navbar navbar-expand-lg  navbar-expand-sm  navbar-expand-md  navbar-expand-xl navbar-light bg-light">
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <img src="{{ url_for('static', filename='images/blocklyML_logo.png') }}" height=30 width="130">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+<body onclick="CloseAllNav()" id="body">
 
-     <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" h  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
-            View
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">View DataFrames</a>
-              <ul class="dropdown-menu DataFrameViewer" >
-                <div class="DataFrameViewer" id="DataFrameViewer">
-                  <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
-                  </li>
-                </div>
-              </ul>
-            </li>
-            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">View DataFrame Report</a>
-              <ul class="dropdown-menu DataFrameReportViewer" >
-                <div class="DataFrameReportViewer" id="DataFrameReportViewer">
-                  <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
-                </div>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getDataDownload()">
+    <nav class="navbar navbar-expand-lg  navbar-expand-sm  navbar-expand-md  navbar-expand-xl navbar-light bg-light nav-colors">
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <img src="{{ url_for('static', filename='images/blocklyML_logo.png') }}" height=40 width="130"> &nbsp; &nbsp;
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" h data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
+                      File
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">View DataFrames</a>
+                            <ul class="dropdown-menu DataFrameViewer">
+                                <div class="DataFrameViewer" id="DataFrameViewer">
+                                    <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">View DataFrame
+                Report</a>
+                            <ul class="dropdown-menu DataFrameReportViewer">
+                                <div class="DataFrameReportViewer" id="DataFrameReportViewer">
+                                    <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getDataDownload()">
             Download
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" onclick="downloadPy()">Download .py</a></li>
-            <li><a class="dropdown-item" onclick="downloadIpynb()">Download .ipynb</a></li>
-            <li><a class="dropdown-item" onclick="blockly.DownloadCode()">Download .xml</a></li>
-            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Download DataFrames</a>
-              <ul class="dropdown-menu DataFrameViewer" >
-                <div class="DataFrameDownload" id="DataFrameDownload">
-                  <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
-                  </li>
-                </div>
-              </ul>
-            </li>
-            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReportDownload()">Download DataFrame Report</a>
-              <ul class="dropdown-menu DataFrameReportViewer" >
-                <div class="DataFrameReportDownload" id="DataFrameReportDownload">
-                  <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
-                </div>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        
+                        <li><a class="dropdown-item" onclick="downloadView()">Download Code</a></li>
+                        <li><a class="dropdown-item" onclick="blockly.DownloadCode()">Download layout</a></li>
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Download DataFrames</a>
+                            <ul class="dropdown-menu DataFrameViewer">
+                                <div class="DataFrameDownload" id="DataFrameDownload">
+                                    <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReportDownload()">Download
+                DataFrame Report</a>
+                            <ul class="dropdown-menu DataFrameReportViewer">
+                                <div class="DataFrameReportDownload" id="DataFrameReportDownload">
+                                    <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="CloseAllNav()">
             About
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank" rel="noopener noreferrer">About me</a></li>
-          </ul>
-        </li>
-      </ul>
-      <select id="languageMenu"></select>
-    </div>
-  </nav>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://github.com/chekoduadarsh/BlocklyML/blob/main/README.md" target="_blank" rel="noopener noreferrer">About BlocklyML</a></li>
+                        <li><a class="dropdown-item" href="https://chekoduadarsh.github.io/" target="_blank" rel="noopener noreferrer">About me</a></li>
+                        <li><a class="dropdown-item" href="mailto:chekodu.adarsh@gmail.com" target="_blank" rel="noopener noreferrer">Contact me</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="https://github.com/chekoduadarsh/BlocklyML" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="48px" height="48px"></a>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+            <select id="languageMenu"></select>
+        </div>
+    </nav>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
 
-  <table width="100%" height="95%">
-    <tr>
-      <td colspan=2>
-        <table width="100%">
-          <tr id="tabRow" height="1em">
-            <td id="tab_blocks" class="tabon">...</td>
-            <td class="tabmin tab_collapse">&nbsp;</td>
+    <table width="100%" height="95%">
+        <tr>
+            <td colspan=2>
+                <table width="100%">
+                    <tr id="tabRow" height="1em">
+                        <td id="tab_blocks" class="tabon">...</td>
+                        <td class="tabmin tab_collapse">&nbsp;</td>
 
-            <td class="tabmin tab_collapse">&nbsp;</td>
-            <td id="tab_python" class="taboff tab_collapse">Python</td>
-            <td class="tabmin tab_collapse">&nbsp;</td>
+                        <td class="tabmin tab_collapse">&nbsp;</td>
+                        <td id="tab_python" class="taboff tab_collapse">Python</td>
 
-            <td class="tabmin tab_collapse">&nbsp;</td>
-
-            <td class="tabmin tab_collapse">&nbsp;</td>
-
-            <td class="tabmin tab_collapse">&nbsp;</td>
-
-            <td class="tabmin">&nbsp;</td>
-            <td id="tab_code" class="taboff">
-              <select id="code_menu"></select>
-            </td>
-            <td class="tabmax">
-              <button id="downlaodButton" class="notext" title="download layout">
+                        <td id="tab_code" class="taboff">
+                            <select id="code_menu"></select>
+                        </td>
+                        <td class="tabmax">
+                            <button id="downlaodButton" class="notext" title="download layout">
                 <img src='/static/media/download.png' class="icon">
               </button>
-              <div class="upload-btn-wrapper">
-              <button id="uplaodButton" class="notext" title="upload saved layout">
-                <img src='/static/media/upload.png' class="icon">
-              </button>
-              <input type="file" id="file-selector" oninput="blockly.UploadCode()" title="upload saved layout">
-              </div>
-              <button id="copyButton" class="notext" title="copy python code">
+                            <div class="upload-btn-wrapper">
+                                <button id="uplaodButton" onclick="blockly.UploadXml()" class="notext" title="upload saved layout">
+                  <img src='/static/media/upload.png' class="icon">
+                </button>
+                            </div>
+
+                            <div class="form-popup" id="myForm">
+                                <form class="form-container" name="urlForm">
+                                    <h1>Upload</h1>
+
+                                    <div class="drop-zone" id="">
+                                        <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                                        <input type="file" name="myFile" class="drop-zone__input">
+                                    </div>
+                                    </br>
+                                    <hr class="hr1">
+                                    </br>
+                                    <label for="url"><b>Enter Layout Url</b></label>
+                                    <input type="text" placeholder="Enter Url" name="url" required value="https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/sampleLayouts/machine%20learning/Pycaret/Pycaret_RF_IRIS.xml">
+
+
+                                    <button type="button" onclick="blockly.UploadFromUrl()" class="btn">Upload</button>
+                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                </form>
+                            </div>
+                            <div class="download-code-popup" id="download-code-popup">
+                                <a href="#" class="download-code-close" onclick=closeDownloadCode()></a>
+                                <h2>Download Code 💾</h2>
+                                
+                                </br>
+                                </br>
+
+                                <div class="download-code-form" id="download-code-form">
+
+                                    <input type="text" id="download-code-fname" name="fname">
+                                    <select id="download-code-extention" name="extention">
+                                        <option value=".py">.py</option>
+                                        <option value=".ipynb">.ipynb</option>
+                                    </select>
+                                    </br>
+                                    </br>
+                                    <div class="download-code-button" id="download-code-button">
+                                        <button type="button" class="btn" onclick=downloadPyIpynbCode()>Download</button>
+                                    </div>
+                            
+                                </div>
+                            </div>
+                            <div class="tool-tip-popup" id="tip-popup">
+                                <a href="#" class="tool-tip-close" onclick=closeToolTip()></a>
+                                <h2>Tool Tip 💡</h2>
+                                <h4>How to upload layouts? </h4>
+                                </br>
+                                </br>
+                                <div class="tool-tip-github-button">
+                                    </br>
+                                    </br>
+                                    <a class="github-button" href="https://github.com/chekoduadarsh" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" data-show-count="true" aria-label="Follow @chekoduadarsh on GitHub">Follow @chekoduadarsh</a>
+                                    </br>
+                                    <a class="github-button" href="https://github.com/chekoduadarsh/BlocklyML" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star chekoduadarsh/BlocklyML on GitHub">Star</a>
+                                    </br>
+                                    <a class="github-button" href="https://github.com/chekoduadarsh/BlocklyML/archive/refs/heads/main.zip" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-download" data-size="large" aria-label="Download ntkme/github-buttons on GitHub">Download</a>
+                                </div>
+                                <p>
+                                    1. Click on <img src='/static/media/upload.png' class="icon"> upload button </br>
+                                    </br>
+                                    <img src='https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_upload.png' class="tool-tip-upload-page" >
+                                    </br>
+                                    2. Edit the Url to downloadable xml link / Or drop you xml to drop in zone</br>
+                                    3. Click on Upload button </br>
+                                    </br>
+                                    <b>Pro Tip: </b> You can use the default url to setup Pycaret Classifier on Iris data</br>
+                                </p>
+                            </div>
+
+                            <button id="copyButton" class="notext" title="copy python code">
                 <img src='/static/media/copy.png' class="icon">
               </button>
-              <button id="colabButton" class="notext" title="launch google colab">
+                            <button id="colabButton" class="notext" title="launch google colab">
                 <img src='/static/media/colab_favicon.ico' class="icon">
               </button>
-              <button id="trashButton" class="notext" title="...">
+                            <button id="trashButton" class="notext" title="...">
                 <img src='/static/media/1x1.gif' class="trash icon21">
               </button>
 
-              <button id="linkButton" class="notext" title="...">
+                            <button id="linkButton" class="notext" title="...">
                 <img src='/static/media/1x1.gif' class="link icon21">
               </button>
-              <button id="runButton" class="notext primary" title="...">
+                            <button id="runButton" class="notext primary" title="..." disabled>
                 <img src='/static/media/1x1.gif' class="run icon21">
               </button>
+                        </td>
+                    </tr>
+                </table>
             </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td height="99%" colspan=2 id="content_area">
-      </td>
-    </tr>
-  </table>
-  <div id="content_blocks" class="content"></div>
-  <pre id="content_python" class="content prettyprint lang-py"></pre>
-  <xml  id="toolbox" >
-    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
-      <block type="controls_if"></block>
-      <block type="logic_compare"></block>
-      <block type="logic_operation"></block>
-      <block type="logic_negate"></block>
-      <block type="logic_boolean"></block>
-      <block type="logic_null"></block>
-      <block type="logic_ternary"></block>
-    </category>
-    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
-      <block type="controls_repeat_ext">
-        <value name="TIMES">
-          <shadow type="math_number">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="controls_whileUntil"></block>
-      <block type="controls_for">
-        <value name="FROM">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-        <value name="TO">
-          <shadow type="math_number">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
-        <value name="BY">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="controls_forEach"></block>
-      <block type="controls_flow_statements"></block>
-    </category>
-    <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
-      <block type="math_number">
-        <field name="NUM">123</field>
-      </block>
-      <block type="math_arithmetic">
-        <value name="A">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-        <value name="B">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_single">
-        <value name="NUM">
-          <shadow type="math_number">
-            <field name="NUM">9</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_trig">
-        <value name="NUM">
-          <shadow type="math_number">
-            <field name="NUM">45</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_constant"></block>
-      <block type="math_number_property">
-        <value name="NUMBER_TO_CHECK">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_round">
-        <value name="NUM">
-          <shadow type="math_number">
-            <field name="NUM">3.1</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_on_list"></block>
-      <block type="math_modulo">
-        <value name="DIVIDEND">
-          <shadow type="math_number">
-            <field name="NUM">64</field>
-          </shadow>
-        </value>
-        <value name="DIVISOR">
-          <shadow type="math_number">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_constrain">
-        <value name="VALUE">
-          <shadow type="math_number">
-            <field name="NUM">50</field>
-          </shadow>
-        </value>
-        <value name="LOW">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-        <value name="HIGH">
-          <shadow type="math_number">
-            <field name="NUM">100</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_random_int">
-        <value name="FROM">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-        <value name="TO">
-          <shadow type="math_number">
-            <field name="NUM">100</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_random_float"></block>
-      <block type="math_atan2">
-        <value name="X">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-        <value name="Y">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-      </block>
-    </category>
-    <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">
-      <block type="text"></block>
-      <block type="text_join"></block>
-      <block type="text_append">
-        <value name="TEXT">
-          <shadow type="text"></shadow>
-        </value>
-      </block>
-      <block type="text_length">
-        <value name="VALUE">
-          <shadow type="text">
-            <field name="TEXT">abxc</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="text_isEmpty">
-        <value name="VALUE">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="text_indexOf">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR">{textVariable}</field>
-          </block>
-        </value>
-        <value name="FIND">
-          <shadow type="text">
-            <field name="TEXT">abc</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="text_charAt">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR">{textVariable}</field>
-          </block>
-        </value>
-      </block>
-      <block type="text_getSubstring">
-        <value name="STRING">
-          <block type="variables_get">
-            <field name="VAR">{textVariable}</field>
-          </block>
-        </value>
-      </block>
-      <block type="text_changeCase">
-        <value name="TEXT">
-          <shadow type="text">
-            <field name="TEXT">abc</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="text_trim">
-        <value name="TEXT">
-          <shadow type="text">
-            <field name="TEXT">abc</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="text_print">
-        <value name="TEXT">
-          <shadow type="text">
-            <field name="TEXT">abc</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="text_prompt_ext">
-        <value name="TEXT">
-          <shadow type="text">
-            <field name="TEXT">abc</field>
-          </shadow>
-        </value>
-      </block>
-    </category>
-    <category name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
-      <block type="lists_create_with">
-        <mutation items="0"></mutation>
-      </block>
-      <block type="lists_create_with"></block>
-      <block type="lists_repeat">
-        <value name="NUM">
-          <shadow type="math_number">
-            <field name="NUM">5</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="lists_length"></block>
-      <block type="lists_isEmpty"></block>
-      <block type="lists_indexOf">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR">{listVariable}</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_getIndex">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR">{listVariable}</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_setIndex">
-        <value name="LIST">
-          <block type="variables_get">
-            <field name="VAR">{listVariable}</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_getSublist">
-        <value name="LIST">
-          <block type="variables_get">
-            <field name="VAR">{listVariable}</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_split">
-        <value name="DELIM">
-          <shadow type="text">
-            <field name="TEXT">,</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="lists_sort"></block>
-    </category>
-    <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">
-      <block type="colour_picker"></block>
-      <block type="colour_random"></block>
-      <block type="colour_rgb">
-        <value name="RED">
-          <shadow type="math_number">
-            <field name="NUM">100</field>
-          </shadow>
-        </value>
-        <value name="GREEN">
-          <shadow type="math_number">
-            <field name="NUM">50</field>
-          </shadow>
-        </value>
-        <value name="BLUE">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="colour_blend">
-        <value name="COLOUR1">
-          <shadow type="colour_picker">
-            <field name="COLOUR">#ff0000</field>
-          </shadow>
-        </value>
-        <value name="COLOUR2">
-          <shadow type="colour_picker">
-            <field name="COLOUR">#3333ff</field>
-          </shadow>
-        </value>
-        <value name="RATIO">
-          <shadow type="math_number">
-            <field name="NUM">0.5</field>
-          </shadow>
-        </value>
-      </block>
-    </category>
+        </tr>
+        <tr>
+            <td height="99%" colspan=2 id="content_area">
+            </td>
+        </tr>
+    </table>
+
+
+    <div id="content_blocks" class="content"></div>
+
+    <pre><code id="content_python" class="language-python content prettyprint lang-py" ></code></pre>
+
+    <xml id="toolbox">
+        <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_negate"></block>
+            <block type="logic_boolean"></block>
+            <block type="logic_null"></block>
+            <block type="logic_ternary"></block>
+        </category>
+        <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
+            <block type="controls_repeat_ext">
+                <value name="TIMES">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="controls_whileUntil"></block>
+            <block type="controls_for">
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+                <value name="BY">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="controls_forEach"></block>
+            <block type="controls_flow_statements"></block>
+        </category>
+        <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
+            <block type="math_number">
+                <field name="NUM">123</field>
+            </block>
+            <block type="math_arithmetic">
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_single">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">9</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_trig">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">45</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_constant"></block>
+            <block type="math_number_property">
+                <value name="NUMBER_TO_CHECK">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_round">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">3.1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_on_list"></block>
+            <block type="math_modulo">
+                <value name="DIVIDEND">
+                    <shadow type="math_number">
+                        <field name="NUM">64</field>
+                    </shadow>
+                </value>
+                <value name="DIVISOR">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_constrain">
+                <value name="VALUE">
+                    <shadow type="math_number">
+                        <field name="NUM">50</field>
+                    </shadow>
+                </value>
+                <value name="LOW">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="HIGH">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_random_int">
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_random_float"></block>
+            <block type="math_atan2">
+                <value name="X">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="Y">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">
+            <block type="text"></block>
+            <block type="text_join"></block>
+            <block type="text_append">
+                <value name="TEXT">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <block type="text_length">
+                <value name="VALUE">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_isEmpty">
+                <value name="VALUE">
+                    <shadow type="text">
+                        <field name="TEXT"></field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_indexOf">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">{textVariable}</field>
+                    </block>
+                </value>
+                <value name="FIND">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_charAt">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">{textVariable}</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_getSubstring">
+                <value name="STRING">
+                    <block type="variables_get">
+                        <field name="VAR">{textVariable}</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_changeCase">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_trim">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_prompt_ext">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <category name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
+            <block type="lists_create_with">
+                <mutation items="0"></mutation>
+            </block>
+            <block type="lists_create_with"></block>
+            <block type="lists_repeat">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_length"></block>
+            <block type="lists_isEmpty"></block>
+            <block type="lists_indexOf">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">{listVariable}</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_getIndex">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">{listVariable}</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_setIndex">
+                <value name="LIST">
+                    <block type="variables_get">
+                        <field name="VAR">{listVariable}</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_getSublist">
+                <value name="LIST">
+                    <block type="variables_get">
+                        <field name="VAR">{listVariable}</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_split">
+                <value name="DELIM">
+                    <shadow type="text">
+                        <field name="TEXT">,</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_sort"></block>
+        </category>
+        <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">
+            <block type="colour_picker"></block>
+            <block type="colour_random"></block>
+            <block type="colour_rgb">
+                <value name="RED">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+                <value name="GREEN">
+                    <shadow type="math_number">
+                        <field name="NUM">50</field>
+                    </shadow>
+                </value>
+                <value name="BLUE">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="colour_blend">
+                <value name="COLOUR1">
+                    <shadow type="colour_picker">
+                        <field name="COLOUR">#ff0000</field>
+                    </shadow>
+                </value>
+                <value name="COLOUR2">
+                    <shadow type="colour_picker">
+                        <field name="COLOUR">#3333ff</field>
+                    </shadow>
+                </value>
+                <value name="RATIO">
+                    <shadow type="math_number">
+                        <field name="NUM">0.5</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
 
 
 
-     <category name="Input/Output" colour="%{BKY_LISTS_HUE}">
+        <category name="Input/Output" colour="%{BKY_LISTS_HUE}">
 
-    <block type = "Print">
-      <field name="Print">Print</field>
-    </block>
-    <block type = "Input">
-      <field name="Input">Input</field>
-    </block>
+            <block type="Print">
+                <field name="Print">Print</field>
+            </block>
+            <block type="Input">
+                <field name="Input">Input</field>
+            </block>
 
-    </category>
-    <sep></sep>
+        </category>
+        <sep></sep>
 
 
-  <category name=DataFrame colour="%{BKY_TEXTS_HUE}">
+        <category name=DataFrame colour="%{BKY_TEXTS_HUE}">
 
-  <block type = "pandas_read_csv">
-      <field type= "pandas.read_csv">Read DataFrame</field>
-  </block>
-  <block type = "pandas_select_columns">
-    <field type= "pandas_select_columns">DataFrame getColumns</field>
-  </block>
-      </block>
-         <block type = "pandas_set_columns">
-        <field type= "pandas.setcolumns">DataFrame setCoulmns</field>
-    </block>
-      </block>
-         <block type = "dataframe_Filter">
-        <field type= "pandas.filter">DataFrame Filter</field>
-    </block>
+            <block type="pandas_read_csv">
+                <field type="pandas.read_csv">Read DataFrame</field>
+            </block>
+            <block type="pandas_select_columns">
+                <field type="pandas_select_columns">Select DataFrame Column</field>
+            </block>
 
-      </block>
-         <block type = "dataframe_Map">
-        <field type= "dataframe_Map">DataFrame Map</field>
-    </block>
-    <block type = "skl_train_test_split">
-        <field type= "skl_train_test_split">Train Test split</field>
-    </block>
+            <block type="pandas_set_columns">
+                <field type="pandas_set_columns">Add Column to DataFrame</field>
+            </block>
 
-    <block type = "Classification_Report">
-        <field type= "Classification_Report">Generate Classification Report</field>
-    </block>
-    <block type = "R2_Report">
-        <field type= "R2_Report">Generate Regression Report</field>
-    </block>
+            <block type="pandas_drop_columns">
+                <field type="pandas_drop_columns">Dataframe Drop Columns </field>
+            </block>
+            <block type="pandas_sample">
+                <field type="pandas_sample">Dataframe Sampling</field>
+            </block>
+            <block type="dataframe_Filter">
+                <field type="pandas.filter">DataFrame Filter</field>
+            </block>
+            <block type="dataframe_Map">
+                <field type="dataframe_Map">DataFrame Map</field>
+            </block>
+            <block type="skl_train_test_split">
+                <field type="skl_train_test_split">Train Test split</field>
+                <value name="TESTSIZE">
+                    <shadow type="math_number">
+                        <field name="NUM">0.2</field>
+                    </shadow>
+                </value>
 
-    </category>
+            </block>
 
-    <category name="ML Classification Algorithms" colour="%{BKY_LOGIC_HUE}">
+            <block type="Classification_Report">
+                <field type="Classification_Report">Generate Classification Report</field>
+            </block>
+            <block type="R2_Report">
+                <field type="R2_Report">Generate Regression Report</field>
+            </block>
 
-      <block type = "CLR_LogisticRegression">
-          <field type= "CLR_LogisticRegression">LogisticRegression</field>
-      </block>
-      <block type = "CLR_NaiveBayes">
-          <field type= "CLR_NaiveBayes">Naive Bayes</field>
-      </block>
-      <block type = "CLR_KNN">
-          <field type= "CLR_KNN">K-Nearest Neighbours</field>
-      </block>
-        <block type = "CLR_DecisionTree">
-          <field type= "CLR_DecisionTree">Decision Tree</field>
-      </block>
-      <block type = "CLR_RandomForest">
-          <field type= "CLR_RandomForest">Random Forest</field>
-      </block>
-        <block type = "CLR_SVM">
-          <field type= "CLR_SVM">Support Vector Machine</field>
-      </block>
-      <block type = "CLR_XGBoost">
-          <field type= "CLR_XGBoost">XGBoost</field>
-      </block>
+        </category>
 
-      </category>
-    <category name="ML Regression Algorithms" colour="%{BKY_LOGIC_HUE}">
+        <category name=Datasets colour="%{BKY_LOGIC_HUE}">
 
-      <block type = "REG_LinearRegression">
-          <field type= "REG_LinearRegression">Linear Regression</field>
-        </block>
-      <block type = "REG_XGBRegressor">
-          <field type= "REG_XGBRegressor">XGBRegressor</field>
-        </block>
-    </category>
-  <category name=Datasets colour="%{BKY_LOGIC_HUE}">
+            <block type="seaborn_dataset">
+                <field name="Dataset">iris</field>
+            </block>
 
-    <block type = "seaborn_dataset">
-      <field name="Dataset">iris</field>
-    </block>
+        </category>
+        <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
+            <block type="create_dict">
+            </block>
+            <block type="dict_append">
+            </block>
+        </category>
+        <sep></sep>
 
-  </category>
-  <category name=Dictionary colour="%{BKY_COLOUR_HUE}">
+        <category name="Machine Learning (Pycaret)" colour="%{BKY_COLOUR_HUE}">
+            <block type="pycaret_setup">
+                <value name="input_column">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <block type="pycaret_classifier">
+            </block>
+            <block type="pycaret_regressor">
+            </block>
+            <block type="pycaret_plot_model">
+            </block>
+            <block type="pycaret_automl">
+            </block>
+            <block type="pycaret_blend_model">
+                <value name="input_fold">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="pycaret_ensemble_model">
+                <value name="input_fold">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="pycaret_predict">
+            </block>
+            <block type="pycaret_save">
+            </block>
+            <block type="pycaret_load">
+            </block>
+        </category>
+        <sep></sep>
+        <category name="Classification Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
 
-    <block type = "create_dict">
-      <field name="create_dict">create_dict</field>
-    </block>
+            <block type="CLR_LogisticRegression">
+                <field type="CLR_LogisticRegression">LogisticRegression</field>
+            </block>
+            <block type="CLR_NaiveBayes">
+                <field type="CLR_NaiveBayes">Naive Bayes</field>
+            </block>
+            <block type="CLR_KNN">
+                <field type="CLR_KNN">K-Nearest Neighbours</field>
+            </block>
+            <block type="CLR_DecisionTree">
+                <field type="CLR_DecisionTree">Decision Tree</field>
+            </block>
+            <block type="CLR_RandomForest">
+                <field type="CLR_RandomForest">Random Forest</field>
+            </block>
+            <block type="CLR_SVM">
+                <field type="CLR_SVM">Support Vector Machine</field>
+            </block>
+            <block type="CLR_XGBoost">
+                <field type="CLR_XGBoost">XGBoost</field>
+            </block>
 
-     <block type = "dict_append">
-      <field name="dict_append">create_dict</field>
-    </block>
+        </category>
+        <category name="Regression Models (SKLearn)" colour="%{BKY_LOGIC_HUE}">
 
-     </category>
-    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
-    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"> </category>
-  </xml>
+            <block type="REG_LinearRegression">
+                <field type="REG_LinearRegression">Linear Regression</field>
+            </block>
+            <block type="REG_XGBRegressor">
+                <field type="REG_XGBRegressor">XGBRegressor</field>
+            </block>
+        </category>
+        <sep></sep>
+
+        <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+        <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"> </category>
+    </xml>
 
 </body>
+
 </html>
