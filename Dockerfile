@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-LABEL maintainer="Your Name <youremailaddress@provider.com>"
+LABEL maintainer="Adarsh Chekodu <chekodu.adarsh@gmail.com>"
 RUN apt-get update -y && \
     apt-get install -y python3-pip
 COPY ./requirements.txt /app/requirements.txt
