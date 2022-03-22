@@ -95,7 +95,7 @@ If you find any error or need support please raise a issue. If you think you can
 
 Feel free to adapt it criticize it and support it the way you like!!
 
-Read : [CONTRIBUTING.md](#CONTRIBUTING.md)
+Read : [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 
 # License
