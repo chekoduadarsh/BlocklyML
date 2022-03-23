@@ -102,4 +102,10 @@ Read : <a href="https://github.com/ThioJoe/YT-Spammer-Purge/blob/main/CONTRIBUTI
 # License
 <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>
 
+
+
+# Thanks to
+[![Stargazers repo roster for @chekoduadarsh/BlocklyML](https://reporoster.com/stars/chekoduadarsh/BlocklyML)](https://github.com/chekoduadarsh/BlocklyML/stargazers)
+
+
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/chekoduadarsh)
