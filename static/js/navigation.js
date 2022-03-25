@@ -42,35 +42,7 @@ function getData() {
 
                 var result = {};
                 keys.forEach((key, i) => result[key] = responseList[i]);
-                document.getElementById("DataFrameViewer").innerHTML = "";
-                for (var i = 0; i < Object.keys(VarData).length; i++) {
-                    (function() {
-
-                        var k = i;
-                        var DataViewer = document.getElementById("DataFrameViewer");
-                        var li = document.createElement("li");
-
-                        var a = document.createElement('a');
-
-                        var link = document.createTextNode(Object.keys(VarData)[i]);
-
-                        a.appendChild(link);
-
-                        a.title = Object.keys(VarData)[i];
-
-                        a.className = "dropdown-item";
-
-
-                        a.addEventListener('click', function() {
-                            displayHTMLTable(responseList[k], Object.keys(VarData)[k], VarData);
-                        });
-
-                        li.appendChild(a);
-                        DataViewer.appendChild(li);
-
-
-                    }());
-                }
+                
             },
             error: function(error) {
                 console.log(error);
@@ -180,7 +152,7 @@ function getReport() {
                     a.title = Object.keys(VarData)[i]
                     a.className = "dropdown-item";
                     a.addEventListener('click', function() {
-                        displayHTMLReport(responseList[k], Object.keys(VarData)[k], VarData);
+                        displayHTMLReport();
                     });
                     DataViewer.appendChild(a);
                     var breaker = document.createElement("br");
@@ -347,17 +319,12 @@ function displayHTMLTable(stringdata, id, VarData) {
     }
 };
 
-function displayHTMLReport(stringdata, id, VarData) {
+function displayHTMLReport() {
 
-    var tableHtml = window.open("/ReportViewer", "_blank", "width=" + screen.availWidth + ", height=" + screen.availHeight + "");
 
-    tableHtml.onload = function() {
-        var div = tableHtml.document.getElementsByTagName("body")[0];
+    
+    window.open("/visualizer", "_blank");
 
-        div.innerHTML = stringdata;
-    }
-
-    //tableHtml.document.write(stringdata);  
 };
 
 function closeForm() {

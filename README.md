@@ -102,7 +102,6 @@ Read : [CONTRIBUTING.md](./CONTRIBUTING.md)
 [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 
-
 # Thanks to
 [![Stargazers repo roster for @chekoduadarsh/BlocklyML](https://reporoster.com/stars/chekoduadarsh/BlocklyML)](https://github.com/chekoduadarsh/BlocklyML/stargazers)
 
