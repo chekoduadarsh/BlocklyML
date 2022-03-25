@@ -1,4 +1,4 @@
-$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+$('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
     if (!$(this).next().hasClass('show')) {
         $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
     }
@@ -6,7 +6,7 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
     $subMenu.toggleClass('show');
 
 
-    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
         $('.dropdown-submenu .show').removeClass("show");
     });
 
@@ -31,7 +31,7 @@ function getData() {
             url: '/DataViewer',
             data: varDataStr,
             type: 'POST',
-            success: function(response) {
+            success: function (response) {
 
                 response = response.substring(2, response.length - 2);
                 var responseList = response.split("', '")
@@ -42,9 +42,9 @@ function getData() {
 
                 var result = {};
                 keys.forEach((key, i) => result[key] = responseList[i]);
-                
+
             },
-            error: function(error) {
+            error: function (error) {
                 console.log(error);
             }
         });
@@ -61,7 +61,7 @@ function getDataDownload() {
             url: '/DataViewer',
             data: varDataStr,
             type: 'POST',
-            success: function(response) {
+            success: function (response) {
 
                 response = response.substring(2, response.length - 2);
                 var responseList = response.split("', '")
@@ -74,7 +74,7 @@ function getDataDownload() {
                 keys.forEach((key, i) => result[key] = responseList[i]);
                 document.getElementById("DataFrameDownload").innerHTML = "";
                 for (var i = 0; i < Object.keys(VarData).length; i++) {
-                    (function() {
+                    (function () {
 
                         var k = i;
                         var DataViewer = document.getElementById("DataFrameDownload");
@@ -91,7 +91,7 @@ function getDataDownload() {
                         a.className = "dropdown-item";
 
 
-                        a.addEventListener('click', function() {
+                        a.addEventListener('click', function () {
 
                             var html = document.createElement("body");
                             html.innerHTML = responseList[k];
@@ -106,7 +106,7 @@ function getDataDownload() {
                     }());
                 }
             },
-            error: function(error) {
+            error: function (error) {
                 console.log(error);
             }
         });
@@ -114,56 +114,31 @@ function getDataDownload() {
 };
 
 function getReport() {
-    var varDataStr = JSON.stringify(VarData);
-
-    $.ajax({
-        url: '/DataReport',
-        data: varDataStr,
-        type: 'POST',
-        success: function(response) {
-
-            response = response.substring(2, response.length - 2);
 
 
-            var responseList = response.split("', '")
+    document.getElementById("DataFrameReportViewer").innerHTML = "";
 
 
+    for (var i = 0; i < Object.keys(VarData).length; i++) {
+        (function () {
 
-            var keys = Object.keys(VarData);
+            var k = i;
+            var DataViewer = document.getElementById("DataFrameReportViewer");
+            var a = document.createElement('a');
+            var link = document.createTextNode(Object.keys(VarData)[i])
 
+            a.appendChild(link);
 
-            var result = {};
-            keys.forEach((key, i) => result[key] = responseList[i]);
-
-
-            document.getElementById("DataFrameReportViewer").innerHTML = "";
-
-
-            for (var i = 0; i < Object.keys(VarData).length; i++) {
-                (function() {
-
-                    var k = i;
-                    var DataViewer = document.getElementById("DataFrameReportViewer");
-                    var a = document.createElement('a');
-                    var link = document.createTextNode(Object.keys(VarData)[i])
-
-                    a.appendChild(link);
-
-                    a.title = Object.keys(VarData)[i]
-                    a.className = "dropdown-item";
-                    a.addEventListener('click', function() {
-                        displayHTMLReport();
-                    });
-                    DataViewer.appendChild(a);
-                    var breaker = document.createElement("br");
-                    DataViewer.appendChild(breaker);
-                }()); // immediate invocation
-            }
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
+            a.title = Object.keys(VarData)[i]
+            a.className = "dropdown-item";
+            a.addEventListener('click', function () {
+                displayHTMLReport(a);
+            });
+            DataViewer.appendChild(a);
+            var breaker = document.createElement("br");
+            DataViewer.appendChild(breaker);
+        }()); // immediate invocation
+    }
 
 
 };
@@ -176,7 +151,7 @@ function getReportDownload() {
         url: '/DataReport',
         data: varDataStr,
         type: 'POST',
-        success: function(response) {
+        success: function (response) {
 
             response = response.substring(2, response.length - 2);
 
@@ -196,7 +171,7 @@ function getReportDownload() {
 
 
             for (var i = 0; i < Object.keys(VarData).length; i++) {
-                (function() {
+                (function () {
 
                     var k = i;
                     var DataViewer = document.getElementById("DataFrameReportDownload");
@@ -206,7 +181,7 @@ function getReportDownload() {
                     a.appendChild(link);
                     a.title = Object.keys(VarData)[i]
                     a.className = "dropdown-item";
-                    a.addEventListener('click', function() {
+                    a.addEventListener('click', function () {
                         downloadHTMLReport(responseList[k], Object.keys(VarData)[k], VarData);
                     });
                     DataViewer.appendChild(a);
@@ -215,7 +190,7 @@ function getReportDownload() {
                 }()); // immediate invocation
             }
         },
-        error: function(error) {
+        error: function (error) {
             console.log(error);
         }
     });
@@ -239,7 +214,7 @@ function downloadHTMLReport(stringdata, id, VarData) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
 };
 
 function downloadPy(fileName) {
@@ -256,7 +231,7 @@ function downloadPy(fileName) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
 
 }
 
@@ -274,7 +249,7 @@ function downloadIpynb(fileName) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
 
 }
 
@@ -311,7 +286,7 @@ function displayHTMLTable(stringdata, id, VarData) {
     var tableHtml = window.open("/DataViewer", "_blank", "width=" + screen.availWidth + ", height=" + screen.availHeight + "");
 
 
-    tableHtml.onload = function() {
+    tableHtml.onload = function () {
         var div = tableHtml.document.getElementsByTagName("body")[0];
 
         div.innerHTML = stringdata;
@@ -319,11 +294,18 @@ function displayHTMLTable(stringdata, id, VarData) {
     }
 };
 
-function displayHTMLReport() {
+function displayHTMLReport(a) {
+    console.log(VarData[String(a.title)]);
+    $.ajax({
+        url: '/DataVisualizer',
+        data: String(VarData[String(a.title)]),
+        type: 'POST',
+        success: function (response) {
+            
+           window.open("/visualizer", "_blank");
+        }
+    });
 
-
-    
-    window.open("/visualizer", "_blank");
 
 };
 
@@ -339,19 +321,19 @@ function closeDownloadCode() {
     document.getElementById("download-code-popup").style.display = "none";
 };
 
-function downloadView(){
+function downloadView() {
     document.getElementById("download-code-popup").style.display = "block";
 }
 
 
-function downloadPyIpynbCode(){
+function downloadPyIpynbCode() {
     var filename = document.getElementById("download-code-fname").value;
     var extention = document.getElementById("download-code-extention").value;
     fileName = filename + extention;
-    if (extention == ".py"){
+    if (extention == ".py") {
         downloadPy(fileName)
     }
-    if (extention == ".ipynb"){
+    if (extention == ".ipynb") {
         downloadIpynb(fileName)
     }
 
@@ -364,4 +346,4 @@ $(document).keyup(function (e) {
         document.getElementById("tip-popup").style.display = "none";
         document.getElementById("download-code-popup").style.display = "none";
     }
-  });
+});

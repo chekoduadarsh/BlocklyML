@@ -1,7 +1,6 @@
 
 from flask import Flask, render_template, request, redirect, url_for, abort
-from libs.DataFrameGenerator import DataFrameGenerator, DataFramevisualizer
-from libs.DataFrameGenerator import DataFrameReportGenerator
+from libs.DataFrameGenerator import  DataFramevisualizer
 
 import dash_bootstrap_components as dbc
 import dash
@@ -42,19 +41,6 @@ dash_app.validation_layout = html.Div()
 
 dash_app.layout = html.Div()
 
-@app.route('/DataViewer', methods=['POST','GET'])
-def DFreturn():
-    listDF = DataFrameGenerator(request.form)
-    return str(listDF)
-
-
-
-
-@app.route('/DataReport', methods=['POST','GET'])
-def DFRreturn():
-    global dash_app
-    listDF, dash_app = DataFramevisualizer(request.form, dash_app)
-    return str(listDF)
 
 
 @app.route('/DataVisualizer', methods=['POST','GET'])
@@ -62,7 +48,6 @@ def DFRreturn():
     global dash_app
     listDF, dash_app = DataFramevisualizer(request.form, dash_app)
     return str(listDF)
-
 
 
 @app.route('/')

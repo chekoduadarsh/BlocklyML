@@ -73,7 +73,6 @@ olefile==0.46
 opt-einsum==3.1.0
 packaging==20.9
 pandas==1.2.3
-pandas-profiling==2.8.0
 pandocfilters==1.4.3
 parso==0.8.2
 pexpect==4.8.0
