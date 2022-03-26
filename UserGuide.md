@@ -32,19 +32,12 @@ It is recommended to use conda/pip virtual environment before installing
 git clone https://github.com/chekoduadarsh/BlocklyML
 ```
 
-After cloning the repo you can either follow the Docker Method or Flask Method
+After cloning the repo you can either follow the Flask Method
 
 2. **Install**
 
-    1. **Docker Method**
-
-    BlocklyML can run on Docker with the following command :cd:
-
-    ```bash
-    docker run blocklyml-docker
-    ```
-
-    2. **Flask Method**
+    
+    1. **Flask Method**
 
     Install the requirements from requirements.txt with the following command
 

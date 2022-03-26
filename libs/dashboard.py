@@ -107,7 +107,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
-
+                        html.Br(),
                         dbc.Button(id='submit-button-scatter',  color="success",
                                    n_clicks=0, children='Submit', style=left_indent_style),
 
@@ -142,6 +142,7 @@ def dashboardApp(df, dash_app, plotly_config):
                         ]),
 
 
+                        html.Br(),
                         dbc.Button(id='submit-button-line', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -174,6 +175,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-bar', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -202,6 +204,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-pie', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -232,6 +235,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-tree', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -262,6 +266,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-sun', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -295,6 +300,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-box', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -323,6 +329,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-hist', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -357,6 +364,7 @@ def dashboardApp(df, dash_app, plotly_config):
                         ]),
 
 
+                        html.Br(),
                         dbc.Button(id='submit-button-area', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -387,6 +395,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-heat', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -417,6 +426,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-violin', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -453,6 +463,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-map-density', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -483,6 +494,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-map-line', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -516,6 +528,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-map-scatter', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -554,6 +567,7 @@ def dashboardApp(df, dash_app, plotly_config):
                             html.P("* Optional Inputs",
                                    style=not_mandatory_font_style),
                         ]),
+                        html.Br(),
                         dbc.Button(id='submit-button-candlestick', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -587,6 +601,7 @@ def dashboardApp(df, dash_app, plotly_config):
                             html.P("* Optional Inputs",
                                    style=not_mandatory_font_style),
                         ]),
+                        html.Br(),
                         dbc.Button(id='submit-button-ohlc', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -626,6 +641,7 @@ def dashboardApp(df, dash_app, plotly_config):
                         ]),
 
 
+                        html.Br(),
                         dbc.Button(id='submit-button-ternary', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -661,6 +677,7 @@ def dashboardApp(df, dash_app, plotly_config):
                         ]),
 
 
+                        html.Br(),
                         dbc.Button(id='submit-button-polar', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -697,6 +714,7 @@ def dashboardApp(df, dash_app, plotly_config):
                                    style=not_mandatory_font_style),
                         ]),
 
+                        html.Br(),
                         dbc.Button(id='submit-button-streamtube', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -736,6 +754,7 @@ def dashboardApp(df, dash_app, plotly_config):
                         ]),
 
 
+                        html.Br(),
                         dbc.Button(id='submit-button-regscatter', n_clicks=0,
                                    children='Submit', color="success", style=left_indent_style),
 
@@ -754,7 +773,8 @@ def dashboardApp(df, dash_app, plotly_config):
                 html.Div(id='input-custom-mandatory', children=[
                     html.Code(id='custom', children=[dcc.Textarea(id='input-custom-code', placeholder="use variable 'df' as datta frame and export plotly figure to variable 'fig'", style={" marginLeft": "1%", "width": "98%", " marginRight": "1%", 'height': 300}),
                                                      ]), ]),
-                dbc.Button(id='submit-button-custom', n_clicks=0,
+                html.Br(),
+                        dbc.Button(id='submit-button-custom', n_clicks=0,
                            children='Submit', color="success", style=left_indent_style),
 
                 dcc.Loading(
