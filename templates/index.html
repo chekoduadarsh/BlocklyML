@@ -53,20 +53,11 @@
             <img src="{{ url_for('static', filename='images/blocklyML_logo.png') }}" height=40 width="130"> &nbsp; &nbsp;
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" h data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();getData()">
+                    <a class="nav-link dropdown-toggle" h data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="blockly.runJS();CloseAllNav();">
                       File
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">View DataFrames</a>
-                            <ul class="dropdown-menu DataFrameViewer">
-                                <div class="DataFrameViewer" id="DataFrameViewer">
-                                    <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">View DataFrame
-                Report</a>
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReport()">DataFrame Visualizer(Sample) </a>
                             <ul class="dropdown-menu DataFrameReportViewer">
                                 <div class="DataFrameReportViewer" id="DataFrameReportViewer">
                                     <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
@@ -88,14 +79,6 @@
                                 <div class="DataFrameDownload" id="DataFrameDownload">
                                     <li><a class="dropdown-item" href="#">DataFrame is Loading please Wait</a>
                                     </li>
-                                </div>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" onclick="getReportDownload()">Download
-                DataFrame Report</a>
-                            <ul class="dropdown-menu DataFrameReportViewer">
-                                <div class="DataFrameReportDownload" id="DataFrameReportDownload">
-                                    <li><a class="dropdown-item" href="#">Report is Loading please Wait</a></li>
                                 </div>
                             </ul>
                         </li>
