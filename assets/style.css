@@ -1,0 +1,33 @@
+/* colors variables settings */
+h1{
+    text-align:center;
+  }
+  :root {
+    --bgColor: #fff;
+  	--textDefault: #000;
+    --primary: #0B4CFF;
+    --secondary: #FF0B70;
+    --terciary: #00BA5B;
+}
+
+:root[data-theme='dark'] {
+  	--bgColor: #000;
+  	--textDefault: #fff;
+    --primary: #ACC2FF;
+    --secondary: #FFAFD0;
+    --terciary: #86E1B3;
+}
+body {
+    background: var(--bgColor);
+    color: var(--textDefault);
+  }
+  
+h2 {
+    text-align:center;
+}
+
+.classNameExample {
+    background: var(--terciary);
+    border: 1px solid var(--secondary);
+}
+

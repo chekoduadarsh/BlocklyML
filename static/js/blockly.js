@@ -531,7 +531,7 @@ blockly.initLanguage = function () {
   document.getElementById('tab_blocks').textContent = MSG['blocks'];
 
   document.getElementById('linkButton').title = MSG['linkTooltip'];
-  document.getElementById('runButton').title = MSG['runTooltip'];
+  document.getElementById('runButton').title = "Run frature is currently disabled";
   document.getElementById('trashButton').title = MSG['trashTooltip'];
 };
 
