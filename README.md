@@ -102,6 +102,7 @@ Read : [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 # Thanks to
 [![Stargazers repo roster for @chekoduadarsh/BlocklyML](https://reporoster.com/stars/chekoduadarsh/BlocklyML)](https://github.com/chekoduadarsh/BlocklyML/stargazers)
+[![Forkers repo roster for @chekoduadarsh/BlocklyML](https://reporoster.com/forks/chekoduadarsh/BlocklyML)](https://github.com/chekoduadarsh/BlocklyML/network/members)
 
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/chekoduadarsh)
