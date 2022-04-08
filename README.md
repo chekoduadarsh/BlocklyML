@@ -6,6 +6,7 @@
 ![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
 ![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
+[![CodeQL](https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml/badge.svg)](https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml)
 
 ![blocklyml.herokuapp.com](https://blocklyml.herokuapp.com/)
 
