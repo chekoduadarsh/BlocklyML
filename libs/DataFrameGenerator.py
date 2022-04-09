@@ -1,6 +1,6 @@
 
 import pandas as pd
-from libs.dashboard import dashboardApp
+from libs.dashboard import dashboard_app
 import seaborn as sns
 import pandas as pd
 
@@ -19,7 +19,7 @@ def DataFramevisualizer(codeImdict, dash_app):
         replaceStr = ""
         command = "var = "+code.replace('"', "'")+replaceStr
         exec(command, globals(), loc)
-        dash_app = dashboardApp(loc['var'], dash_app, {})
+        dash_app = dashboard_app(loc['var'], dash_app, {})
         listDF.append("")
 
     return listDF, dash_app
