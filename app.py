@@ -8,14 +8,14 @@ environment you are running this script in.
 This file can also be imported as a module and contains the following
 functions:
 
-    * dataframe_return - list of Dataframes from DataFrameVisualizer
+    * dataframe_return - list of Dataframes from dataframe_visualizer
     * root - returns the index page
 """
 from flask import Flask, render_template, request
 import dash_bootstrap_components as dbc
 import dash
 from dash import html
-from libs.DataFrameGenerator import DataFramevisualizer
+from libs.dataframe_visualizer import dataframe_visualizer
 
 
 app = Flask(__name__)
@@ -54,13 +54,13 @@ DASH_APP.layout = html.Div()
 
 @app.route('/DataVisualizer', methods=['POST', 'GET'])
 def dataframe_return():
-    """returns list of Dataframes from DataFrameVisualizer
+    """returns list of Dataframes from dataframe_visualizer
 
     Returns:
         string: list of datafrmaes
     """
     global DASH_APP
-    list_dataframe, DASH_APP = DataFramevisualizer(request.form, DASH_APP)
+    list_dataframe, DASH_APP = dataframe_visualizer(request.form, DASH_APP)
     return str(list_dataframe)
 
 
