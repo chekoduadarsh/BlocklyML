@@ -21,4 +21,5 @@ jobs:
         pip install -r requirements.txt
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint $(ls *.py)
+        # not considering lib folder it contains DASH library code, the design does not align with pep8 principle
