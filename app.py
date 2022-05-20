@@ -51,7 +51,6 @@ DASH_APP.validation_layout = html.Div()
 
 DASH_APP.layout = html.Div()
 
-
 @app.route('/DataVisualizer', methods=['POST', 'GET'])
 def dataframe_return():
     """returns list of Dataframes from dataframe_visualizer
@@ -59,6 +58,7 @@ def dataframe_return():
     Returns:
         string: list of datafrmaes
     """
+    # pylint: disable=W0603
     global DASH_APP
     list_dataframe, DASH_APP = dataframe_visualizer(request.form, DASH_APP)
     return str(list_dataframe)
