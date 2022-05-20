@@ -1,12 +1,13 @@
-name: Pylint
+name: RequirementsTest
 
 on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ["3.9"]
     steps:
     - uses: actions/checkout@v3
@@ -19,7 +20,3 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
         pip install -r requirements.txt
-    - name: Analysing the code with pylint
-      run: |
-        pylint $(ls *.py)
-        # not considering lib folder it contains DASH library code, the design does not align with pep8 principle
