@@ -1,17 +1,11 @@
 """Instantiate a Dash app."""
-import numpy as np
-import pandas as pd
-import dash
 from dash import dash_table
 from dash import dcc
 import plotly.express as px
-import json
 from dash import html
-import dash_daq as daq
 from dash.dependencies import Input, Output, State
-import string
-import random
-import urllib.parse
+
+
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 from .util import floatNoneConvert, strNoneConvert, otherinputtodict
@@ -35,13 +29,6 @@ def dashboard_app(df, dash_app, plotly_config):
         "backgroundColor": "black",
         "color": "white",
     }
-
-    dropdown_style = {
-        "fontWeight": "bold",
-        "backgroundColor": "black",
-        "color": "white",
-    }
-
     tab_selected_style = {
         "borderTop": "1px solid #d6d6d6",
         "borderBottom": "1px solid #d6d6d6",
@@ -49,16 +36,9 @@ def dashboard_app(df, dash_app, plotly_config):
         "color": "white",
         "padding": "6px",
     }
-
     not_mandatory_font_style = {"color": "blue"}
     mandatory_font_style = {"color": "red"}
     mandatory_div_style = {" marginLeft": "1%", "width": "48%", "display": "inline-grid"}
-    only_mandatory_div_style = {
-        " marginLeft": "1%",
-        "width": "98%",
-        " marginRight": "1%",
-        "display": "inline-grid",
-    }
     not_mandatory_div_style = {
         " marginLeft": "2%",
         "border-spacing": "2px",
@@ -1829,7 +1809,7 @@ def dashboard_app(df, dash_app, plotly_config):
         State("input-other-heat", "value"),
     )
     def update_heatplot(n_clicks, input1, input2, input3, input4):
-        if not (input1 is None) and not (input2 is None):
+        if not input1 is None and not input2 is None:
             if strNoneConvert(input1) in df.columns and strNoneConvert(input2) in df.columns:
 
                 input_parametes = {
@@ -1855,7 +1835,7 @@ def dashboard_app(df, dash_app, plotly_config):
         State("input-other-violin", "value"),
     )
     def update_violinplot(n_clicks, input1, input2, input3, input4):
-        if not (input1 is None):
+        if not input1 is None:
             if strNoneConvert(input1) in df.columns:
 
                 input_parametes = {
@@ -2130,7 +2110,7 @@ def dashboard_app(df, dash_app, plotly_config):
         State("input-custom-code", "value"),
     )
     def update_customplot(n_clicks, input1):
-        if not (input1 is None):
+        if not input1 is None:
             df
             _locals = locals()
             exec(input1, globals(), _locals)
