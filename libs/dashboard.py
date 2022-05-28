@@ -1,19 +1,14 @@
 """Instantiate a Dash app."""
-from dash import dash_table
-from dash import dcc
-import plotly.express as px
-from dash import html
+from dash import dash_table, dcc, html
 from dash.dependencies import Input, Output, State
-
-
 import plotly.graph_objects as go
+import plotly.express as px
 import dash_bootstrap_components as dbc
 from .util import floatNoneConvert, strNoneConvert, otherinputtodict
 
 
 def dashboard_app(df, dash_app, plotly_config):
     """Create a Plotly Dash dashboard."""
-
     dropdowns = []
     plot_theme = None
     plotly_color_continuous_scale = None
@@ -56,7 +51,7 @@ def dashboard_app(df, dash_app, plotly_config):
 
     barmode = [{"label": "stack", "value": "stack"}, {"label": "group", "value": "group"}]
 
-    regressioon_Algos = [
+    regressioon_algos = [
         {"label": "Ordinary least squares", "value": "ols"},
         {"label": "Locally WEighted Scatterplot Smoothing", "value": "lowess"},
         #                    {"label":"5-Point Moving Averages", "value":"rolling"},
@@ -1460,7 +1455,7 @@ def dashboard_app(df, dash_app, plotly_config):
                                                     ),
                                                     dcc.Dropdown(
                                                         id="input-reg-regscatter",
-                                                        options=regressioon_Algos,
+                                                        options=regressioon_algos,
                                                         placeholder="Enter Regression Algorithmm",
                                                     ),
                                                     html.P(
