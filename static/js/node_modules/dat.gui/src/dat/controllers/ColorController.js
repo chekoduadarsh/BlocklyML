@@ -1,6 +1,6 @@
 /**
  * dat-gui JavaScript Controller Library
- * http://code.google.com/p/dat-gui
+ * https://github.com/dataarts/dat.gui
  *
  * Copyright 2011 Data Arts Team, Google Creative Lab
  *
@@ -138,10 +138,10 @@ class ColorController extends Controller {
 
     common.extend(this.__input.style, {
       outline: 'none',
-//      width: '120px',
+      //      width: '120px',
       textAlign: 'center',
-//      padding: '4px',
-//      marginBottom: '6px',
+      //      padding: '4px',
+      //      marginBottom: '6px',
       color: '#fff',
       border: 0,
       fontWeight: 'bold',

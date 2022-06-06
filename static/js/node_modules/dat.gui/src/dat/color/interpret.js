@@ -1,6 +1,6 @@
 /**
  * dat-gui JavaScript Controller Library
- * http://code.google.com/p/dat-gui
+ * https://github.com/dataarts/dat.gui
  *
  * Copyright 2011 Data Arts Team, Google Creative Lab
  *
@@ -32,7 +32,8 @@ const INTERPRETATIONS = [
               '0x' +
               test[1].toString() + test[1].toString() +
               test[2].toString() + test[2].toString() +
-              test[3].toString() + test[3].toString(), 0)
+              test[3].toString() + test[3].toString(), 0
+            )
           };
         },
 
@@ -57,7 +58,7 @@ const INTERPRETATIONS = [
 
       CSS_RGB: {
         read: function(original) {
-          const test = original.match(/^rgb\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\)/);
+          const test = original.match(/^rgb\(\s*(\S+)\s*,\s*(\S+)\s*,\s*(\S+)\s*\)/);
           if (test === null) {
             return false;
           }
@@ -75,7 +76,7 @@ const INTERPRETATIONS = [
 
       CSS_RGBA: {
         read: function(original) {
-          const test = original.match(/^rgba\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\)/);
+          const test = original.match(/^rgba\(\s*(\S+)\s*,\s*(\S+)\s*,\s*(\S+)\s*,\s*(\S+)\s*\)/);
           if (test === null) {
             return false;
           }

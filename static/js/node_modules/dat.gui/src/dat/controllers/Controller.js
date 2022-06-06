@@ -1,6 +1,6 @@
 /**
  * dat-gui JavaScript Controller Library
- * http://code.google.com/p/dat-gui
+ * https://github.com/dataarts/dat.gui
  *
  * Copyright 2011 Data Arts Team, Google Creative Lab
  *
@@ -115,7 +115,7 @@ class Controller {
   }
 
   /**
-   * @returns {Boolean} true if the value has deviated from initialValue
+   * @returns {boolean} true if the value has deviated from initialValue
    */
   isModified() {
     return this.initialValue !== this.getValue();
