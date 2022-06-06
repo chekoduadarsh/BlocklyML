@@ -1,16 +1,20 @@
-![](https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_Banner.png)
-
-<h1 style="text-align: center;"><a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a></h1>
-
-
-![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
-![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
-![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
-[![CodeQL](https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml/badge.svg)](https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml)
+<p align="center">
+  <a href="blocklyml.herokuapp.com/">
+<img src="https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_Banner.png" height="80" />
+    </a>
+    </p>
+<p align="center">
+<a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a>
+</p>
+<p align="center">
+<img src="https://img.shields.io/github/license/chekoduadarsh/BlocklyML">
+<img src="https://img.shields.io/github/issues/chekoduadarsh/BlocklyML">
+<img src="https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML">
+ <img src="https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml/badge.svg">
+   </p>
 
 ![blocklyml.herokuapp.com](https://blocklyml.herokuapp.com/)
 
-### What is BlocklyML?
 BlocklyML is a **No Code** training ground for python and Machine Learning. This tool is designed to simplify standard machine learning implementation.
 This tool can assist anyone who wants to start with Machine Learning or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
 
