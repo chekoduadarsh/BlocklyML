@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="blocklyml.herokuapp.com/">
+  <a href="https://blocklyml.herokuapp.com/">
 <img src="https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_Banner.png" height="80" />
     </a>
     </p>
@@ -13,7 +13,6 @@
  <img src="https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml/badge.svg">
    </p>
 
-![blocklyml.herokuapp.com](https://blocklyml.herokuapp.com/)
 
 BlocklyML is a **No Code** training ground for python and Machine Learning. This tool is designed to simplify standard machine learning implementation.
 This tool can assist anyone who wants to start with Machine Learning or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
