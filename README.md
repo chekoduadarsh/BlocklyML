@@ -25,7 +25,8 @@ Read the ![UserGuide.md](https://github.com/chekoduadarsh/BlocklyML/blob/main/Us
 
 In the Example given below we will train a random forest for Iris Dataset
 
-<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/IrisRandomForest.png" alt="drawing" width="500"/>
+
+https://user-images.githubusercontent.com/26855534/174473003-488f675f-50a0-48f1-9ef0-81987bd21166.mp4
 
 # Table of contents
 
