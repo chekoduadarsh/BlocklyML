@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CsvFileAttributes">
+    <option name="attributeMap">
+      <map>
+        <entry key="$USER_HOME$/anaconda3/envs/Any1ML/lib/python3.8/site-packages/astropy/coordinates/tests/accuracy/data/fk4_no_e_fk4.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/anaconda3/envs/Any1ML/lib/python3.8/site-packages/astropy/coordinates/tests/accuracy/data/fk4_no_e_fk5.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/anaconda3/envs/Any1ML/lib/python3.8/site-packages/astropy/coordinates/tests/accuracy/data/galactic_fk4.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/anaconda3/envs/Any1ML/lib/python3.8/site-packages/astropy/coordinates/tests/accuracy/data/icrs_fk5.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
