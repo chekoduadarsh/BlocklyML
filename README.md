@@ -1,15 +1,19 @@
-![](https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_Banner.png)
+<p align="center">
+  <a href="https://blocklyml.herokuapp.com/">
+<img src="https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_Banner.png" height="80" />
+    </a>
+    </p>
+<p align="center">
+<a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a>
+</p>
+<p align="center">
+<img src="https://img.shields.io/github/license/chekoduadarsh/BlocklyML">
+<img src="https://img.shields.io/github/issues/chekoduadarsh/BlocklyML">
+<img src="https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML">
+ <img src="https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml/badge.svg">
+   </p>
 
-<h1 style="text-align: center;"><a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a></h1>
 
-
-![](https://img.shields.io/github/license/chekoduadarsh/BlocklyML)
-![](https://img.shields.io/github/issues/chekoduadarsh/BlocklyML)
-![](https://img.shields.io/github/last-commit/chekoduadarsh/BlocklyML)
-
-![blocklyml.herokuapp.com](https://blocklyml.herokuapp.com/)
-
-### What is BlocklyML?
 BlocklyML is a **No Code** training ground for python and Machine Learning. This tool is designed to simplify standard machine learning implementation.
 This tool can assist anyone who wants to start with Machine Learning or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
 
@@ -21,7 +25,8 @@ Read the ![UserGuide.md](https://github.com/chekoduadarsh/BlocklyML/blob/main/Us
 
 In the Example given below we will train a random forest for Iris Dataset
 
-<img src="https://github.com/chekoduadarsh/BlocklyML/blob/main/media/IrisRandomForest.png" alt="drawing" width="500"/>
+
+https://user-images.githubusercontent.com/26855534/174473003-488f675f-50a0-48f1-9ef0-81987bd21166.mp4
 
 # Table of contents
 
@@ -102,6 +107,7 @@ Read : [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 # Thanks to
 [![Stargazers repo roster for @chekoduadarsh/BlocklyML](https://reporoster.com/stars/chekoduadarsh/BlocklyML)](https://github.com/chekoduadarsh/BlocklyML/stargazers)
+[![Forkers repo roster for @chekoduadarsh/BlocklyML](https://reporoster.com/forks/chekoduadarsh/BlocklyML)](https://github.com/chekoduadarsh/BlocklyML/network/members)
 
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/chekoduadarsh)

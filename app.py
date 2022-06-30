@@ -1,10 +1,21 @@
+"""App
 
-from flask import Flask, render_template, request, redirect, url_for, abort
-from libs.DataFrameGenerator import  DataFramevisualizer
+This script allows connects and interacts with Flask and Dash components.
 
+This script requires that `flask` and 'dash' be installed within the Python
+environment you are running this script in.
+
+This file can also be imported as a module and contains the following
+functions:
+
+    * dataframe_return - list of Dataframes from dataframe_visualizer
+    * root - returns the index page
+"""
+from flask import Flask, render_template, request
 import dash_bootstrap_components as dbc
 import dash
 from dash import html
+from libs.dataframe_visualizer import dataframe_visualizer
 
 
 app = Flask(__name__)
@@ -14,8 +25,7 @@ app.config['SECRET_KEY'] = 'secret!'
 app.config['DEBUG'] = True
 
 
-
-dash_app = dash.Dash(
+DASH_APP = dash.Dash(
     routes_pathname_prefix='/visualizer/',
     server=app,
     external_scripts=[
@@ -35,34 +45,34 @@ dash_app = dash.Dash(
 )
 
 
-dash_app.config.suppress_callback_exceptions = True
+DASH_APP.config.suppress_callback_exceptions = True
 
-dash_app.validation_layout = html.Div()
+DASH_APP.validation_layout = html.Div()
 
-dash_app.layout = html.Div()
+DASH_APP.layout = html.Div()
+
+@app.route('/DataVisualizer', methods=['POST', 'GET'])
+def dataframe_return():
+    """returns list of Dataframes from dataframe_visualizer
+
+    Returns:
+        string: list of datafrmaes
+    """
+    # pylint: disable=W0603
+    global DASH_APP
+    list_dataframe, DASH_APP = dataframe_visualizer(request.form, DASH_APP)
+    return str(list_dataframe)
 
 
-
-@app.route('/DataVisualizer', methods=['POST','GET'])
-def DFRreturn():
-    global dash_app
-    listDF, dash_app = DataFramevisualizer(request.form, dash_app)
-    return str(listDF)
-
-
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def root():
-    """Video streaming home page."""
+    """renders undex.html
+
+    Returns:
+        _render: rendered html
+    """
     return render_template('index.html')
-
-
-@app.route('/', methods=['POST','GET'])
-def my_form_post():
-    return render_template('index.html')
-
-
 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
-
