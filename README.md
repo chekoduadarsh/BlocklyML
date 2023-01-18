@@ -13,9 +13,9 @@
  <img src="https://github.com/chekoduadarsh/BlocklyML/actions/workflows/codeql.yml/badge.svg">
    </p>
 
+BlocklyML is a visual programming tool that allows users to create machine learning models by dragging and dropping blocks. It is based on Google's Blockly library and is designed to make machine learning more accessible to non-technical users. BlocklyML provides a set of blocks for common machine learning tasks such as data preprocessing, model selection, and evaluation.  With BlocklyML, users can quickly build and train machine learning models without needing to write code. This can be useful for tasks such as prototyping, data exploration, and education. BlocklyML is an open source project and can be easily integrated into other applications. It can be used in the browser, or embedded in a mobile or desktop application. It can be a great tool for teachers, students, and novices who want to experiment with machine learning without needing to know how to code
 
-BlocklyML is a **No Code** training ground for python and Machine Learning. This tool is designed to simplify standard machine learning implementation.
-This tool can assist anyone who wants to start with Machine Learning or python. This is a forked project from [Blockly](https://github.com/google/blockly) and adapted for machine learning and Data analytics use-cases. :brain:
+
 
 For a sample run go to sampleLayouts folder upload and try it out :smiley:
 
