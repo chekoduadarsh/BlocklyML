@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_7500653106ae4f649a5227003a06d14b }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_a160631ea485463c9a88ad913cf4b013 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_c6ee56afe1ae440ca65be711bece4c83 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_28a93d9e06934256859c9770a9853e2d }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_7500653106ae4f649a5227003a06d14b }}/appsvc/staticsite:${{ github.sha }}
+        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_c6ee56afe1ae440ca65be711bece4c83 }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'BLocklyML'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1b59033f3e1d49ba925aa88768a82586 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_7500653106ae4f649a5227003a06d14b }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7cf8ffb9235841b1968cb27592dee700 }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_c6ee56afe1ae440ca65be711bece4c83 }}/appsvc/staticsite:${{ github.sha }}'
