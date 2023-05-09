@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://blocklyml.herokuapp.com/">
+  <a href="https://blocklyml.onrender.com/">
 <img src="https://raw.githubusercontent.com/chekoduadarsh/BlocklyML/main/media/blocklyML_Banner.png" height="80" />
     </a>
     </p>
 <p align="center">
-<a href="https://blocklyml.herokuapp.com/ ">Blockly ML</a>
+<a href="https://blocklyml.onrender.com/">Blockly ML</a>
 </p>
 <p align="center">
 <img src="https://img.shields.io/github/license/chekoduadarsh/BlocklyML">
