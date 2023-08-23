@@ -50,6 +50,23 @@ git clone https://github.com/chekoduadarsh/BlocklyML
 After cloning the repo you can either follow the Flask Method
 
 
+# Running the App Using Docker
+
+If you've cloned the project and want to build the image, follow these steps:
+
+1.Open your terminal and navigate to the project directory.
+
+2.Run the following command to build the Docker image:
+
+```shell
+docker build . -t blocklyml/demo
+```
+Once the image is built, you can launch the app by executing the following command:
+
+```shell
+docker run -ti -p5000:5000 blockly_ml/demo
+```
+This will start the app, and you'll be able to access it by opening your web browser and navigating to `http://localhost:5000`
 ### Flask Method
 
 Install the requirements from `requirements.txt` with the following command
